@@ -1,11 +1,12 @@
-import React from "react";
+import React, { Suspense } from 'react';
+import './App.scss';
 
-import "./App.scss";
+import { Outlet } from 'react-router-dom';
 
-const App: React.FC = () => {
-  const foo = () => 0;
-
-  return <>HUI</>;
-};
+const App: React.FC = () => (
+  <Suspense fallback={<>Загрузка</>}>
+    <Outlet />
+  </Suspense>
+);
 
 export default App;
