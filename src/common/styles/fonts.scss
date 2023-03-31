@@ -1,0 +1,12 @@
+@import "constants";
+
+@font-face {
+  font-family: $neueFont;
+  src: url('../../assets/fonts/NeueHaasDisplay-Mediu.woff2') format('woff2'),
+  url('../../assets/fonts/NeueHaasDisplay-Mediu.woff') format('woff'),
+  url('../../assets/fonts/NeueHaasDisplay-Mediu.ttf') format('truetype'),
+  url('../../assets/fonts/NeueHaasDisplay-Mediu.svg#NeueHaasDisplay-Mediu') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

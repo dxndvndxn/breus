@@ -1,0 +1,39 @@
+@import 'common/styles/index.scss';
+
+.center {
+  font-size: 8.2rem;
+}
+
+.navigation {
+  display: flex;
+  gap: 0 7.4rem;
+}
+
+.navigation__link {
+  font-family: $neueFont, sans-serif;
+  color: #fff;
+  position: relative;
+
+  &:hover {
+    color: $purpp;
+  }
+
+  &:not(.navigation__link_last) {
+    &:after {
+      content: '/';
+      position: absolute;
+      color: $purpp;
+      right: -6rem;
+    }
+  }
+
+  @include transition(color);
+}
+
+.nav-link__counts {
+  position: absolute;
+  top: -1rem;
+  right: -2rem;
+  color: #fff;
+  font-size: 2.3rem;
+}

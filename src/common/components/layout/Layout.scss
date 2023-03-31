@@ -1,0 +1,35 @@
+@import 'common/styles/index.scss';
+
+.layout {
+  padding: 2.9rem .9rem;
+  height: calc(100vh - 5.8rem);
+}
+
+.layout__head {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  font-family: $neueFont, sans-serif;
+  color: #fff;
+  font-weight: 500;
+  font-size: 3.2rem;
+}
+
+.header_center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.layout__bottom {
+  position: absolute;
+  bottom: 2.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: $neueFont, sans-serif;
+  color: #fff;
+  font-size: 3.2rem;
+}
