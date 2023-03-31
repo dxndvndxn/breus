@@ -7,12 +7,14 @@
 .navigation {
   display: flex;
   gap: 0 7.4rem;
+  list-style: none;
 }
 
 .navigation__link {
   font-family: $neueFont, sans-serif;
-  color: #fff;
+  color: #eaeaef;;
   position: relative;
+  mix-blend-mode: exclusion;
 
   &:hover {
     color: $purpp;

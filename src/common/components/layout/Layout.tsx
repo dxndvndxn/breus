@@ -9,17 +9,19 @@ interface ILayout {
 
 export const Layout: React.FC<ILayout> = ({ children }) => (
   <main className="layout">
-    <div className="layout__head">
+    <div className="layout__head blended-mode">
       <Link className="logo" to={'/'}>
         Sergey Breus
       </Link>
     </div>
     {children}
 
-    <header className="header header_center">
+    <header className="header header_center blended-mode">
       <Nav location="center" />
     </header>
 
-    <div className="layout__bottom">Creative digital designer portfolio</div>
+    <div className="layout__bottom blended-mode">
+      Creative digital designer portfolio
+    </div>
   </main>
 );
