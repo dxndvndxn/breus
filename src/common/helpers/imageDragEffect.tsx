@@ -26,6 +26,8 @@ interface TrailsTranslation extends Omit<DraggingPos, 'amt'> {
   amt: (value: number) => number;
 }
 
+// let count = 0;
+
 export class ImageDragEffect {
   public nodes: React.ElementType[] = [];
 
@@ -41,6 +43,10 @@ export class ImageDragEffect {
   private draggingPos: DraggingPos;
 
   private trailsTranslation: TrailsTranslation[];
+
+  private isDragging = false;
+
+  private animationFrameId = 0;
 
   constructor({ drag, trailsAmount = 5, wrap }: IImageDragEffect) {
     this.DOM = {
@@ -83,10 +89,11 @@ export class ImageDragEffect {
     this.draggie = new Draggabilly(this.DOM.drag);
 
     this.initEvents();
-    requestAnimationFrame(() => this.render());
+    this.render();
   }
 
   get trails() {
+    // count += 1;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return [...this.DOM.wrap.querySelectorAll('.img-trail')];
@@ -95,13 +102,19 @@ export class ImageDragEffect {
   private initEvents(): void {
     const onDragStart = () => {
       // Reset
-      this.draggingPos.previous = { x: 0, y: 0 };
+      this.isDragging = true;
+      this.draggingPos = {
+        previous: { x: 0, y: 0 },
+        current: { x: 0, y: 0 },
+        amt: 0.1,
+      };
+      requestAnimationFrame(() => this.render());
     };
 
     const onDragMove = (...context: any) => {
       const [, , moveVector] = context;
-
       this.draggingPos.current = moveVector;
+
       for (let i = 0; i <= this.trailsTotal - 1; ++i) {
         this.trailsTranslation[i].current = this.draggie.position;
       }
@@ -119,10 +132,15 @@ export class ImageDragEffect {
       this.DOM.drag.style.cursor = 'grab';
     };
 
+    const onDragEnd = () => {
+      this.isDragging = false;
+    };
+
     this.draggie.on('pointerDown', onPointerDown);
     this.draggie.on('dragStart', onDragStart);
     this.draggie.on('dragMove', onDragMove);
     this.draggie.on('pointerUp', onPointerUp);
+    this.draggie.on('dragEnd', onDragEnd);
   }
 
   private render(): void {
@@ -138,20 +156,40 @@ export class ImageDragEffect {
     );
 
     for (let i = 0; i <= this.trailsTotal - 1; ++i) {
-      this.trailsTranslation[i].previous.x = lerp(
-        this.trailsTranslation[i].previous.x,
-        this.trailsTranslation[i].current.x,
-        this.trailsTranslation[i].amt(i)
-      );
-      this.trailsTranslation[i].previous.y = lerp(
-        this.trailsTranslation[i].previous.y,
-        this.trailsTranslation[i].current.y,
-        this.trailsTranslation[i].amt(i)
-      );
+      if (!this.isDragging && this.animationFrameId) {
+        this.trailsTranslation[i].previous.x = lerp(
+          this.draggie.position.x,
+          this.draggie.position.x,
+          this.trailsTranslation[i].amt(i)
+        );
+        this.trailsTranslation[i].previous.y = lerp(
+          this.draggie.position.y,
+          this.draggie.position.y,
+          this.trailsTranslation[i].amt(i)
+        );
+      } else {
+        this.trailsTranslation[i].previous.x = lerp(
+          this.trailsTranslation[i].previous.x,
+          this.trailsTranslation[i].current.x,
+          this.trailsTranslation[i].amt(i)
+        );
+        this.trailsTranslation[i].previous.y = lerp(
+          this.trailsTranslation[i].previous.y,
+          this.trailsTranslation[i].current.y,
+          this.trailsTranslation[i].amt(i)
+        );
+      }
     }
     this.layout();
+
     // loop
-    requestAnimationFrame(() => this.render());
+    if (this.isDragging) {
+      this.animationFrameId = requestAnimationFrame(() => this.render());
+    }
+    if (!this.isDragging && this.animationFrameId) {
+      this.animationFrameId = 0;
+      cancelAnimationFrame(this.animationFrameId);
+    }
   }
 
   layout() {
@@ -162,7 +200,7 @@ export class ImageDragEffect {
       this.draggingPos.current.y
     );
 
-    for (let i = 0; i <= this.trailsTotal - 1; ++i) {
+    for (let i = 0; i <= this.trailsTotal - 1 && this.trails.length; ++i) {
       const brightnessVal = clamp(
         map(
           draggingDistance,
@@ -176,6 +214,7 @@ export class ImageDragEffect {
       );
 
       this.trails[i].style.filter = `brightness(${brightnessVal}%)`;
+
       this.trails[
         i
       ].style.transform = `translate3d(${this.trailsTranslation[i].previous.x}px,${this.trailsTranslation[i].previous.y}px,0)`;

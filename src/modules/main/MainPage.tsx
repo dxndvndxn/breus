@@ -29,11 +29,6 @@ const MainPage: React.FC = () => {
           alt="Pokemon"
           ref={pokemonRef}
         />
-        {/*<div*/}
-        {/*  style={{ backgroundImage: `url('/images/Pokemon.png')` }}*/}
-        {/*  className="pokemon"*/}
-        {/*  ref={pokemonRef}*/}
-        {/*/>*/}
       </div>
     </div>
   );
