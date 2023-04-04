@@ -89,11 +89,9 @@ export class ImageDragEffect {
     this.draggie = new Draggabilly(this.DOM.drag);
 
     this.initEvents();
-    this.render();
   }
 
   get trails() {
-    // count += 1;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return [...this.DOM.wrap.querySelectorAll('.img-trail')];

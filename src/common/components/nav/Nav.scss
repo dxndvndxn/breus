@@ -2,6 +2,26 @@
 
 .center {
   font-size: 8.2rem;
+
+  .navigation__link {
+    top: -1rem;
+    right: -2rem;
+    font-size: 8.2rem;
+  }
+
+  .nav-link__counts {
+    font-size: 2.3rem;
+  }
+}
+
+.bottom {
+  font-size: 3.2rem;
+
+  .nav-link__counts {
+    top: 0;
+    right: -2rem;
+    font-size: 1.2rem;
+  }
 }
 
 .navigation {
@@ -12,7 +32,7 @@
 
 .navigation__link {
   font-family: $neueFont, sans-serif;
-  color: #eaeaef;;
+  color: #fff;
   position: relative;
   mix-blend-mode: exclusion;
 
@@ -27,6 +47,10 @@
       color: $purpp;
       right: -6rem;
     }
+
+    &.navigation__link_active {
+      color: $purpp;
+    }
   }
 
   @include transition(color);
@@ -34,8 +58,5 @@
 
 .nav-link__counts {
   position: absolute;
-  top: -1rem;
-  right: -2rem;
   color: #fff;
-  font-size: 2.3rem;
 }

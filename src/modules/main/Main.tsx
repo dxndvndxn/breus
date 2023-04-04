@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ImageDragEffect } from '../../common/helpers';
-import './MainPage.scss';
+import './Main.scss';
 
-const MainPage: React.FC = () => {
+const Main: React.FC = () => {
   const [pokemons, setPokemons] = useState<React.ElementType[]>([]);
   const pokemonRef = useRef<HTMLImageElement | null>(null);
   const pokemonWrapRef = useRef<HTMLDivElement | null>(null);
@@ -34,4 +34,4 @@ const MainPage: React.FC = () => {
   );
 };
 
-export default MainPage;
+export default Main;
