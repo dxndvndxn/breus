@@ -13,9 +13,12 @@ export const Layout: React.FC<ILayout> = ({ children, type = 'usual' }) => {
   return (
     <main className="layout">
       <div className="layout__head blended-mode">
+        <div />
         <Link className="logo" to={'/'}>
           Sergey Breus
         </Link>
+
+        <div id="head-menu" />
       </div>
 
       {children}
@@ -26,16 +29,10 @@ export const Layout: React.FC<ILayout> = ({ children, type = 'usual' }) => {
         </header>
       )}
 
-      {isMain && (
-        <div className="layout__bottom blended-mode">
-          Creative digital designer portfolio
-        </div>
-      )}
-      {type === 'usual' && (
-        <div className="layout__bottom blended-mode">
-          <Nav location="bottom" />
-        </div>
-      )}
+      <div className="layout__bottom blended-mode">
+        {isMain && 'Creative digital designer portfolio'}
+        {type === 'usual' && <Nav location="bottom" />}
+      </div>
     </main>
   );
 };

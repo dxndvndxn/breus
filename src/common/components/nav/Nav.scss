@@ -12,22 +12,53 @@
   .nav-link__counts {
     font-size: 2.3rem;
   }
+
+  .navigation {
+    gap: 0 7.4rem;
+  }
+
+  .navigation__link {
+    &:not(.navigation__link_last) {
+      &:after {
+        right: -6rem;
+      }
+    }
+  }
 }
 
 .bottom {
-  font-size: 3.2rem;
+  font-size: 2.7rem;
 
   .nav-link__counts {
     top: 0;
     right: -2rem;
     font-size: 1.2rem;
   }
+
+  .navigation {
+    gap: 0 5.1rem;
+  }
+
+  .navigation__link {
+    &:not(.navigation__link_last) {
+      &:after {
+        right: -3rem;
+      }
+    }
+  }
+
+  .navigation__link.navigation__link_first {
+    margin-right: 1rem;
+    &:after {
+      right: -5rem;
+    }
+  }
 }
 
 .navigation {
   display: flex;
-  gap: 0 7.4rem;
   list-style: none;
+  white-space: nowrap;
 }
 
 .navigation__link {
@@ -45,7 +76,6 @@
       content: '/';
       position: absolute;
       color: $purpp;
-      right: -6rem;
     }
 
     &.navigation__link_active {

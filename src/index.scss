@@ -1,7 +1,7 @@
 @import "common/styles";
 
 :root {
-  font-size: 10px;
+  font-size: 0.625rem;
 
   ul {
     margin: 0;
@@ -10,6 +10,20 @@
 
   a {
     text-decoration: none;
+  }
+
+  button {
+    background: none;
+    padding: 0;
+    border: none;
+  }
+
+  @media all and (max-width: 1920px) {
+    font-size: 0.6vw;
+  }
+
+  @media all and (max-width: 991px) {
+    font-size: .625rem;
   }
 }
 

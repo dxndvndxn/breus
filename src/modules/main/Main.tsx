@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ImageDragEffect } from '../../common/helpers';
+import PokemonImg from '../../assets/images/Pokemon.png';
 import './Main.scss';
 
 const Main: React.FC = () => {
@@ -24,7 +25,7 @@ const Main: React.FC = () => {
           <Pokemon key={key} />
         ))}
         <img
-          src="/images/Pokemon.png"
+          src={PokemonImg}
           className="pokemon"
           alt="Pokemon"
           ref={pokemonRef}

@@ -1,0 +1,88 @@
+@import 'common/styles/index.scss';
+
+.about {
+  display: flex;
+  align-items: center;
+  gap: 0 31.6rem;
+  margin-top: 13rem;
+  margin-left: 12rem;
+
+  .about-img {
+    width: 40rem;
+    height: 60.6rem;
+  }
+
+  .about-img__breus {
+    width: 100%;
+    height: 100%;
+    background-image: url(/assets/images/breus.webp);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .about-img__pokemon {
+    background-image: url(/assets/images/Pokemon.png);
+  }
+
+  .about__content {
+    margin-top: -4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem 0;
+    font-family: "Neue Haas Grotesk", sans-serif;
+    font-size: 2.7rem;
+    width: 30.4rem;
+    line-height: 2.9rem;
+  }
+
+  .about-content_grey {
+    opacity: .4;
+  }
+
+  .about-content_first {
+    width: 23rem;
+  }
+
+  .about-content_purpp {
+    color: $purpp;
+  }
+
+  @media screen and (min-width: 1921px){
+    justify-content: center;
+  }
+}
+
+.about-menu__btn {
+  position: relative;
+  cursor: pointer;
+  font-family: $neueFont, sans-serif;
+  color: #fff;
+  font-size: 2.7rem;
+  font-weight: 500;
+  letter-spacing: -0.02rem;
+
+  &:hover {
+    opacity: .3;
+  }
+
+  @include transition(opacity);
+}
+
+.about-menu__btn_active {
+  opacity: .3;
+
+  &:after {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    height: .2rem;
+    bottom: -.1rem;
+    left: 0;
+  }
+}
+
+.about-menu {
+  display: flex;
+  gap: 0 2rem;
+}
