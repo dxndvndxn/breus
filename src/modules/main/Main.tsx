@@ -20,7 +20,7 @@ const Main: React.FC = () => {
 
   return (
     <div className="main">
-      <div className="pokemon-wrap" ref={pokemonWrapRef}>
+      <div className="pokemon-wrap" id="pokemonWrap" ref={pokemonWrapRef}>
         {pokemons.map((Pokemon, key) => (
           <Pokemon key={key} />
         ))}
