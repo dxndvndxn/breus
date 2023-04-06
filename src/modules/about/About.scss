@@ -4,24 +4,42 @@
   display: flex;
   align-items: center;
   gap: 0 31.6rem;
-  margin-top: 13rem;
-  margin-left: 12rem;
+  margin: 13.3rem 0 0 10rem;
 
   .about-img {
+    position: relative;
     width: 40rem;
     height: 60.6rem;
   }
 
+  .distort {
+    position: absolute;
+    pointer-events: none;
+    will-change: transform;
+
+    @include transition(width, height);
+  }
+
+  .distort__img {
+    @include transition(opacity);
+  }
+
+  .distort__img_opacity {
+    opacity: 0;
+  }
+
+  .about-img__common {
+    position: absolute;
+  }
+
   .about-img__breus {
-    width: 100%;
-    height: 100%;
-    background-image: url(/assets/images/breus.webp);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    width: 40rem;
+    height: 60.6rem;
   }
 
   .about-img__pokemon {
-    background-image: url(/assets/images/Pokemon.png);
+    width: 79rem;
+    height: 68.6rem;
   }
 
   .about__content {
@@ -47,7 +65,8 @@
     color: $purpp;
   }
 
-  @media screen and (min-width: 1921px){
+  @media screen and (min-width: 1921px) {
+    margin: 13.3rem 0 0 0;
     justify-content: center;
   }
 }

@@ -28,4 +28,17 @@ const getRandomFloat = (min: number, max: number) =>
 const distance = (x1: number, y1: number, x2: number, y2: number) =>
   Math.hypot(x2 - x1, y2 - y1);
 
-export { map, lerp, clamp, getRandomFloat, distance };
+const lineEq = (
+  y2: number,
+  y1: number,
+  x2: number,
+  x1: number,
+  currentVal: number
+) => {
+  const m = (y2 - y1) / (x2 - x1);
+  const b = y1 - m * x1;
+
+  return m * currentVal + b;
+};
+
+export { map, lerp, clamp, getRandomFloat, distance, lineEq };

@@ -10,6 +10,7 @@ interface ILayout {
 
 export const Layout: React.FC<ILayout> = ({ children, type = 'usual' }) => {
   const isMain = type === 'main';
+
   return (
     <main className="layout">
       <div className="layout__head blended-mode">
