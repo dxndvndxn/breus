@@ -3,6 +3,8 @@
 .layout {
   padding: 2.5rem 2.5rem;
   height: calc(100vh - 5rem);
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 .layout__head {

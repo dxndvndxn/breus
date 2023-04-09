@@ -1,0 +1,84 @@
+$columnGap: 12.8rem;
+$marginCell: 10.5rem;
+
+.portfolio-grid__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(calc(46.3rem - ($columnGap / 3)), 1fr));
+  grid-gap: 0 $columnGap;
+  grid-auto-rows: 46.3rem;
+
+  //&:first-child {
+  //  margin-bottom: $marginCell * 3;
+  //}
+
+  &:last-child {
+    margin-bottom: 10rem;
+  }
+}
+
+.portfolio__img {
+  // TODO remove later
+  background-color: #D8D8D8;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-position: 0% 95%;
+}
+
+.portfolio__title {
+  margin-top: .3rem;
+  font-size: 2.4rem;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+}
+.portfolio__small {
+  height: 46.3rem;
+}
+
+.portfolio__large {
+  align-self: start;
+  height: 69.1rem;
+}
+
+.portfolio__xl {
+  grid-column-end: span 2;
+  align-self: start;
+  grid-row-end: span 2;
+  height: 103rem;
+  width: 100%;
+}
+
+.portfolio-grid__row-1 {
+  &:not(:first-child) {
+    margin-top: $marginCell * 2;
+  }
+}
+
+.portfolio-grid__row-2 {
+  margin-top: $marginCell * 3;
+
+  .portfolio__large {
+    align-self: end;
+  }
+
+  .portfolio__large_m {
+    align-self: start;
+    margin-top: $marginCell;
+  }
+}
+
+.portfolio-grid__row-3 {
+  margin-top: $marginCell * 2;
+
+  .portfolio__small_m {
+    margin-top: $marginCell * 2;
+  }
+}
+
+.portfolio-grid__row-4 {
+  margin-top: $marginCell * 3;
+
+  .portfolio__small_m {
+    margin-top: $marginCell;
+  }
+}
