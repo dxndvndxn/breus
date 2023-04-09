@@ -1,11 +1,12 @@
 .pokemon-wrap {
   position: absolute;
-  top: 8.5rem;
-  left: -5rem;
   width: 88rem;
   height: 78rem;
   max-width: 100%;
   cursor: grab;
+  left: 50%;
+  top: 50%;
+  transform: translate(-110%, -50%);
 }
 
 .pokemon,

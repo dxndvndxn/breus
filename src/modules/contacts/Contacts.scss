@@ -1,0 +1,86 @@
+@import 'common/styles/index.scss';
+
+.contacts {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100% - 3.5rem);
+  gap: 7.5rem 0;
+
+  .contacts__title {
+    font-size: 2.2rem;
+    line-height: 100%;
+    text-align: center;
+    letter-spacing: -0.01em;
+    width: 18%;
+  }
+
+  .contacts__mail {
+    font-size: 7rem;
+    line-height: 9.8rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: #ffffff;
+    position: relative;
+    margin: -3rem 0 0;
+
+    &:before, &:after {
+      content: '';
+      height: .3rem;
+      background-color: #fff;
+      position: absolute;
+      bottom: 1.1rem;
+
+      @include transition(width);
+    }
+
+    &:before {
+      left: 0;
+      width: 52%;
+    }
+
+
+    &:after {
+      right: 1rem;
+      width: 41.2%;
+    }
+
+    &:hover {
+      &:before, &:after {
+        width: 0;
+      }
+    }
+  }
+
+  .socials {
+    display: flex;
+    gap: 0 4rem;
+  }
+
+  .socials__link {
+    font-size: 2.2rem;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    position: relative;
+
+    &:before {
+      content: '';
+      height: .05em;
+      width: 100%;
+      background-color: #fff;
+      position: absolute;
+      bottom: -.2rem;
+      left: 0;
+
+      @include transition(width);
+    }
+
+    &:hover {
+      &:before {
+        width: 0;
+      }
+    }
+  }
+}

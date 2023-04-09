@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ABOUT_PATH, PORTFOLIOS } from '../../../app/routing/appConstants';
+import {
+  ABOUT_PATH,
+  CONTACTS_PATH,
+  PORTFOLIOS,
+} from '../../../app/routing/appConstants';
 import './Nav.scss';
 
 interface INav {
@@ -38,8 +42,8 @@ export const Nav: React.FC<INav> = ({ location }) => {
         </li>
         <li>
           <NavLink
-            className={detectActive('navigation__link_last')}
-            to={'/contact'}
+            className={detectActive('navigation__link_last link-hover')}
+            to={`/${CONTACTS_PATH}`}
           >
             Contact
           </NavLink>

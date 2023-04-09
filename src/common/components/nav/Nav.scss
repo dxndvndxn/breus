@@ -63,7 +63,6 @@
 }
 
 .navigation__link {
-  font-family: $neueFont, sans-serif;
   color: #fff;
   position: relative;
   mix-blend-mode: exclusion;
@@ -78,10 +77,10 @@
       position: absolute;
       color: $purpp;
     }
+  }
 
-    &.navigation__link_active {
-      color: $purpp;
-    }
+  &.navigation__link_active {
+    color: $purpp;
   }
 
   @include transition(color);

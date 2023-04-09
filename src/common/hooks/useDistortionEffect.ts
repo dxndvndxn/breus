@@ -12,8 +12,6 @@ export const useDistortionEffect = () => {
         cancelAnimationFrame(requestAnimationId);
         doDistortionEffect(from);
       });
-    } else {
-      cancelAnimationFrame(requestAnimationId);
     }
   };
 
