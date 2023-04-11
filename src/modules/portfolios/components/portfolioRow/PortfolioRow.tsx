@@ -14,11 +14,15 @@ export const PortfolioRow: React.FC<IPortfolioRow> = ({ rowCount, row }) => {
   const imgOne = `url(${itemOne?.img})`;
   const imgTwo = `url(${itemTwo?.img})`;
   const imgThree = `url(${itemThree?.img})`;
+  const speed = 1.4;
 
   switch (rowCount) {
     case 1: {
       Row = (
-        <div className="portfolio-grid__row portfolio-grid__row-1">
+        <div
+          className="portfolio-grid__row portfolio-grid__row-1"
+          data-speed={speed}
+        >
           <div className="portfolio portfolio__small">
             <div
               className="portfolio__img"
@@ -48,7 +52,10 @@ export const PortfolioRow: React.FC<IPortfolioRow> = ({ rowCount, row }) => {
     }
     case 2: {
       Row = (
-        <div className="portfolio-grid__row portfolio-grid__row-2">
+        <div
+          className="portfolio-grid__row portfolio-grid__row-2"
+          data-speed={speed}
+        >
           <div className="portfolio portfolio__large">
             <div
               className="portfolio__img"
@@ -76,7 +83,10 @@ export const PortfolioRow: React.FC<IPortfolioRow> = ({ rowCount, row }) => {
     }
     case 3: {
       Row = (
-        <div className="portfolio-grid__row portfolio-grid__row-3">
+        <div
+          className="portfolio-grid__row portfolio-grid__row-3"
+          data-speed={speed}
+        >
           <div className="portfolio portfolio__small portfolio__small_m">
             <div
               className="portfolio__img"
@@ -104,7 +114,10 @@ export const PortfolioRow: React.FC<IPortfolioRow> = ({ rowCount, row }) => {
     }
     case 4: {
       Row = (
-        <div className="portfolio-grid__row portfolio-grid__row-4">
+        <div
+          className="portfolio-grid__row portfolio-grid__row-4"
+          data-speed={speed}
+        >
           <div className="portfolio portfolio__xl">
             <div
               className="portfolio__img"

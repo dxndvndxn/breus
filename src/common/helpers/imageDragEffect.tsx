@@ -26,8 +26,6 @@ interface TrailsTranslation extends Omit<DraggingPos, 'amt'> {
   amt: (value: number) => number;
 }
 
-// let count = 0;
-
 export class ImageDragEffect {
   public nodes: React.ElementType[] = [];
 
