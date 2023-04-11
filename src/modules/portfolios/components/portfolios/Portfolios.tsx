@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { portfolios } from './mock';
 import { PortfolioRow } from '../portfolioRow/PortfolioRow';
 import { PortfolioItem } from '../../types';
+import * as gsap from 'gsap';
+import ScrollSmoother from 'gsap';
+import ScrollTrigger from 'gsap';
+
+
 import './Portfolios.scss';
 
 export const Portfolios: React.FC = () => {
@@ -28,21 +33,6 @@ export const Portfolios: React.FC = () => {
   };
 
   const getRow = closureRow();
-
-  // const parallaxScroll = () => {
-  //   const scrollTop = document.getElementById('root')!;
-  //   const { y } = scrollTop.getBoundingClientRect();
-  //   const evenImgPos = y / 2.5;
-  //   setParallax(evenImgPos);
-  // };
-  //
-  // useEffect(() => {
-  //   document.addEventListener('scroll', parallaxScroll);
-  //
-  //   return () => {
-  //     document.removeEventListener('scroll', parallaxScroll);
-  //   };
-  // }, []);
 
   return <div className="portfolios">{portfolios.map(getRow)}</div>;
 };

@@ -8,9 +8,10 @@ export const useDistortionEffect = () => {
     const requestAnimationId = requestAnimationFrame(() => setScale(from));
 
     if (from > 0) {
-      setTimeout(() => {
+      const distortionLater = setTimeout(() => {
         cancelAnimationFrame(requestAnimationId);
         doDistortionEffect(from);
+        clearTimeout(distortionLater);
       });
     }
   };
