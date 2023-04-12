@@ -25,31 +25,15 @@
     position: relative;
     margin: -3rem 0 0;
 
-    &:before, &:after {
-      content: '';
-      height: .3rem;
-      background-color: #fff;
-      position: absolute;
-      bottom: 1.1rem;
-
-      @include transition(width);
-    }
-
-    &:before {
-      left: 0;
-      width: 52%;
-    }
-
+    @include link-hover(1, left, 0, right);
 
     &:after {
-      right: 1rem;
-      width: 41.2%;
-    }
-
-    &:hover {
-      &:before, &:after {
-        width: 0;
-      }
+      top: 83%;
+      left: 0;
+      width: 100%;
+      height: .07em;
+      background-color: #fff;
+      transition-duration: .5s;
     }
   }
 
@@ -65,22 +49,14 @@
     color: #FFFFFF;
     position: relative;
 
-    &:before {
-      content: '';
-      height: .05em;
-      width: 100%;
-      background-color: #fff;
-      position: absolute;
-      bottom: -.2rem;
+    &:after {
+      top: 95%;
       left: 0;
-
-      @include transition(width);
+      width: 100%;
+      height: .07em;
+      background-color: #fff;
     }
 
-    &:hover {
-      &:before {
-        width: 0;
-      }
-    }
+    @include link-hover(1, left, 0, right);
   }
 }

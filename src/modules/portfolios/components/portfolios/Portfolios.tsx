@@ -38,14 +38,10 @@ export const Portfolios: React.FC = () => {
       wrapper: '#portfolios',
       content: '#portfoliosContent',
       //normalizeScroll: true,
-      smooth: 2, // seconds it takes to "catch up" to native scroll position
-      effects: true, // look for data-speed and data-lag attributes on elements and animate accordingly
-      // smoothTouch: 0.1,
+      smooth: 2,
+      effects: true,
+      //smoothTouch: 0.6,
     });
-
-    // smoothPortfolio.effects('.portfolio__img', {
-    //   speed: 'auto',
-    // });
   }, []);
 
   return (

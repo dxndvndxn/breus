@@ -1,3 +1,21 @@
 @mixin transition($what...) {
-  transition: $what .2s ease-in-out;
+  transition: $what .3s ease-in-out;
+}
+
+@mixin link-hover($scaleAfter, $originAfter, $scaleHover, $originHover) {
+  &:after {
+    content: '';
+    position: absolute;
+    transform: scaleX($scaleAfter);
+    transform-origin: $originAfter;
+
+    @include transition(transform);
+  }
+
+  &:hover {
+    &:after {
+      transform: scaleX($scaleHover);
+      transform-origin: $originHover;
+    }
+  }
 }

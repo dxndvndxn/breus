@@ -42,7 +42,7 @@ export const Nav: React.FC<INav> = ({ location }) => {
         </li>
         <li>
           <NavLink
-            className={detectActive('navigation__link_last link-hover')}
+            className={detectActive('navigation__link_last')}
             to={`/${CONTACTS_PATH}`}
           >
             Contact
