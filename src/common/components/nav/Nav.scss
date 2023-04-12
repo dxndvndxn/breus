@@ -2,6 +2,12 @@
 
 .center {
   font-size: 8.2rem;
+  width: 105rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 11rem;
+  overflow: hidden;
 
   .navigation__link {
     top: -1rem;
@@ -89,4 +95,8 @@
 .nav-link__counts {
   position: absolute;
   color: #fff;
+}
+
+.navigation__item {
+  //overflow: hidden;
 }

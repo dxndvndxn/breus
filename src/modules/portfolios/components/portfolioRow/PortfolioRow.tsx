@@ -4,7 +4,6 @@ import './PortfolioRow.scss';
 
 interface IPortfolioRow {
   rowCount: number;
-  parallax: number;
   row: PortfolioItem[];
 }
 

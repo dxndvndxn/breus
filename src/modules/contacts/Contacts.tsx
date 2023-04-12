@@ -12,18 +12,32 @@ const Contacts: React.FC = () => (
     </a>
 
     <div className="contacts__socials socials">
-      <a className="socials__link" href="https://www.instagram.com/breus_/">
+      <a
+        className="socials__link"
+        href="https://www.instagram.com/breus_/"
+        target="_blank"
+      >
         Instagram
       </a>
-      <a className="socials__link" href="https://t.me/breus1710">
+      <a
+        className="socials__link"
+        href="https://t.me/breus1710"
+        target="_blank"
+      >
         Telegram
       </a>
-      {/*TODO ссылка*/}
-      <a className="socials__link" href="">
+      <a
+        className="socials__link"
+        href="https://schoooool.com/?ref=godly"
+        target="_blank"
+      >
         Behance
       </a>
-      {/*TODO ссылка*/}
-      <a className="socials__link" href="">
+      <a
+        className="socials__link"
+        href="https://savee.it/breus_/"
+        target="_blank"
+      >
         Savvee
       </a>
     </div>

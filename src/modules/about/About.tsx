@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useDistortionEffect } from '../../common/hooks';
+import { useDistortionEffect, useHeadMenu } from '../../common/hooks';
 import PokemonImg from '../../assets/images/Pokemon.png';
 import Breus from '../../assets/images/breus.webp';
 import './About.scss';
@@ -12,12 +12,9 @@ enum ImgSwitcher {
 
 const About: React.FC = () => {
   const [imgSwitch, setImgSwitch] = useState<ImgSwitcher>(ImgSwitcher.BRUCE);
-  const [headMenu, setHeadMenu] = useState<HTMLElement | null>(null);
   const { scale, doDistortionEffect } = useDistortionEffect();
 
-  useEffect(() => {
-    setHeadMenu(document.getElementById('head-menu'));
-  }, []);
+  const headMenu = useHeadMenu();
 
   const switchImage = (img: ImgSwitcher) => {
     if (img === 'breus') {
@@ -26,7 +23,7 @@ const About: React.FC = () => {
     if (img === 'pokemon') {
       setImgSwitch(ImgSwitcher.POKEMON);
     }
-    doDistortionEffect();
+    doDistortionEffect(100);
   };
 
   return (
@@ -67,29 +64,45 @@ const About: React.FC = () => {
         >
           <filter id="distortionFilter">
             <feTurbulence
-              type="turbulence"
-              baseFrequency="0.07 0.01"
-              numOctaves="5"
-              seed="2"
-              stitchTiles="stitch"
-              x="0%"
-              y="0%"
-              width="100%"
-              height="100%"
+              type="fractalNoise"
+              baseFrequency="0.04 0.01"
               result="noise"
+              numOctaves="10"
+              stitchTiles="stitch"
+              seed="15"
             />
             <feDisplacementMap
               in="SourceGraphic"
               in2="noise"
               scale={scale}
               xChannelSelector="R"
-              yChannelSelector="B"
-              x="0%"
-              y="0%"
-              width="100%"
-              height="100%"
+              yChannelSelector="R"
               filterUnits="userSpaceOnUse"
             />
+            {/*<feTurbulence*/}
+            {/*  type="turbulence"*/}
+            {/*  baseFrequency="0.07 0.01"*/}
+            {/*  numOctaves="5"*/}
+            {/*  seed="2"*/}
+            {/*  stitchTiles="stitch"*/}
+            {/*  x="0%"*/}
+            {/*  y="0%"*/}
+            {/*  width="100%"*/}
+            {/*  height="100%"*/}
+            {/*  result="noise"*/}
+            {/*/>*/}
+            {/*<feDisplacementMap*/}
+            {/*  in="SourceGraphic"*/}
+            {/*  in2="noise"*/}
+            {/*  scale={scale}*/}
+            {/*  xChannelSelector="R"*/}
+            {/*  yChannelSelector="B"*/}
+            {/*  x="0%"*/}
+            {/*  y="0%"*/}
+            {/*  width="100%"*/}
+            {/*  height="100%"*/}
+            {/*  filterUnits="userSpaceOnUse"*/}
+            {/*/>*/}
           </filter>
           <g filter="url(#distortionFilter)">
             <image

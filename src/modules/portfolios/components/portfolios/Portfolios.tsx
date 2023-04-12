@@ -4,10 +4,14 @@ import { PortfolioRow } from '../portfolioRow/PortfolioRow';
 import { PortfolioItem } from '../../types';
 import { gsap } from 'gsap-trial';
 import { ScrollTrigger, ScrollSmoother } from 'gsap-trial/all';
+import { useHeadMenu } from '../../../../common/hooks';
 import './Portfolios.scss';
+import { createPortal } from 'react-dom';
 
 export const Portfolios: React.FC = () => {
-  const [parallax] = useState(0);
+  const [percent] = useState(0);
+  const headMenu = useHeadMenu();
+
   const closureRow = () => {
     let rowCount = 0;
 
@@ -18,14 +22,7 @@ export const Portfolios: React.FC = () => {
 
       rowCount += 1;
 
-      return (
-        <PortfolioRow
-          parallax={parallax}
-          key={key}
-          rowCount={rowCount}
-          row={row}
-        />
-      );
+      return <PortfolioRow key={key} rowCount={rowCount} row={row} />;
     };
   };
 
@@ -46,6 +43,8 @@ export const Portfolios: React.FC = () => {
 
   return (
     <div id="portfolios">
+      {headMenu &&
+        createPortal(<div className="percent">{percent}</div>, headMenu)}
       <div id="portfoliosContent" className="portfolios">
         {portfolios.map(getRow)}
       </div>
