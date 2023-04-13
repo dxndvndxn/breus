@@ -1,4 +1,6 @@
 @import "common/styles";
+@import "normalize-scss";
+@include normalize();
 
 :root {
   font-size: 0.625rem;

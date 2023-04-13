@@ -30,6 +30,7 @@ module.exports = {
     "linebreak-style": "off",
     "arrow-body-style": ["error", "as-needed"],
     "react/self-closing-comp": ["error", { component: true, html: true }],
+    "react-hooks/exhaustive-deps": "off",
     "autofix/no-unused-vars": [
       "error",
       {

@@ -5,13 +5,11 @@ export const useDistortionEffect = () => {
 
   const doDistortionEffect = (from = 60) => {
     from = from - 1;
-    const requestAnimationId = requestAnimationFrame(() => setScale(from));
+    requestAnimationFrame(() => setScale(from));
 
     if (from > 0) {
-      const distortionLater = setTimeout(() => {
-        cancelAnimationFrame(requestAnimationId);
+      setTimeout(() => {
         doDistortionEffect(from);
-        clearTimeout(distortionLater);
       });
     }
   };

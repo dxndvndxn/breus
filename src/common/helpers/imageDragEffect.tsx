@@ -5,8 +5,9 @@ import { lerp, distance, clamp, map } from './mathUtils';
 import Draggabilly from 'draggabilly';
 
 interface IImageDragEffect {
-  drag: HTMLImageElement;
+  drag: HTMLImageElement | SVGSVGElement;
   wrap: HTMLDivElement;
+  src: string;
   trailsAmount?: number;
 }
 
@@ -30,7 +31,7 @@ export class ImageDragEffect {
   public nodes: React.ElementType[] = [];
 
   private DOM: {
-    drag: HTMLImageElement;
+    drag: IImageDragEffect['drag'];
     wrap: HTMLDivElement;
   };
 
@@ -46,7 +47,7 @@ export class ImageDragEffect {
 
   private animationFrameId = 0;
 
-  constructor({ drag, trailsAmount = 5, wrap }: IImageDragEffect) {
+  constructor({ drag, trailsAmount = 5, wrap, src }: IImageDragEffect) {
     this.DOM = {
       drag,
       wrap,
@@ -58,7 +59,7 @@ export class ImageDragEffect {
         <div
           className="img-trail"
           style={{
-            backgroundImage: `url(${this.DOM.drag.src})`,
+            backgroundImage: `url(${src})`,
           }}
         />
       );
@@ -210,7 +211,7 @@ export class ImageDragEffect {
       );
 
       this.trails[i].style.filter = `brightness(${brightnessVal}%)`;
-
+      this.trails[i].style.opacity = '1';
       this.trails[
         i
       ].style.transform = `translate3d(${this.trailsTranslation[i].previous.x}px,${this.trailsTranslation[i].previous.y}px,0)`;

@@ -28,7 +28,7 @@ const Contacts: React.FC = () => (
       </a>
       <a
         className="socials__link"
-        href="https://schoooool.com/?ref=godly"
+        href="https://www.behance.net/super_sayaf755"
         target="_blank"
       >
         Behance

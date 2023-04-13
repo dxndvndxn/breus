@@ -45,6 +45,7 @@ export const Portfolios: React.FC = () => {
     <div id="portfolios">
       {headMenu &&
         createPortal(<div className="percent">{percent}</div>, headMenu)}
+
       <div id="portfoliosContent" className="portfolios">
         {portfolios.map(getRow)}
       </div>
