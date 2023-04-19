@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDistortionEffect, useHeadMenu } from '../../common/hooks';
 import PokemonImg from '../../assets/images/Pokemon.png';
@@ -25,6 +25,10 @@ const About: React.FC = () => {
     }
     doDistortionEffect(100);
   };
+
+  useEffect(() => {
+    doDistortionEffect(150);
+  }, []);
 
   return (
     <div className="about">
@@ -79,30 +83,6 @@ const About: React.FC = () => {
               yChannelSelector="R"
               filterUnits="userSpaceOnUse"
             />
-            {/*<feTurbulence*/}
-            {/*  type="turbulence"*/}
-            {/*  baseFrequency="0.07 0.01"*/}
-            {/*  numOctaves="5"*/}
-            {/*  seed="2"*/}
-            {/*  stitchTiles="stitch"*/}
-            {/*  x="0%"*/}
-            {/*  y="0%"*/}
-            {/*  width="100%"*/}
-            {/*  height="100%"*/}
-            {/*  result="noise"*/}
-            {/*/>*/}
-            {/*<feDisplacementMap*/}
-            {/*  in="SourceGraphic"*/}
-            {/*  in2="noise"*/}
-            {/*  scale={scale}*/}
-            {/*  xChannelSelector="R"*/}
-            {/*  yChannelSelector="B"*/}
-            {/*  x="0%"*/}
-            {/*  y="0%"*/}
-            {/*  width="100%"*/}
-            {/*  height="100%"*/}
-            {/*  filterUnits="userSpaceOnUse"*/}
-            {/*/>*/}
           </filter>
           <g filter="url(#distortionFilter)">
             <image
@@ -125,19 +105,24 @@ const About: React.FC = () => {
       </div>
 
       <div className="about__content about-content">
-        <div className="about-content__text about-content_first">
-          Independent creative designer
-          <div className="about-content_grey">Sergey Breus</div>
+        <div className="about-content__wrap">
+          <div className="about-content__text about-content_first">
+            Independent creative designer
+            <div className="about-content_grey">Sergey Breus</div>
+          </div>
         </div>
 
-        <div className="about-content__text">
-          My profile is the creation of effective and comprehensive solutions
-          for your business.
+        <div className="about-content__wrap">
+          <div className="about-content__text">
+            My profile is the creation of effective and comprehensive solutions
+            for your business.
+          </div>
         </div>
-
-        <div className="about-content__text about-content_purpp">
-          Webdesign &#47; Creative concept &#47; Identity &#47; Branding &#47;
-          Campaigns
+        <div className="about-content__wrap">
+          <div className="about-content__text about-content_purpp">
+            Webdesign &#47; Creative concept &#47; Identity &#47; Branding &#47;
+            Campaigns
+          </div>
         </div>
       </div>
     </div>

@@ -35,6 +35,7 @@ html, body {
   font-family: $neueFont, sans-serif;
   scroll-behavior: smooth;
   scrollbar-width: thin;
+  overflow-x: hidden;
 }
 
 .blended-mode {

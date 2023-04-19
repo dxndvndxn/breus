@@ -13,7 +13,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = ({ rowCount, row }) => {
   const imgOne = `url(${itemOne?.img})`;
   const imgTwo = `url(${itemTwo?.img})`;
   const imgThree = `url(${itemThree?.img})`;
-  const speed = 1.4;
+  const speed = 1.2;
 
   switch (rowCount) {
     case 1: {

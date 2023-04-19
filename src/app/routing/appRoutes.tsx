@@ -12,8 +12,16 @@ const Portfolios = lazy(
 const About = lazy(() => import('../../modules/about/About'));
 const Contacts = lazy(() => import('../../modules/contacts/Contacts'));
 
+export enum PageName {
+  MAIN = 'main',
+  ABOUT = 'about',
+  PORTFOLIOS = 'portfolios',
+  CONTACTS = 'contacts',
+}
 type AppRoutes = RouteObject & {
+  name: PageName;
   layout?: PageType;
+  reg?: string;
 };
 
 export const routes: AppRoutes[] = [
@@ -21,18 +29,23 @@ export const routes: AppRoutes[] = [
     path: '/',
     element: <Main />,
     layout: 'main',
+    name: PageName.MAIN,
   },
   {
-    path: ABOUT_PATH,
+    path: `/${ABOUT_PATH}`,
     element: <About />,
+    name: PageName.ABOUT,
   },
   {
-    path: PORTFOLIOS_PATH,
+    path: `/${PORTFOLIOS_PATH}`,
     element: <Portfolios />,
+    name: PageName.PORTFOLIOS,
+    reg: `[\/*]+$`,
   },
   {
-    path: CONTACTS_PATH,
+    path: `/${CONTACTS_PATH}`,
     element: <Contacts />,
+    name: PageName.CONTACTS,
   },
 ];
 

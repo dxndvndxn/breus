@@ -3,15 +3,19 @@ import './Contacts.scss';
 
 const Contacts: React.FC = () => (
   <div className="contacts">
-    <div className="contacts__title">
-      To contact me about a project or collaboration:
+    <div className="contacts__wrap contacts-title__wrap">
+      <div className="contacts__title">
+        To contact me about a project or collaboration:
+      </div>
     </div>
 
-    <a className="contacts__mail" href="mailto:sbreus03@gmail.com">
-      sbreus03@gmail.com
-    </a>
+    <div className="contacts__wrap">
+      <a className="contacts__mail" href="mailto:sbreus03@gmail.com">
+        sbreus03@gmail.com
+      </a>
+    </div>
 
-    <div className="contacts__socials socials">
+    <div className="contacts__socials socials contacts__wrap">
       <a
         className="socials__link"
         href="https://www.instagram.com/breus_/"

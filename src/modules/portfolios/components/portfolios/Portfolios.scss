@@ -1,6 +1,25 @@
 .portfolios {
-  padding: 12.4rem 5.2rem 9.1rem;
+  padding: 0 5.2rem 9.1rem;
 }
+
+.entering-wrap {
+  font-weight: 600;
+  font-size: 8.2rem;
+  line-height: 9.8rem;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.entering {
+  overflow: hidden;
+}
+
 
 //body::-webkit-scrollbar {
 //  width: 1rem;

@@ -5,12 +5,15 @@ import { PortfolioItem } from '../../types';
 import { gsap } from 'gsap-trial';
 import { ScrollTrigger, ScrollSmoother } from 'gsap-trial/all';
 import { useHeadMenu } from '../../../../common/hooks';
-import './Portfolios.scss';
 import { createPortal } from 'react-dom';
 
+import './Portfolios.scss';
+// ScrollTrigger.normalizeScroll();
+
 export const Portfolios: React.FC = () => {
-  const [percent] = useState(0);
   const headMenu = useHeadMenu();
+  const [percent, setPercent] = useState(0);
+  // const scrollPercentage = useScrollPercentage();
 
   const closureRow = () => {
     let rowCount = 0;
@@ -31,18 +34,32 @@ export const Portfolios: React.FC = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-    ScrollSmoother.create({
+    const scrollSmoother = ScrollSmoother.create({
       wrapper: '#portfolios',
       content: '#portfoliosContent',
-      //normalizeScroll: true,
       smooth: 2,
       effects: true,
-      //smoothTouch: 0.6,
+      normalizeScroll: true,
+      ignoreMobileResize: true,
+      onUpdate: (ctx) => {
+        const scrollPercent = Math.round(ctx.progress * 100);
+        setPercent(scrollPercent);
+      },
     });
+
+    return () => {
+      scrollSmoother.kill();
+    };
   }, []);
 
   return (
     <div id="portfolios">
+      <div className="entering-wrap">
+        <div className="entering">
+          <div className="entering__text">Collection of my works</div>
+        </div>
+      </div>
+
       {headMenu &&
         createPortal(<div className="percent">{percent}</div>, headMenu)}
 

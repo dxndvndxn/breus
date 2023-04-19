@@ -64,6 +64,10 @@
     color: $purpp;
   }
 
+  .about-content__wrap {
+    overflow: hidden;
+  }
+
   @media screen and (min-width: 1921px) {
     margin: 13.3rem 0 0 0;
     justify-content: center;
@@ -87,6 +91,7 @@
   }
 
   @include link-hover(0, right, 1, left);
+
 }
 
 .about-menu__btn_active {
@@ -94,6 +99,7 @@
 }
 
 .about-menu {
+  overflow: hidden;
   display: flex;
   gap: 0 2rem;
 }

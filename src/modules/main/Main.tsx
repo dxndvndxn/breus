@@ -19,12 +19,12 @@ const Main: React.FC = () => {
       });
       setPokemons(nodes);
     }
-    document.body.style.overflow = 'hidden';
 
+    document.documentElement.classList.add('doc-overflow');
     doDistortionEffect(200);
 
     return () => {
-      document.body.style.overflow = 'auto';
+      document.documentElement.classList.remove('doc-overflow');
     };
   }, []);
 
