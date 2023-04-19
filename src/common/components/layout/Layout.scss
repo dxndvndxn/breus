@@ -10,9 +10,17 @@
 .layout__head {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  position: relative;
   z-index: 1;
   overflow: hidden;
+  position: fixed;
+  top: 2.5rem;
+  left: 0;
+  width: 100%;
+  @include transition(transform);
+}
+
+.layout__head_hide {
+  transform: translateY(-100px);
 }
 
 .logo {
@@ -44,3 +52,4 @@
 #head-menu {
   justify-self: right;
 }
+

@@ -4,16 +4,11 @@ import { PortfolioRow } from '../portfolioRow/PortfolioRow';
 import { PortfolioItem } from '../../types';
 import { gsap } from 'gsap-trial';
 import { ScrollTrigger, ScrollSmoother } from 'gsap-trial/all';
-import { useHeadMenu } from '../../../../common/hooks';
-import { createPortal } from 'react-dom';
 
 import './Portfolios.scss';
-// ScrollTrigger.normalizeScroll();
 
 export const Portfolios: React.FC = () => {
-  const headMenu = useHeadMenu();
-  const [percent, setPercent] = useState(0);
-  // const scrollPercentage = useScrollPercentage();
+  const [percent, setPercent] = useState('00');
 
   const closureRow = () => {
     let rowCount = 0;
@@ -42,7 +37,10 @@ export const Portfolios: React.FC = () => {
       normalizeScroll: true,
       ignoreMobileResize: true,
       onUpdate: (ctx) => {
-        const scrollPercent = Math.round(ctx.progress * 100);
+        let scrollPercent: number | string = Math.round(ctx.progress * 100);
+        scrollPercent =
+          scrollPercent < 10 ? `0${scrollPercent}` : `${scrollPercent}`;
+
         setPercent(scrollPercent);
       },
     });
@@ -60,8 +58,9 @@ export const Portfolios: React.FC = () => {
         </div>
       </div>
 
-      {headMenu &&
-        createPortal(<div className="percent">{percent}</div>, headMenu)}
+      <div className="percent-wrap">
+        <div className="percent">{percent}&#x25;</div>
+      </div>
 
       <div id="portfoliosContent" className="portfolios">
         {portfolios.map(getRow)}

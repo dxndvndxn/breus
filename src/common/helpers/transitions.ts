@@ -167,6 +167,15 @@ export const portfoliosPageEnter = (tl: gsap.core.Timeline) => {
     },
     'start'
   )
+    .from(
+      '.percent',
+      1.8,
+      {
+        ...animationConfig,
+        y: 100,
+      },
+      'start'
+    )
     .to(
       '.entering',
       0.9,
@@ -186,5 +195,6 @@ export const portfoliosPageEnter = (tl: gsap.core.Timeline) => {
         position: 'absolute',
       },
       '-=0.9'
-    );
+    )
+    .from('body, html', 1, { overflow: 'hidden' });
 };

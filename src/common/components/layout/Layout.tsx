@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Nav } from '../nav/Nav';
 import { Link } from 'react-router-dom';
 import './Layout.scss';
@@ -16,36 +16,63 @@ interface ILayout {
   layout?: PageType | undefined;
 }
 
-export const Layout: React.FC<ILayout> = memo(
-  ({ children, name, status, disableAnimation, layout = 'usual' }) => {
-    const isMain = layout === 'main';
+export const Layout: React.FC<ILayout> = ({
+  children,
+  name,
+  status,
+  disableAnimation,
+  layout = 'usual',
+}) => {
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
+  const isMain = layout === 'main';
 
-    useTransitionAnimation(name, status, disableAnimation);
+  useTransitionAnimation(name, status, disableAnimation);
 
-    return (
-      <main className="layout">
-        <div className="layout__head blended-mode">
-          <div />
-          <Link className="logo" to={'/'}>
-            Sergey Breus
-          </Link>
+  const wheelEvent = (e: WheelEvent) => {
+    const delta = Math.sign(e.deltaY);
 
-          <div id="head-menu" />
-        </div>
+    if (delta > 0 && window.pageYOffset > 0) {
+      setScrollDirection('down');
+    } else {
+      setScrollDirection('up');
+    }
+  };
 
-        {children}
+  useEffect(() => {
+    window.addEventListener('wheel', wheelEvent);
 
-        {isMain && (
-          <header className="header header_center blended-mode">
-            <Nav location="center" />
-          </header>
-        )}
+    return () => {
+      window.removeEventListener('wheel', wheelEvent);
+    };
+  }, []);
 
-        <div className="layout__bottom bottom blended-mode">
-          {isMain && 'Creative digital designer portfolio'}
-          {layout === 'usual' && <Nav location="bottom" />}
-        </div>
-      </main>
-    );
-  }
-);
+  return (
+    <main className="layout">
+      <div
+        className={`layout__head blended-mode ${
+          scrollDirection === 'down' ? 'layout__head_hide' : ''
+        }`}
+      >
+        <div />
+        <Link className="logo" to={'/'}>
+          Sergey Breus
+        </Link>
+
+        <div id="head-menu" />
+      </div>
+
+      {children}
+
+      {isMain && (
+        <header className="header header_center blended-mode">
+          <Nav location="center" />
+        </header>
+      )}
+
+      <div className="layout__bottom bottom blended-mode">
+        {isMain && 'Creative digital designer portfolio'}
+        {layout === 'usual' && <Nav location="bottom" />}
+      </div>
+    </main>
+  );
+};
