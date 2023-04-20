@@ -26,10 +26,10 @@
   right: 3rem;
   z-index: 1;
   overflow: hidden;
+  mix-blend-mode: exclusion;
 }
 
 .percent {
-  mix-blend-mode: exclusion;
   color: #fff;
   font-weight: 600;
   font-size: 2.7rem;

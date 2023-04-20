@@ -20,7 +20,7 @@ const Main: React.FC = () => {
       setPokemons(nodes);
     }
 
-    // document.documentElement.classList.add('doc-overflow');
+    document.documentElement.classList.add('doc-overflow');
     doDistortionEffect(200);
 
     return () => {

@@ -10,7 +10,7 @@ enum ImgSwitcher {
   POKEMON = 'pokemon',
 }
 
-const About: React.FC = () => {
+export const About: React.FC = () => {
   const [imgSwitch, setImgSwitch] = useState<ImgSwitcher>(ImgSwitcher.BRUCE);
   const { scale, doDistortionEffect } = useDistortionEffect();
 
@@ -128,5 +128,3 @@ const About: React.FC = () => {
     </div>
   );
 };
-
-export default About;

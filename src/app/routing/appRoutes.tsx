@@ -1,16 +1,14 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import { About } from '../../modules/about/About';
+import { Contacts } from '../../modules/contacts/Contacts';
+import { PortfoliosPage } from '../../modules/portfolios/PortfoliosPage';
+import App from '../App';
 import { ABOUT_PATH, CONTACTS_PATH, PORTFOLIOS_PATH } from './appConstants';
 import type { RouteObject } from 'react-router-dom';
 import { PageType } from '../../common/components/layout/Layout';
-import App from '../App';
 
 const Main = lazy(() => import('../../modules/main/Main'));
-const Portfolios = lazy(
-  () => import('../../modules/portfolios/PortfoliosPage')
-);
-const About = lazy(() => import('../../modules/about/About'));
-const Contacts = lazy(() => import('../../modules/contacts/Contacts'));
 
 export enum PageName {
   MAIN = 'main',
@@ -38,7 +36,7 @@ export const routes: AppRoutes[] = [
   },
   {
     path: `/${PORTFOLIOS_PATH}`,
-    element: <Portfolios />,
+    element: <PortfoliosPage />,
     name: PageName.PORTFOLIOS,
     reg: `[\/*]+$`,
   },

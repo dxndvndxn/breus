@@ -14,8 +14,9 @@
   overflow: hidden;
   position: fixed;
   top: 2.5rem;
+  padding: 0 2.5rem;
   left: 0;
-  width: 100%;
+  width: calc(100% - 5rem);
   @include transition(transform);
 }
 

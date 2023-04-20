@@ -1,7 +1,7 @@
 import React from 'react';
 import './Contacts.scss';
 
-const Contacts: React.FC = () => (
+export const Contacts: React.FC = () => (
   <div className="contacts">
     <div className="contacts__wrap contacts-title__wrap">
       <div className="contacts__title">
@@ -47,5 +47,3 @@ const Contacts: React.FC = () => (
     </div>
   </div>
 );
-
-export default Contacts;

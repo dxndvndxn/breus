@@ -11,6 +11,7 @@ import {
   contactsPageEnter,
   contactsPageExit,
   portfoliosPageEnter,
+  portfoliosPageExit,
 } from '../helpers/transitions';
 import type { TransitionStatus } from 'react-transition-group';
 import { useLocation } from 'react-router-dom';
@@ -63,6 +64,7 @@ export const useTransitionAnimation = (
         portfoliosPageEnter(tl);
       }
       if (pageName === 'portfolios' && status === 'exiting') {
+        portfoliosPageExit(tl);
       }
     }, document.getElementById('root')!);
 

@@ -40,7 +40,7 @@ const App: React.FC = () => {
           in={false}
           timeout={{
             enter: 1000,
-            exit: 1200,
+            exit: 1000,
           }}
         >
           {(status) => {

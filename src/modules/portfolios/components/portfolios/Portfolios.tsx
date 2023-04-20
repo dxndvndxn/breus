@@ -44,9 +44,11 @@ export const Portfolios: React.FC = () => {
         setPercent(scrollPercent);
       },
     });
+    document.documentElement.classList.add('doc-overflow');
 
     return () => {
       scrollSmoother.kill();
+      document.documentElement.classList.remove('doc-overflow');
     };
   }, []);
 

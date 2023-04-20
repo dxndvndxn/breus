@@ -164,6 +164,7 @@ export const portfoliosPageEnter = (tl: gsap.core.Timeline) => {
     {
       ...animationConfig,
       y: 150,
+      opacity: 0,
     },
     'start'
   )
@@ -183,6 +184,10 @@ export const portfoliosPageEnter = (tl: gsap.core.Timeline) => {
         ease: 'liner',
         y: -150,
         opacity: 0,
+        onComplete: () => {
+          document.querySelector<HTMLElement>('.entering')!.style.display =
+            'none';
+        },
       },
       '-=0.8'
     )
@@ -195,6 +200,28 @@ export const portfoliosPageEnter = (tl: gsap.core.Timeline) => {
         position: 'absolute',
       },
       '-=0.9'
-    )
-    .from('body, html', 1, { overflow: 'hidden' });
+    );
+};
+
+export const portfoliosPageExit = (tl: gsap.core.Timeline) => {
+  const animationConfig = {
+    ease: 'power4.in',
+  };
+
+  tl.to(
+    '.percent',
+    0.8,
+    {
+      ...animationConfig,
+      y: -100,
+    },
+    'start'
+  ).to(
+    '.portfolios',
+    0.8,
+    {
+      opacity: 0,
+    },
+    'start'
+  );
 };
