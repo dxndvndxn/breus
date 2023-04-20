@@ -27,6 +27,7 @@ export const Layout: React.FC<ILayout> = ({
   const isMain = layout === 'main';
   const headerClass = isMain ? 'header_center' : 'header_bottom';
   const navLocation = isMain ? 'center' : 'bottom';
+  const disable = status === 'entering' || status === 'exiting';
 
   useTransitionAnimation(name, status, disableAnimation);
 
@@ -49,7 +50,7 @@ export const Layout: React.FC<ILayout> = ({
   }, []);
 
   return (
-    <main className="layout">
+    <main className={`layout ${disable ? 'layout_disabled' : ''}`}>
       <div
         className={`layout__head blended-mode ${
           scrollDirection === 'down' ? 'layout__head_hide' : ''

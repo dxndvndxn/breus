@@ -17,17 +17,6 @@ const App: React.FC = () => {
     ) ?? {};
 
   const disableAnimation = useMemo(() => {
-    // if (name === 'main') {
-    //   firstLoad.current = true;
-    // }
-    //
-    // if (name !== 'main' && !firstLoad.current) {
-    //   return true;
-    // }
-    //
-    // if (name !== 'main' && firstLoad.current) {
-    //   firstLoad.current = false;
-    // }
     if (!firstLoad.current) {
       return true;
     }
@@ -49,21 +38,17 @@ const App: React.FC = () => {
             exit: 1000,
           }}
         >
-          {(status) => {
-            status = status === 'entered' ? 'entering' : status;
-
-            return (
-              <Layout
-                key={pathname}
-                layout={layout}
-                name={name!}
-                status={status}
-                disableAnimation={disableAnimation}
-              >
-                {outlet}
-              </Layout>
-            );
-          }}
+          {(status) => (
+            <Layout
+              key={pathname}
+              layout={layout}
+              name={name!}
+              status={status}
+              disableAnimation={disableAnimation}
+            >
+              {outlet}
+            </Layout>
+          )}
         </Transition>
       </SwitchTransition>
     </Suspense>

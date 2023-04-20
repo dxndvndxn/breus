@@ -20,7 +20,7 @@ export const useTransitionAnimation = (
   status: TransitionStatus,
   disableAnimation: boolean
 ) => {
-  // const { pathname } = useLocation();
+  status = status === 'entered' ? 'entering' : status;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
