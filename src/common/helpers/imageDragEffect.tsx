@@ -96,6 +96,10 @@ export class ImageDragEffect {
     return [...this.DOM.wrap.querySelectorAll('.img-trail')];
   }
 
+  public destroy(): void {
+    this.draggie.destroy();
+  }
+
   private initEvents(): void {
     const onDragStart = () => {
       // Reset

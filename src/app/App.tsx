@@ -17,15 +17,21 @@ const App: React.FC = () => {
     ) ?? {};
 
   const disableAnimation = useMemo(() => {
-    if (name === 'main') {
-      firstLoad.current = true;
-    }
-
-    if (name !== 'main' && !firstLoad.current) {
+    // if (name === 'main') {
+    //   firstLoad.current = true;
+    // }
+    //
+    // if (name !== 'main' && !firstLoad.current) {
+    //   return true;
+    // }
+    //
+    // if (name !== 'main' && firstLoad.current) {
+    //   firstLoad.current = false;
+    // }
+    if (!firstLoad.current) {
       return true;
     }
-
-    if (name !== 'main' && firstLoad.current) {
+    if (firstLoad.current) {
       firstLoad.current = false;
     }
 

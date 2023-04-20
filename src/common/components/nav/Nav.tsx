@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   ABOUT_PATH,
@@ -12,8 +12,6 @@ interface INav {
 }
 
 export const Nav: React.FC<INav> = ({ location }) => {
-  const nav = useRef<HTMLDivElement>(null);
-
   const detectActive = useCallback(
     (addedClass = '') =>
       ({ isActive }: { isActive: boolean; isPending: boolean }): string => {
@@ -26,7 +24,7 @@ export const Nav: React.FC<INav> = ({ location }) => {
   );
 
   return (
-    <nav className={`nav ${location}`} ref={nav}>
+    <nav className={`nav ${location}`}>
       <ul className="navigation">
         <li className="navigation__item">
           <NavLink
@@ -34,19 +32,18 @@ export const Nav: React.FC<INav> = ({ location }) => {
             to={`/${PORTFOLIOS}`}
           >
             Works
+            <span className="nav-link__divider">&#47;</span>
             <span className="nav-link__counts">34</span>
           </NavLink>
         </li>
         <li className="navigation__item">
           <NavLink className={detectActive()} to={`/${ABOUT_PATH}`}>
             About me
+            <span className="nav-link__divider">&#47;</span>
           </NavLink>
         </li>
         <li className="navigation__item">
-          <NavLink
-            className={detectActive('navigation__link_last')}
-            to={`/${CONTACTS_PATH}`}
-          >
+          <NavLink className={detectActive()} to={`/${CONTACTS_PATH}`}>
             Contact
           </NavLink>
         </li>

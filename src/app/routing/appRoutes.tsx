@@ -1,12 +1,12 @@
-import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import { lazy } from 'react';
 import { About } from '../../modules/about/About';
 import { Contacts } from '../../modules/contacts/Contacts';
 import { PortfoliosPage } from '../../modules/portfolios/PortfoliosPage';
-import App from '../App';
 import { ABOUT_PATH, CONTACTS_PATH, PORTFOLIOS_PATH } from './appConstants';
 import type { RouteObject } from 'react-router-dom';
 import { PageType } from '../../common/components/layout/Layout';
+import App from '../App';
 
 const Main = lazy(() => import('../../modules/main/Main'));
 

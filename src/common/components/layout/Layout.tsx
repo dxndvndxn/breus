@@ -25,6 +25,8 @@ export const Layout: React.FC<ILayout> = ({
 }) => {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
   const isMain = layout === 'main';
+  const headerClass = isMain ? 'header_center' : 'header_bottom';
+  const navLocation = isMain ? 'center' : 'bottom';
 
   useTransitionAnimation(name, status, disableAnimation);
 
@@ -63,16 +65,15 @@ export const Layout: React.FC<ILayout> = ({
 
       {children}
 
-      {isMain && (
-        <header className="header header_center blended-mode">
-          <Nav location="center" />
-        </header>
-      )}
+      <header className={`header blended-mode ${headerClass}`}>
+        <Nav location={navLocation} />
+      </header>
 
-      <div className="layout__bottom bottom blended-mode">
-        {isMain && 'Creative digital designer portfolio'}
-        {layout === 'usual' && <Nav location="bottom" />}
-      </div>
+      {isMain && (
+        <div className="layout__bottom bottom blended-mode">
+          Creative digital designer portfolio
+        </div>
+      )}
     </main>
   );
 };

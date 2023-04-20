@@ -11,13 +11,15 @@ const Main: React.FC = () => {
   const { scale, doDistortionEffect } = useDistortionEffect();
 
   useEffect(() => {
+    let dragPokemon: ImageDragEffect | null = null;
+
     if (pokemonRef.current && pokemonWrapRef.current) {
-      const { nodes } = new ImageDragEffect({
+      dragPokemon = new ImageDragEffect({
         drag: pokemonRef.current,
         wrap: pokemonWrapRef.current,
         src: PokemonImg,
       });
-      setPokemons(nodes);
+      setPokemons(dragPokemon.nodes);
     }
 
     document.documentElement.classList.add('doc-overflow');
@@ -25,6 +27,8 @@ const Main: React.FC = () => {
 
     return () => {
       document.documentElement.classList.remove('doc-overflow');
+
+      if (dragPokemon) dragPokemon.destroy();
     };
   }, []);
 

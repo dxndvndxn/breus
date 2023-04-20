@@ -6,7 +6,6 @@ import {
   mainPageEnter,
   mainPageExit,
   usualPageEnter,
-  usualPageExit,
   aboutPageExit,
   contactsPageEnter,
   contactsPageExit,
@@ -14,22 +13,22 @@ import {
   portfoliosPageExit,
 } from '../helpers/transitions';
 import type { TransitionStatus } from 'react-transition-group';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 export const useTransitionAnimation = (
   pageName: PageName | undefined,
   status: TransitionStatus,
   disableAnimation: boolean
 ) => {
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
-      const confirmUsualExiting = status === 'exiting' && pathname === '/';
+      // const confirmUsualExiting = status === 'exiting' && pathname === '/';
 
       if (pageName === 'main' && status === 'entering') {
-        mainPageEnter(tl);
+        mainPageEnter(tl, !disableAnimation);
       }
       if (pageName === 'main' && status === 'exiting') {
         mainPageExit(tl);
@@ -43,9 +42,9 @@ export const useTransitionAnimation = (
         if (status === 'entering' && !disableAnimation) {
           usualPageEnter(tl);
         }
-        if (status === 'exiting' && confirmUsualExiting) {
-          usualPageExit(tl);
-        }
+        // if (status === 'exiting' && confirmUsualExiting) {
+        //   usualPageExit(tl);
+        // }
       }
 
       if (pageName === 'about' && status === 'entering') {

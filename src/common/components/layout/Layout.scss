@@ -39,6 +39,13 @@
   transform: translate(-50%, -50%);
 }
 
+.header_bottom {
+  position: fixed;
+  left: 50%;
+  bottom: 2.5rem;
+  transform: translateX(-50%);
+}
+
 .layout__bottom {
   position: fixed;
   bottom: 1.9rem;
@@ -46,7 +53,10 @@
   transform: translateX(-50%);
   font-family: $neueFont, sans-serif;
   color: #fff;
-  font-size: 3.2rem;
+  overflow: hidden;
+}
+
+.header {
   overflow: hidden;
 }
 
