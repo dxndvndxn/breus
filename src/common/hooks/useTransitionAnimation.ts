@@ -13,7 +13,6 @@ import {
   portfoliosPageExit,
 } from '../helpers/transitions';
 import type { TransitionStatus } from 'react-transition-group';
-// import { useLocation } from 'react-router-dom';
 
 export const useTransitionAnimation = (
   pageName: PageName | undefined,
@@ -21,49 +20,49 @@ export const useTransitionAnimation = (
   disableAnimation: boolean
 ) => {
   status = status === 'entered' ? 'entering' : status;
+  const animationsList: Record<
+    PageName,
+    Record<
+      'entering' | 'exiting',
+      (tl: gsap.core.Timeline, isFirstLoad?: boolean) => void
+    >
+  > = {
+    [PageName.MAIN]: {
+      entering: mainPageEnter,
+      exiting: mainPageExit,
+    },
+    [PageName.ABOUT]: {
+      entering: aboutPageEnter,
+      exiting: aboutPageExit,
+    },
+    [PageName.PORTFOLIOS]: {
+      entering: portfoliosPageEnter,
+      exiting: portfoliosPageExit,
+    },
+    [PageName.CONTACTS]: {
+      entering: contactsPageEnter,
+      exiting: contactsPageExit,
+    },
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
-      // const confirmUsualExiting = status === 'exiting' && pathname === '/';
 
-      if (pageName === 'main' && status === 'entering') {
-        mainPageEnter(tl, !disableAnimation);
-      }
-      if (pageName === 'main' && status === 'exiting') {
-        mainPageExit(tl);
-      }
+      if (pageName && status) {
+        const { entering, exiting } = animationsList[pageName];
+        const enteringStatus = status === 'entering';
 
-      if (
-        pageName === 'about' ||
-        pageName === 'contacts' ||
-        pageName === 'portfolios'
-      ) {
-        if (status === 'entering' && !disableAnimation) {
+        if (enteringStatus && pageName === 'main') {
+          entering(tl, !disableAnimation);
+        } else if (enteringStatus && !disableAnimation && pageName !== 'main') {
           usualPageEnter(tl);
+          entering(tl);
+        } else if (enteringStatus && disableAnimation && pageName !== 'main') {
+          entering(tl);
+        } else {
+          exiting(tl);
         }
-        // if (status === 'exiting' && confirmUsualExiting) {
-        //   usualPageExit(tl);
-        // }
-      }
-
-      if (pageName === 'about' && status === 'entering') {
-        aboutPageEnter(tl);
-      }
-      if (pageName === 'about' && status === 'exiting') {
-        aboutPageExit(tl);
-      }
-      if (pageName === 'contacts' && status === 'entering') {
-        contactsPageEnter(tl);
-      }
-      if (pageName === 'contacts' && status === 'exiting') {
-        contactsPageExit(tl);
-      }
-      if (pageName === 'portfolios' && status === 'entering') {
-        portfoliosPageEnter(tl);
-      }
-      if (pageName === 'portfolios' && status === 'exiting') {
-        portfoliosPageExit(tl);
       }
     }, document.getElementById('root')!);
 

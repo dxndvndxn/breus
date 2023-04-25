@@ -3,7 +3,7 @@ import { CSSRulePlugin } from 'gsap-trial/all';
 
 gsap.registerPlugin(CSSRulePlugin);
 
-export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad: boolean) => {
+export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
   if (isFirstLoad) {
     const animationConfig = {
       ease: 'power4.out',
