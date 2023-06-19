@@ -6,16 +6,20 @@ import {
   PORTFOLIOS,
 } from '../../../app/routing/appConstants';
 import './Nav.scss';
+import { useAppSelector } from '../../store';
 
 interface INav {
   location: 'center' | 'bottom';
 }
 
 export const Nav: React.FC<INav> = ({ location }) => {
+  const { count } = useAppSelector((state) => state.portfoliosReducer);
+
   const detectActive = useCallback(
     (addedClass = '') =>
       ({ isActive }: { isActive: boolean; isPending: boolean }): string => {
         const classDefault = `navigation__link ${addedClass}`;
+
         return isActive
           ? `${classDefault} navigation__link_active`
           : classDefault;
@@ -33,7 +37,7 @@ export const Nav: React.FC<INav> = ({ location }) => {
           >
             Works
             <span className="nav-link__divider">&#47;</span>
-            <span className="nav-link__counts">34</span>
+            <span className="nav-link__counts">{count}</span>
           </NavLink>
         </li>
         <li className="navigation__item">

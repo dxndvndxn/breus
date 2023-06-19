@@ -1,8 +1,10 @@
 import React, { Suspense, useMemo, useRef } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { SwitchTransition, Transition } from 'react-transition-group';
 import { Layout } from '../common/components';
 import { routes } from './routing/appRoutes';
+import { store } from '../common/store';
 
 const App: React.FC = () => {
   const { pathname } = useLocation();
@@ -29,28 +31,30 @@ const App: React.FC = () => {
 
   return (
     <Suspense>
-      <SwitchTransition>
-        <Transition
-          key={pathname}
-          in={false}
-          timeout={{
-            enter: 1000,
-            exit: 1000,
-          }}
-        >
-          {(status) => (
-            <Layout
-              key={pathname}
-              layout={layout}
-              name={name!}
-              status={status}
-              disableAnimation={disableAnimation}
-            >
-              {outlet}
-            </Layout>
-          )}
-        </Transition>
-      </SwitchTransition>
+      <Provider store={store}>
+        <SwitchTransition>
+          <Transition
+            key={pathname}
+            in={false}
+            timeout={{
+              enter: 1000,
+              exit: 1000,
+            }}
+          >
+            {(status) => (
+              <Layout
+                key={pathname}
+                layout={layout}
+                name={name!}
+                status={status}
+                disableAnimation={disableAnimation}
+              >
+                {outlet}
+              </Layout>
+            )}
+          </Transition>
+        </SwitchTransition>
+      </Provider>
     </Suspense>
   );
 };

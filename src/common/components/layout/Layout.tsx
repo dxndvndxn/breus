@@ -5,6 +5,8 @@ import './Layout.scss';
 import { useTransitionAnimation } from '../../hooks/useTransitionAnimation';
 import { PageName } from '../../../app/routing/appRoutes';
 import type { TransitionStatus } from 'react-transition-group';
+import { useAppDispatch } from '../../store';
+import { fetchPortfolios } from '../../../modules/portfolios/PortfoliosSlice';
 
 export type PageType = 'main' | 'usual';
 
@@ -24,6 +26,7 @@ export const Layout: React.FC<ILayout> = ({
   layout = 'usual',
 }) => {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
+  const dispatch = useAppDispatch();
   const isMain = layout === 'main';
   const headerClass = isMain ? 'header_center' : 'header_bottom';
   const navLocation = isMain ? 'center' : 'bottom';
@@ -43,6 +46,7 @@ export const Layout: React.FC<ILayout> = ({
 
   useEffect(() => {
     window.addEventListener('wheel', wheelEvent);
+    dispatch(fetchPortfolios());
 
     return () => {
       window.removeEventListener('wheel', wheelEvent);
