@@ -32,7 +32,7 @@ module.exports = {
     "react/self-closing-comp": ["error", { component: true, html: true }],
     "react-hooks/exhaustive-deps": "off",
     "autofix/no-unused-vars": [
-      "error",
+      "warn",
       {
         argsIgnorePattern: "^_",
       },

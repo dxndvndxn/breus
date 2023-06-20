@@ -13,6 +13,7 @@
     top: -1rem;
     right: -2rem;
     font-size: 8.2rem;
+    will-change: transform;
   }
 
   .nav-link__counts {
@@ -21,6 +22,7 @@
 
   .navigation {
     gap: 0 7.4rem;
+    will-change: transform;
   }
 
   .nav-link__divider {
@@ -29,6 +31,7 @@
 }
 
 .bottom {
+  will-change: transform;
   font-size: 2.7rem;
 
   .nav-link__counts {
@@ -38,10 +41,12 @@
 
   .navigation {
     gap: 0 5.1rem;
+    will-change: transform;
   }
 
   .nav-link__divider {
     right: -3rem;
+    will-change: transform;
   }
 
   .navigation__link.navigation__link_first {
@@ -83,4 +88,37 @@
 .nav-link__counts {
   position: absolute;
   color: #fff;
+  will-change: transform;
+}
+
+.nav, .navigation__item {
+  will-change: transform;
+}
+
+@media screen and (max-width: $mobile) {
+  .center {
+    font-size: 2.4rem;
+    width: auto;
+    height: 5rem;
+
+    .navigation__link {
+      font-size: 2.4rem;
+      top: auto;
+      right: auto;
+    }
+
+    .navigation {
+      gap: 0 3.5rem;
+    }
+
+    .nav-link__counts {
+      font-size: 1.2rem;
+      top: -.3rem;
+      right: -.9rem;
+    }
+
+    .nav-link__divider {
+      right: -2.5rem;
+    }
+  }
 }

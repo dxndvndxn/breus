@@ -33,6 +33,7 @@ export const Portfolios: React.FC = () => {
     let scrollSmoother: ReturnType<typeof ScrollSmoother.create>;
 
     if (count > 0) {
+      // TODO Заменить на другой плагин
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
       scrollSmoother = ScrollSmoother.create({

@@ -13,7 +13,12 @@ const Main: React.FC = () => {
   useEffect(() => {
     let dragPokemon: ImageDragEffect | null = null;
 
-    if (pokemonRef.current && pokemonWrapRef.current) {
+    // TODO вывести в константу
+    if (
+      pokemonRef.current &&
+      pokemonWrapRef.current &&
+      window.innerWidth > 991
+    ) {
       dragPokemon = new ImageDragEffect({
         drag: pokemonRef.current,
         wrap: pokemonWrapRef.current,
@@ -23,7 +28,11 @@ const Main: React.FC = () => {
     }
 
     document.documentElement.classList.add('doc-overflow');
-    doDistortionEffect(200);
+
+    // TODO вывести в константу
+    if (window.innerWidth > 991) {
+      doDistortionEffect(200);
+    }
 
     return () => {
       document.documentElement.classList.remove('doc-overflow');
@@ -35,9 +44,8 @@ const Main: React.FC = () => {
   return (
     <div className="main">
       <div className="pokemon-wrap" ref={pokemonWrapRef}>
-        {pokemons.map((Pokemon, key) => (
-          <Pokemon key={key} />
-        ))}
+        {pokemons.length &&
+          pokemons.map((Pokemon, key) => <Pokemon key={key} />)}
         <svg className="pokemon-svg" ref={pokemonRef}>
           <filter id="distortionFilter">
             <feTurbulence
