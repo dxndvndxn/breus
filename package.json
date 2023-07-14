@@ -14,7 +14,7 @@
     "@types/react-dom": "^18.0.10",
     "@types/react-transition-group": "^4.4.5",
     "draggabilly": "^3.0.0",
-    "gsap-trial": "^3.11.5",
+    "gsap": "^3.12.1",
     "normalize-scss": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ImageDragEffect } from '../../common/helpers';
+import { ImageDragEffect, windowWidth } from '../../common/helpers';
 import PokemonImg from '../../assets/images/Pokemon.png';
 import { useDistortionEffect } from '../../common/hooks';
 import './Main.scss';
@@ -9,16 +9,12 @@ const Main: React.FC = () => {
   const pokemonRef = useRef<SVGSVGElement | null>(null);
   const pokemonWrapRef = useRef<HTMLDivElement | null>(null);
   const { scale, doDistortionEffect } = useDistortionEffect();
+  const isDesktop = windowWidth > 991;
 
   useEffect(() => {
     let dragPokemon: ImageDragEffect | null = null;
 
-    // TODO вывести в константу
-    if (
-      pokemonRef.current &&
-      pokemonWrapRef.current &&
-      window.innerWidth > 991
-    ) {
+    if (pokemonRef.current && pokemonWrapRef.current && isDesktop) {
       dragPokemon = new ImageDragEffect({
         drag: pokemonRef.current,
         wrap: pokemonWrapRef.current,
@@ -29,8 +25,7 @@ const Main: React.FC = () => {
 
     document.documentElement.classList.add('doc-overflow');
 
-    // TODO вывести в константу
-    if (window.innerWidth > 991) {
+    if (isDesktop) {
       doDistortionEffect(200);
     }
 
@@ -44,31 +39,35 @@ const Main: React.FC = () => {
   return (
     <div className="main">
       <div className="pokemon-wrap" ref={pokemonWrapRef}>
-        {pokemons.length &&
+        {pokemons.length > 0 &&
           pokemons.map((Pokemon, key) => <Pokemon key={key} />)}
-        <svg className="pokemon-svg" ref={pokemonRef}>
-          <filter id="distortionFilter">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.01 0.01"
-              result="noise"
-              numOctaves="5"
-              stitchTiles="stitch"
-              seed="1"
-            />
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale={scale}
-              xChannelSelector="R"
-              yChannelSelector="R"
-              filterUnits="userSpaceOnUse"
-            />
-          </filter>
-          <g filter="url(#distortionFilter)">
-            <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
-          </g>
-        </svg>
+        {isDesktop ? (
+          <svg className="pokemon-svg" ref={pokemonRef}>
+            <filter id="distortionFilter">
+              <feTurbulence
+                type="turbulence"
+                baseFrequency="0.01 0.01"
+                result="noise"
+                numOctaves="5"
+                stitchTiles="stitch"
+                seed="1"
+              />
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="noise"
+                scale={scale}
+                xChannelSelector="R"
+                yChannelSelector="R"
+                filterUnits="userSpaceOnUse"
+              />
+            </filter>
+            <g filter="url(#distortionFilter)">
+              <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
+            </g>
+          </svg>
+        ) : (
+          <img src={PokemonImg} className="pokemon-svg" alt="Pokemon" />
+        )}
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { useDistortionEffect, useHeadMenu } from '../../common/hooks';
+import React, { useEffect, useMemo, useState } from 'react';
+
+import { useDistortionEffect } from '../../common/hooks';
 import PokemonImg from '../../assets/images/Pokemon.png';
 import Breus from '../../assets/images/breus.webp';
 import './About.scss';
+import { windowWidth } from '../../common/helpers';
 
 enum ImgSwitcher {
   BRUCE = 'breus',
@@ -11,10 +12,36 @@ enum ImgSwitcher {
 }
 
 export const About: React.FC = () => {
-  const [imgSwitch, setImgSwitch] = useState<ImgSwitcher>(ImgSwitcher.BRUCE);
+  const [imgSwitch, setImgSwitch] = useState<ImgSwitcher>(ImgSwitcher.POKEMON);
   const { scale, doDistortionEffect } = useDistortionEffect();
+  const isDesktop = windowWidth > 991;
 
-  const headMenu = useHeadMenu();
+  const breusProps = useMemo(() => {
+    if (isDesktop) {
+      return {
+        x: '24',
+        y: '13',
+      };
+    }
+
+    return {
+      x: '25',
+      y: '50',
+    };
+  }, []);
+
+  const pokemonProps = useMemo(() => {
+    if (isDesktop) {
+      return {
+        x: '-70',
+      };
+    }
+
+    return {
+      x: '-170',
+      y: '-50',
+    };
+  }, []);
 
   const switchImage = (img: ImgSwitcher) => {
     if (img === 'breus') {
@@ -23,49 +50,28 @@ export const About: React.FC = () => {
     if (img === 'pokemon') {
       setImgSwitch(ImgSwitcher.POKEMON);
     }
-    doDistortionEffect(100);
+    if (isDesktop) {
+      doDistortionEffect(100);
+    }
   };
 
   useEffect(() => {
-    doDistortionEffect(150);
+    if (isDesktop) {
+      doDistortionEffect(150);
+    }
   }, []);
 
   return (
     <div className="about">
-      {headMenu &&
-        createPortal(
-          <div className="about__menu about-menu">
-            <button
-              className={`about-menu__btn ${
-                imgSwitch === ImgSwitcher.POKEMON
-                  ? 'about-menu__btn_active'
-                  : ''
-              }`}
-              type="button"
-              onClick={() => switchImage(ImgSwitcher.POKEMON)}
-            >
-              My soulmate
-            </button>
-            <button
-              className={`about-menu__btn ${
-                imgSwitch === ImgSwitcher.BRUCE ? 'about-menu__btn_active' : ''
-              }`}
-              type="button"
-              onClick={() => switchImage(ImgSwitcher.BRUCE)}
-            >
-              Me
-            </button>
-          </div>,
-          headMenu
-        )}
       <div className="about__img about-img">
-        <svg
-          className={`distort img__breus ${
-            imgSwitch === ImgSwitcher.POKEMON
-              ? 'about-img__pokemon'
-              : 'about-img__breus'
-          }`}
-        >
+        {/*<svg*/}
+        {/*  className={`distort img__breus ${*/}
+        {/*    imgSwitch === ImgSwitcher.POKEMON*/}
+        {/*      ? 'about-img__pokemon'*/}
+        {/*      : 'about-img__breus'*/}
+        {/*  }`}*/}
+        {/*>*/}
+        <svg className={`distort img__breus`}>
           <filter id="distortionFilter">
             <feTurbulence
               type="fractalNoise"
@@ -89,15 +95,14 @@ export const About: React.FC = () => {
               className={`distort__img about-img__breus ${
                 imgSwitch !== 'breus' && 'distort__img_opacity'
               }`}
-              x="24"
-              y="13"
+              {...breusProps}
               xlinkHref={Breus}
             />
             <image
               className={`distort__img about-img__pokemon ${
                 imgSwitch !== 'pokemon' && 'distort__img_opacity'
               }`}
-              x="-100"
+              {...pokemonProps}
               xlinkHref={PokemonImg}
             />
           </g>
@@ -105,6 +110,27 @@ export const About: React.FC = () => {
       </div>
 
       <div className="about__content about-content">
+        <div className="about__menu about-menu">
+          <button
+            className={`about-menu__btn ${
+              imgSwitch === ImgSwitcher.POKEMON ? 'about-menu__btn_active' : ''
+            }`}
+            type="button"
+            onClick={() => switchImage(ImgSwitcher.POKEMON)}
+          >
+            My soulmate
+          </button>
+          <button
+            className={`about-menu__btn ${
+              imgSwitch === ImgSwitcher.BRUCE ? 'about-menu__btn_active' : ''
+            }`}
+            type="button"
+            onClick={() => switchImage(ImgSwitcher.BRUCE)}
+          >
+            Me
+          </button>
+        </div>
+
         <div className="about-content__wrap">
           <div className="about-content__text about-content_first">
             Independent creative designer

@@ -1,7 +1,7 @@
 @import 'common/styles/index.scss';
 
 .center {
-  font-size: 8.2rem;
+  //font-size: 8.2rem;
   width: 105rem;
   display: flex;
   justify-content: center;
@@ -31,8 +31,8 @@
 }
 
 .bottom {
-  will-change: transform;
-  font-size: 2.7rem;
+  will-change: transform, translate, rotate, scale;
+  //font-size: 2.7rem;
 
   .nav-link__counts {
     transform: translateX(0.5rem);
@@ -47,6 +47,10 @@
   .nav-link__divider {
     right: -3rem;
     will-change: transform;
+  }
+
+  .navigation__link {
+    font-size: 2.7rem;
   }
 
   .navigation__link.navigation__link_first {
@@ -92,7 +96,7 @@
 }
 
 .nav, .navigation__item {
-  will-change: transform;
+  will-change: transform, translate, rotate, scale;
 }
 
 @media screen and (max-width: $mobile) {
@@ -119,6 +123,36 @@
 
     .nav-link__divider {
       right: -2.5rem;
+    }
+  }
+
+  .bottom {
+    margin-top: 1.5rem;
+
+    .navigation__link {
+      font-size: 1.8rem;
+      top: auto;
+      right: auto;
+    }
+
+    .navigation {
+      gap: 0 3.5rem;
+    }
+
+    .nav-link__counts {
+      font-size: 1.1rem;
+      top: -.3rem;
+      right: -.9rem;
+    }
+
+   .nav-link__divider {
+      right: -2.5rem;
+    }
+
+    .navigation__link.navigation__link_first {
+      .nav-link__divider {
+        right: -3rem;
+      }
     }
   }
 }

@@ -18,4 +18,10 @@
       transform-origin: $originHover;
     }
   }
+  &:active {
+    &:after {
+      transform: scaleX($scaleHover);
+      transform-origin: $originHover;
+    }
+  }
 }

@@ -64,8 +64,6 @@ export const Layout: React.FC<ILayout> = ({
         <Link className="logo" to={'/'}>
           Sergey Breus
         </Link>
-
-        <div id="head-menu" />
       </div>
 
       {children}

@@ -3,6 +3,7 @@
 .about {
   display: flex;
   align-items: center;
+  position: relative;
   gap: 0 31.6rem;
   margin: 13.3rem 0 0 10rem;
 
@@ -91,7 +92,6 @@
   }
 
   @include link-hover(0, right, 1, left);
-
 }
 
 .about-menu__btn_active {
@@ -101,4 +101,59 @@
 .about-menu {
   display: flex;
   gap: 0 2rem;
+  position: fixed;
+  right: 2.5rem;
+  top: 2.5rem;
+  z-index: 2;
+}
+
+@media screen and (max-width: $mobile) {
+  .about {
+    height: 100%;
+    margin: auto 0;
+    gap: 0 3.9rem;
+    align-items: center;
+
+    .about-img {
+      height: 30%;
+    }
+
+    .about-img__breus {
+      width: 16.6rem;
+      height: 27.8rem;
+    }
+
+    .about-img__pokemon {
+      width: 47rem;
+      height: 50rem;
+    }
+
+    .about__content {
+      margin-top: 0;
+      gap: 1.5rem 0;
+      font-size: 1.8rem;
+      width: auto;
+      line-height: 1.9rem;
+    }
+
+    .about-content_first {
+      margin-top: 2rem;
+      width: 16rem;
+    }
+
+    .distort {
+      left: -4rem;
+      top: -7rem;
+    }
+  }
+
+  .about-menu__btn {
+    font-size: 1.8rem;
+  }
+
+  .about-menu {
+    position: relative;
+    top: 1.5rem;
+    right: 0;
+  }
 }

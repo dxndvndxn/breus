@@ -6,6 +6,7 @@ import { PortfoliosPage } from '../../modules/portfolios/PortfoliosPage';
 import { ABOUT_PATH, CONTACTS_PATH, PORTFOLIOS_PATH } from './appConstants';
 import type { RouteObject } from 'react-router-dom';
 import { PageType } from '../../common/components/layout/Layout';
+import { NotFound } from '../notFound/NotFound';
 import App from '../App';
 
 const Main = lazy(() => import('../../modules/main/Main'));
@@ -15,6 +16,7 @@ export enum PageName {
   ABOUT = 'about',
   PORTFOLIOS = 'portfolios',
   CONTACTS = 'contacts',
+  NOT_FOUND = 'not_found',
 }
 type AppRoutes = RouteObject & {
   name: PageName;
@@ -23,6 +25,11 @@ type AppRoutes = RouteObject & {
 };
 
 export const routes: AppRoutes[] = [
+  {
+    path: '*',
+    element: <NotFound />,
+    name: PageName.NOT_FOUND,
+  },
   {
     path: '/',
     element: <Main />,

@@ -13,7 +13,7 @@
 
 .layout__head {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   z-index: 1;
   overflow: hidden;
   position: fixed;
@@ -34,7 +34,7 @@
   font-weight: 500;
   font-size: 2.7rem;
   justify-self: center;
-  will-change: transform;
+  will-change: transform, translate, rotate, scale;
 }
 
 .header_center {
@@ -59,6 +59,7 @@
   font-family: $neueFont, sans-serif;
   color: #fff;
   overflow: hidden;
+  font-size: 3.2rem;
 }
 
 .header {
@@ -82,5 +83,9 @@
   .layout__bottom {
     font-size: 1.8rem;
     white-space: nowrap;
+  }
+
+  .header_bottom {
+    height: 3rem;
   }
 }

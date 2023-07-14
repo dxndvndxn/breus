@@ -33,7 +33,7 @@
 .pokemon-svg {
   width: 100%;
   height: 100%;
-  will-change: transform;
+  will-change: transform, translate, rotate, scale, opacity;
 }
 
 .pokemon-svg__image {
@@ -45,11 +45,15 @@
   .pokemon-wrap {
     width: 40rem;
     height: 64rem;
-    transform: translate(-6%, -54%);
+    transform: translate(-6%, -26%);
   }
 
   .img-trail {
     background-size: 100% 50%;
     background-repeat: no-repeat;
+  }
+
+  .pokemon-svg {
+    height: 50%;
   }
 }

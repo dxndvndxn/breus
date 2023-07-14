@@ -9,7 +9,7 @@ $marginCell: 7.5rem;
     content: '';
     left: 0;
     top: 0;
-    width: 0;
+    width: var(--portfolio-width);
     height: 107%;
     background-color: #000;
   }

@@ -1,7 +1,4 @@
-import { gsap } from 'gsap-trial';
-import { CSSRulePlugin } from 'gsap-trial/all';
-
-gsap.registerPlugin(CSSRulePlugin);
+import { gsap } from 'gsap';
 
 export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
   if (isFirstLoad) {
@@ -13,6 +10,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
         amount: 0.3,
       },
     };
+
     tl.add('start')
       .from('.logo', 1.8, { ...animationConfig, y: 50 }, 'start')
       .from('.bottom', 1.8, { ...animationConfig, y: 120 }, 'start')
@@ -387,11 +385,11 @@ export const portfoliosPageExit = (tl: gsap.core.Timeline) => {
     },
     'start'
   ).to(
-    CSSRulePlugin.getRule('.portfolio:before'),
+    '.portfolio',
     1,
     {
       ease: 'power4.in',
-      width: '100%',
+      '--portfolio-width': '100%',
     },
     'start'
   );
