@@ -1,7 +1,8 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import { PortfolioRow } from '../portfolioRow/PortfolioRow';
 import { PortfolioItem } from '../../types';
 import { useAppSelector } from '../../../../common/store';
+import LocomotiveScroll from 'locomotive-scroll';
 
 import './Portfolios.scss';
 
@@ -10,6 +11,7 @@ export const Portfolios: React.FC = () => {
     (state) => state.portfoliosReducer
   );
   const [percent, setPercent] = useState('00');
+  const portfoliosContainer = createRef<HTMLDivElement>();
 
   const closureRow = () => {
     let rowCount = 0;
@@ -27,8 +29,27 @@ export const Portfolios: React.FC = () => {
 
   const getRow = closureRow();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     document.body.classList.add('doc-overflow');
+
+    if (portfoliosContainer.current) {
+      setTimeout(() => {
+        const portfoliosScroll = new LocomotiveScroll({
+          el: portfoliosContainer.current!,
+          smooth: true,
+          lerp: 0.2,
+        });
+
+        portfoliosScroll.on('scroll', (args) => {
+          const { limit, scroll } = args;
+          const percentScroll = Math.floor((scroll.y * 100) / limit.y);
+          setPercent(
+            percentScroll < 10 ? `0${percentScroll}` : `${percentScroll}`
+          );
+        });
+      }, 1700);
+    }
+
     return () => {
       document.body.classList.remove('doc-overflow');
     };
@@ -46,7 +67,12 @@ export const Portfolios: React.FC = () => {
         <div className="percent">{percent}&#x25;</div>
       </div>
 
-      <div id="portfoliosContent" className="portfolios">
+      <div
+        id="portfoliosContent"
+        className="portfolios"
+        ref={portfoliosContainer}
+        data-scroll-container
+      >
         {portfolios.length > 0 && portfolios.map(getRow)}
       </div>
     </div>

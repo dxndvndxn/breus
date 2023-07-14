@@ -14,16 +14,19 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
     const imgOne = `url(${itemOne?.img})`;
     const imgTwo = `url(${itemTwo?.img})`;
     const imgThree = `url(${itemThree?.img})`;
-    const speed = 1.2;
 
     switch (rowCount) {
       case 1: {
         Row = (
           <div
             className="portfolio-grid__row portfolio-grid__row-1"
-            data-speed={speed}
+            data-scroll-section
           >
-            <div className="portfolio portfolio__small">
+            <div
+              className="portfolio portfolio__small"
+              data-scroll
+              data-scroll-speed="2"
+            >
               <div
                 className="portfolio__img"
                 style={{
@@ -32,14 +35,22 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
               />
               <div className="portfolio__title">{itemOne?.title}</div>
             </div>
-            <div className="portfolio portfolio__large">
+            <div
+              className="portfolio portfolio__large"
+              data-scroll
+              data-scroll-speed="1"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgTwo }}
               />
               <div className="portfolio__title">{itemTwo?.title}</div>
             </div>
-            <div className="portfolio portfolio__small">
+            <div
+              className="portfolio portfolio__small"
+              data-scroll
+              data-scroll-speed="2"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgThree }}
@@ -54,23 +65,35 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
         Row = (
           <div
             className="portfolio-grid__row portfolio-grid__row-2"
-            data-speed={speed}
+            data-scroll-section
           >
-            <div className="portfolio portfolio__large">
+            <div
+              className="portfolio portfolio__large"
+              data-scroll
+              data-scroll-speed="3"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgOne }}
               />
               <div className="portfolio__title">{itemOne?.title}</div>
             </div>
-            <div className="portfolio portfolio__xl">
+            <div
+              className="portfolio portfolio__xl"
+              data-scroll
+              data-scroll-speed="3"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgTwo }}
               />
               <div className="portfolio__title">{itemTwo?.title}</div>
             </div>
-            <div className="portfolio portfolio__large portfolio__large_m">
+            <div
+              className="portfolio portfolio__large portfolio__large_m"
+              data-scroll
+              data-scroll-speed="3"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgThree }}
@@ -85,23 +108,35 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
         Row = (
           <div
             className="portfolio-grid__row portfolio-grid__row-3"
-            data-speed={speed}
+            data-scroll-section
           >
-            <div className="portfolio portfolio__small portfolio__small_m">
+            <div
+              className="portfolio portfolio__small portfolio__small_m"
+              data-scroll
+              data-scroll-speed="2"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgOne }}
               />
               <div className="portfolio__title">{itemOne?.title}</div>
             </div>
-            <div className="portfolio portfolio__small">
+            <div
+              className="portfolio portfolio__small"
+              data-scroll
+              data-scroll-speed="2"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgTwo }}
               />
               <div className="portfolio__title">{itemTwo?.title}</div>
             </div>
-            <div className="portfolio portfolio__large">
+            <div
+              className="portfolio portfolio__large"
+              data-scroll
+              data-scroll-speed="2"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgThree }}
@@ -116,23 +151,35 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
         Row = (
           <div
             className="portfolio-grid__row portfolio-grid__row-4"
-            data-speed={speed}
+            data-scroll-section
           >
-            <div className="portfolio portfolio__xl">
+            <div
+              className="portfolio portfolio__xl"
+              data-scroll
+              data-scroll-speed="2"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgOne }}
               />
               <div className="portfolio__title">{itemOne?.title}</div>
             </div>
-            <div className="portfolio portfolio__small">
+            <div
+              className="portfolio portfolio__small"
+              data-scroll
+              data-scroll-speed="2"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgTwo }}
               />
               <div className="portfolio__title">{itemTwo?.title}</div>
             </div>
-            <div className="portfolio portfolio__small portfolio__small_m">
+            <div
+              className="portfolio portfolio__small portfolio__small_m"
+              data-scroll
+              data-scroll-speed="2"
+            >
               <div
                 className="portfolio__img"
                 style={{ backgroundImage: imgThree }}

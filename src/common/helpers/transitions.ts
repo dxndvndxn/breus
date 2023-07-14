@@ -364,8 +364,8 @@ export const portfoliosPageEnter = (tl: gsap.core.Timeline) => {
       1,
       {
         ease: 'circ.easeOut',
-        top: '100vh',
         position: 'absolute',
+        y: '100%',
       },
       '-=0.9'
     );

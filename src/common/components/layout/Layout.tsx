@@ -37,7 +37,7 @@ export const Layout: React.FC<ILayout> = ({
   const wheelEvent = (e: WheelEvent) => {
     const delta = Math.sign(e.deltaY);
 
-    if (delta > 0 && window.pageYOffset > 0) {
+    if (delta > 0) {
       setScrollDirection('down');
     } else {
       setScrollDirection('up');

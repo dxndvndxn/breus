@@ -1,8 +1,12 @@
 .portfolios {
-  padding: 0 5.2rem 9.1rem;
+  padding: 15rem 5.2rem 9.1rem;
+}
+.portfolios, #portfolios {
+  overflow: hidden;
 }
 
 .entering-wrap {
+  position: fixed;
   font-weight: 600;
   font-size: 8.2rem;
   line-height: 9.8rem;
@@ -13,7 +17,6 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  position: absolute;
 }
 
 .entering {
