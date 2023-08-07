@@ -16,33 +16,6 @@ export const About: React.FC = () => {
   const { scale, doDistortionEffect } = useDistortionEffect();
   const isDesktop = windowWidth > 991;
 
-  const breusProps = useMemo(() => {
-    if (isDesktop) {
-      return {
-        x: '24',
-        y: '13',
-      };
-    }
-
-    return {
-      x: '25',
-      y: '50',
-    };
-  }, []);
-
-  const pokemonProps = useMemo(() => {
-    if (isDesktop) {
-      return {
-        x: '-70',
-      };
-    }
-
-    return {
-      x: '-170',
-      y: '-50',
-    };
-  }, []);
-
   const switchImage = (img: ImgSwitcher) => {
     if (img === 'breus') {
       setImgSwitch(ImgSwitcher.BRUCE);
@@ -61,17 +34,16 @@ export const About: React.FC = () => {
     }
   }, []);
 
-  return (
-    <div className="about">
-      <div className="about__img about-img">
-        {/*<svg*/}
-        {/*  className={`distort img__breus ${*/}
-        {/*    imgSwitch === ImgSwitcher.POKEMON*/}
-        {/*      ? 'about-img__pokemon'*/}
-        {/*      : 'about-img__breus'*/}
-        {/*  }`}*/}
-        {/*>*/}
-        <svg className={`distort img__breus`}>
+  const ImgAbout = useMemo(() => {
+    if (isDesktop) {
+      return (
+        <svg
+          className={`distort img__breus ${
+            imgSwitch === ImgSwitcher.POKEMON
+              ? 'about-img__pokemon'
+              : 'about-img__breus'
+          }`}
+        >
           <filter id="distortionFilter">
             <feTurbulence
               type="fractalNoise"
@@ -95,23 +67,50 @@ export const About: React.FC = () => {
               className={`distort__img about-img__breus ${
                 imgSwitch !== 'breus' && 'distort__img_opacity'
               }`}
-              {...breusProps}
+              x="24"
+              y="13"
               xlinkHref={Breus}
             />
             <image
               className={`distort__img about-img__pokemon ${
                 imgSwitch !== 'pokemon' && 'distort__img_opacity'
               }`}
-              {...pokemonProps}
+              x="-100"
               xlinkHref={PokemonImg}
             />
           </g>
         </svg>
-      </div>
+      );
+    }
+
+    return (
+      <>
+        <img
+          className={`distort__img about-img__breus ${
+            imgSwitch !== 'breus' && 'distort__img_opacity'
+          }`}
+          src={Breus}
+          alt="Breus"
+        />
+        <img
+          className={`distort__img about-img__pokemon ${
+            imgSwitch !== 'pokemon' && 'distort__img_opacity'
+          }`}
+          src={PokemonImg}
+          alt="Pokemon"
+        />
+      </>
+    );
+  }, [imgSwitch, scale]);
+
+  return (
+    <div className="about">
+      <div className="about__img about-img">{ImgAbout}</div>
 
       <div className="about__content about-content">
         <div className="about__menu about-menu">
-          <button
+          <a
+            href="/about#"
             className={`about-menu__btn ${
               imgSwitch === ImgSwitcher.POKEMON ? 'about-menu__btn_active' : ''
             }`}
@@ -119,8 +118,9 @@ export const About: React.FC = () => {
             onClick={() => switchImage(ImgSwitcher.POKEMON)}
           >
             My soulmate
-          </button>
-          <button
+          </a>
+          <a
+            href="/about#"
             className={`about-menu__btn ${
               imgSwitch === ImgSwitcher.BRUCE ? 'about-menu__btn_active' : ''
             }`}
@@ -128,7 +128,7 @@ export const About: React.FC = () => {
             onClick={() => switchImage(ImgSwitcher.BRUCE)}
           >
             Me
-          </button>
+          </a>
         </div>
 
         <div className="about-content__wrap">

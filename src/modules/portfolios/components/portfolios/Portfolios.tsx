@@ -33,11 +33,12 @@ export const Portfolios: React.FC = () => {
     document.body.classList.add('doc-overflow');
 
     if (portfoliosContainer.current) {
+      const portfolioContainer = portfoliosContainer.current;
+
       setTimeout(() => {
         const portfoliosScroll = new LocomotiveScroll({
-          el: portfoliosContainer.current!,
+          el: portfolioContainer,
           smooth: true,
-          lerp: 0.2,
         });
 
         portfoliosScroll.on('scroll', (args) => {
@@ -72,6 +73,7 @@ export const Portfolios: React.FC = () => {
         className="portfolios"
         ref={portfoliosContainer}
         data-scroll-container
+        data-scroll-section
       >
         {portfolios.length > 0 && portfolios.map(getRow)}
       </div>

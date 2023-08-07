@@ -14,18 +14,19 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
     const imgOne = `url(${itemOne?.img})`;
     const imgTwo = `url(${itemTwo?.img})`;
     const imgThree = `url(${itemThree?.img})`;
+    const scrollSpeedFirst = 1;
+    const scrollSpeedSecond = 2;
+    const scrollSpeedThird = 2;
+    const scrollSpeedFourth = 2;
 
     switch (rowCount) {
       case 1: {
         Row = (
-          <div
-            className="portfolio-grid__row portfolio-grid__row-1"
-            data-scroll-section
-          >
+          <div className="portfolio-grid__row portfolio-grid__row-1">
             <div
               className="portfolio portfolio__small"
               data-scroll
-              data-scroll-speed="2"
+              data-scroll-speed={scrollSpeedFirst}
             >
               <div
                 className="portfolio__img"
@@ -38,7 +39,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
             <div
               className="portfolio portfolio__large"
               data-scroll
-              data-scroll-speed="1"
+              data-scroll-speed={scrollSpeedFirst}
             >
               <div
                 className="portfolio__img"
@@ -49,7 +50,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
             <div
               className="portfolio portfolio__small"
               data-scroll
-              data-scroll-speed="2"
+              data-scroll-speed={scrollSpeedFirst}
             >
               <div
                 className="portfolio__img"
@@ -63,14 +64,11 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
       }
       case 2: {
         Row = (
-          <div
-            className="portfolio-grid__row portfolio-grid__row-2"
-            data-scroll-section
-          >
+          <div className="portfolio-grid__row portfolio-grid__row-2">
             <div
               className="portfolio portfolio__large"
               data-scroll
-              data-scroll-speed="3"
+              data-scroll-speed={scrollSpeedSecond}
             >
               <div
                 className="portfolio__img"
@@ -81,7 +79,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
             <div
               className="portfolio portfolio__xl"
               data-scroll
-              data-scroll-speed="3"
+              data-scroll-speed={scrollSpeedSecond}
             >
               <div
                 className="portfolio__img"
@@ -92,7 +90,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
             <div
               className="portfolio portfolio__large portfolio__large_m"
               data-scroll
-              data-scroll-speed="3"
+              data-scroll-speed={scrollSpeedSecond}
             >
               <div
                 className="portfolio__img"
@@ -106,14 +104,11 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
       }
       case 3: {
         Row = (
-          <div
-            className="portfolio-grid__row portfolio-grid__row-3"
-            data-scroll-section
-          >
+          <div className="portfolio-grid__row portfolio-grid__row-3">
             <div
               className="portfolio portfolio__small portfolio__small_m"
               data-scroll
-              data-scroll-speed="2"
+              data-scroll-speed={scrollSpeedThird}
             >
               <div
                 className="portfolio__img"
@@ -124,7 +119,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
             <div
               className="portfolio portfolio__small"
               data-scroll
-              data-scroll-speed="2"
+              data-scroll-speed={scrollSpeedThird}
             >
               <div
                 className="portfolio__img"
@@ -135,7 +130,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
             <div
               className="portfolio portfolio__large"
               data-scroll
-              data-scroll-speed="2"
+              data-scroll-speed={scrollSpeedThird}
             >
               <div
                 className="portfolio__img"
@@ -149,14 +144,11 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
       }
       case 4: {
         Row = (
-          <div
-            className="portfolio-grid__row portfolio-grid__row-4"
-            data-scroll-section
-          >
+          <div className="portfolio-grid__row portfolio-grid__row-4">
             <div
               className="portfolio portfolio__xl"
               data-scroll
-              data-scroll-speed="2"
+              data-scroll-speed={scrollSpeedFourth}
             >
               <div
                 className="portfolio__img"
@@ -167,7 +159,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
             <div
               className="portfolio portfolio__small"
               data-scroll
-              data-scroll-speed="2"
+              data-scroll-speed={scrollSpeedFourth}
             >
               <div
                 className="portfolio__img"
@@ -178,7 +170,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
             <div
               className="portfolio portfolio__small portfolio__small_m"
               data-scroll
-              data-scroll-speed="2"
+              data-scroll-speed={scrollSpeedFourth}
             >
               <div
                 className="portfolio__img"

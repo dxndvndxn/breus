@@ -115,17 +115,25 @@
     align-items: center;
 
     .about-img {
-      height: 30%;
+      height: auto;
     }
 
     .about-img__breus {
-      width: 16.6rem;
-      height: 27.8rem;
+      width: 12.6rem;
+      height: 18.8rem;
+      right: -1.2rem;
+      top: -8.8rem;
     }
 
     .about-img__pokemon {
-      width: 47rem;
+      width: 53rem;
       height: 50rem;
+      right: -14.8rem;
+      top: -17.7rem;
+    }
+
+    .distort__img {
+      position: absolute;
     }
 
     .about__content {

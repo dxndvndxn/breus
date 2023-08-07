@@ -12,16 +12,12 @@
     @include transition(transform);
   }
 
-  &:hover {
-    &:after {
-      transform: scaleX($scaleHover);
-      transform-origin: $originHover;
-    }
-  }
-  &:active {
-    &:after {
-      transform: scaleX($scaleHover);
-      transform-origin: $originHover;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      &:after {
+        transform: scaleX($scaleHover);
+        transform-origin: $originHover;
+      }
     }
   }
 }
