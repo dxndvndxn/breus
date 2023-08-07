@@ -51,6 +51,7 @@
     font-size: 2.7rem;
     width: 30.4rem;
     line-height: 2.9rem;
+    overflow: hidden;
   }
 
   .about-content_grey {
@@ -100,6 +101,7 @@
 
 .about-menu {
   display: flex;
+  overflow: hidden;
   gap: 0 2rem;
   position: fixed;
   right: 2.5rem;

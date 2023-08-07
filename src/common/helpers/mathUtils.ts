@@ -1,14 +1,3 @@
-/**
- * MathUtils.js
- * http://www.codrops.com
- *
- * Licensed under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- *
- * Copyright 2020, Codrops
- * http://www.codrops.com
- */
-
 // Map number x from range [a, b] to [c, d]
 const map = (x: number, a: number, b: number, c: number, d: number) =>
   ((x - a) * (d - c)) / (b - a) + c;

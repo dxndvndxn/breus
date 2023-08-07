@@ -64,3 +64,33 @@
     @include link-hover(1, left, 0, right);
   }
 }
+
+@media screen and (max-width: $mobile) {
+  .contacts {
+    gap: 4rem 0;
+
+    .contacts-title__wrap {
+      width: 52%;
+    }
+
+    .contacts__title {
+      font-size: 1.4rem;
+      line-height: 100%;
+    }
+
+    .contacts__mail {
+      font-size: 3.2rem;
+      line-height: 4rem;
+    }
+
+    .socials {
+      gap: 0 2rem;
+    }
+
+    .socials__link {
+      font-size: 1.8rem;
+      line-height: 100%; /* 18px */
+      letter-spacing: -0.036rem;
+    }
+  }
+}
