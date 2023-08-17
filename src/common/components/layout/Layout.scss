@@ -64,7 +64,7 @@
 
 .header {
   overflow: hidden;
-  will-change: transform;
+  will-change: transform, top;
 }
 
 #head-menu {

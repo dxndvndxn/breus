@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { PortfolioItem } from '../../types';
 import './PortfolioRow.scss';
+import { windowWidth } from '../../../../common/helpers';
 
 interface IPortfolioRow {
   rowCount: number;
@@ -14,10 +15,11 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
     const imgOne = `url(${itemOne?.img})`;
     const imgTwo = `url(${itemTwo?.img})`;
     const imgThree = `url(${itemThree?.img})`;
-    const scrollSpeedFirst = 1;
-    const scrollSpeedSecond = 2;
-    const scrollSpeedThird = 2;
-    const scrollSpeedFourth = 2;
+    const isDesktop = windowWidth > 991;
+    const scrollSpeedFirst = isDesktop ? 2 : 1;
+    const scrollSpeedSecond = isDesktop ? 2 : 1;
+    const scrollSpeedThird = isDesktop ? 2 : 1;
+    const scrollSpeedFourth = isDesktop ? 2 : 1;
 
     switch (rowCount) {
       case 1: {

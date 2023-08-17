@@ -35,20 +35,20 @@ export const Nav: React.FC<INav> = ({ location }) => {
             className={detectActive('navigation__link_first')}
             to={`/${PORTFOLIOS}`}
           >
-            Works
+            <span className="nav-link__text">Works</span>
             <span className="nav-link__divider">&#47;</span>
             <span className="nav-link__counts">{count}</span>
           </NavLink>
         </li>
         <li className="navigation__item">
           <NavLink className={detectActive()} to={`/${ABOUT_PATH}`}>
-            About me
+            <span className="nav-link__text">About me</span>
             <span className="nav-link__divider">&#47;</span>
           </NavLink>
         </li>
         <li className="navigation__item">
           <NavLink className={detectActive()} to={`/${CONTACTS_PATH}`}>
-            Contact
+            <span className="nav-link__text">Contact</span>
           </NavLink>
         </li>
       </ul>

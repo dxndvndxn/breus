@@ -1,3 +1,5 @@
+@import 'common/styles/index.scss';
+
 $columnGap: 12.8rem;
 $marginCell: 7.5rem;
 
@@ -27,8 +29,6 @@ $marginCell: 7.5rem;
 }
 
 .portfolio__img {
-  // TODO remove later
-  //background-color: #D8D8D8;
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
@@ -41,6 +41,7 @@ $marginCell: 7.5rem;
   line-height: 100%;
   letter-spacing: -0.01em;
 }
+
 .portfolio__small {
   height: 46.3rem;
 }
@@ -91,5 +92,41 @@ $marginCell: 7.5rem;
 
   .portfolio__small_m {
     margin-top: $marginCell;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .portfolio-grid__row-1, .portfolio-grid__row-2, .portfolio-grid__row-3, .portfolio-grid__row-4 {
+    margin: 0;
+
+    .portfolio__large_m, .portfolio__small_m, .portfolio__large_m {
+      margin: 0;
+    }
+  }
+
+  .portfolio-grid__row {
+    grid-gap: 4rem 0;
+    grid-auto-rows: auto;
+
+    &:last-child {
+      margin-bottom: 15rem
+    }
+  }
+
+  .portfolio__small {
+    height: 33.5rem;
+  }
+
+  .portfolio__large {
+    height: 55.5rem;
+  }
+
+  .portfolio__title {
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .portfolio__xl {
+    height: 59rem;
   }
 }

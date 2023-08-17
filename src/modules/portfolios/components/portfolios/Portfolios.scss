@@ -1,6 +1,9 @@
+@import 'common/styles/index.scss';
+
 .portfolios {
   padding: 15rem 5.2rem 9.1rem;
 }
+
 .portfolios, #portfolios {
   overflow: hidden;
 }
@@ -24,7 +27,7 @@
 }
 
 .percent-wrap {
-  position: absolute;
+  position: fixed;
   top: 2.5rem;
   right: 3rem;
   z-index: 1;
@@ -38,6 +41,42 @@
   font-size: 2.7rem;
   line-height: 100%;
   letter-spacing: -0.01em;
+}
+
+@media screen and (max-width: $mobile) {
+  .portfolios {
+    padding: 10.7rem 0 0;
+  }
+
+  .portfolio__img {
+    background-position: 50% 50%;
+  }
+
+  .portfolio-grid__row {
+    grid-template-columns: 1fr;
+  }
+
+  .entering__text {
+    font-size: 2.4rem;
+  }
+
+  .percent {
+    font-size: 1.8rem;
+  }
+
+  .entering-wrap {
+    width: calc(100% - 4rem);
+  }
+
+  #portfoliosContent {
+    width: 100%;
+  }
+
+  #portfolios {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 

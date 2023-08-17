@@ -31,14 +31,21 @@ export const Portfolios: React.FC = () => {
 
   useEffect(() => {
     document.body.classList.add('doc-overflow');
+    document.documentElement.classList.add('doc-overflow');
 
     if (portfoliosContainer.current) {
-      const portfolioContainer = portfoliosContainer.current;
+      const el = portfoliosContainer.current;
 
       setTimeout(() => {
         const portfoliosScroll = new LocomotiveScroll({
-          el: portfolioContainer,
+          el,
           smooth: true,
+          lerp: 0.2,
+          smartphone: {
+            smooth: true,
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+          },
         });
 
         portfoliosScroll.on('scroll', (args) => {
@@ -53,6 +60,7 @@ export const Portfolios: React.FC = () => {
 
     return () => {
       document.body.classList.remove('doc-overflow');
+      document.documentElement.classList.remove('doc-overflow');
     };
   }, [count]);
 

@@ -1,4 +1,6 @@
 import { gsap } from 'gsap';
+import { windowWidth } from './constants';
+const isMobile = windowWidth < 991;
 
 export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
   if (isFirstLoad) {
@@ -29,6 +31,50 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
       ease: 'power3.out',
     };
     const smoothTime = 1.24;
+    const linkDivider: any = {
+      ...animationConfig,
+      right: '-6rem',
+      clearProps: 'all',
+    };
+    const nav = {
+      ...animationConfig,
+      fontSize: '2.7rem',
+      height: 'auto',
+      width: 'auto',
+      clearProps: 'all',
+    };
+    const navigation = {
+      ...animationConfig,
+      gap: '0 5.1rem',
+      clearProps: 'all',
+    };
+    const navigationLink = {
+      ...animationConfig,
+      fontSize: '2.7rem',
+      top: 'auto',
+      right: 'auto',
+      clearProps: 'all',
+    };
+    const linkDividerFirst = {
+      ...animationConfig,
+      right: '-4rem',
+      clearProps: 'all',
+    };
+    const count = {
+      ...animationConfig,
+      transform: 'translateX(0.5rem)',
+      fontSize: '1.2rem',
+      clearProps: 'all',
+    };
+
+    if (isMobile) {
+      linkDivider.right = '-2.5rem';
+      linkDividerFirst.right = '-2.5rem';
+      nav.fontSize = '2.4rem';
+      navigation.gap = '0 3.5rem';
+      navigationLink.fontSize = '2.4rem';
+      count.fontSize = '1.2rem';
+    }
 
     tl.add('start')
       .from(
@@ -41,81 +87,17 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
         },
         'start'
       )
-      .from(
-        '.nav',
-        smoothTime,
-        {
-          ...animationConfig,
-          fontSize: '2.7rem',
-          height: 'auto',
-          width: 'auto',
-          clearProps: 'all',
-        },
-        'start'
-      )
-      .from(
-        '.navigation',
-        smoothTime,
-        {
-          ...animationConfig,
-          gap: '0 5.1rem',
-          clearProps: 'all',
-        },
-        'start'
-      )
-      .from(
-        '.navigation__link',
-        smoothTime,
-        {
-          ...animationConfig,
-          fontSize: '2.7rem',
-          top: 'auto',
-          right: 'auto',
-          clearProps: 'all',
-        },
-        'start'
-      )
-      .from(
-        '.nav-link__divider',
-        smoothTime,
-        {
-          ...animationConfig,
-          right: '-6rem',
-          clearProps: 'all',
-        },
-        'start'
-      )
-      .from(
-        '.navigation__link.navigation__link_first ',
-        smoothTime,
-        {
-          ...animationConfig,
-          marginRight: '1rem',
-          clearProps: 'all',
-        },
-        'start'
-      )
+      .from('.nav', smoothTime, nav, 'start')
+      .from('.navigation', smoothTime, navigation, 'start')
+      .from('.navigation__link', smoothTime, navigationLink, 'start')
+      .from('.nav-link__divider', smoothTime, linkDivider, 'start')
       .from(
         '.navigation__link.navigation__link_first .nav-link__divider',
         smoothTime,
-        {
-          ...animationConfig,
-          right: '-4rem',
-          clearProps: 'all',
-        },
+        linkDividerFirst,
         'start'
       )
-      .from(
-        '.nav-link__counts',
-        smoothTime,
-        {
-          ...animationConfig,
-          transform: 'translateX(0.5rem)',
-          fontSize: '1.2rem',
-          clearProps: 'all',
-        },
-        'start'
-      )
+      .from('.nav-link__counts', smoothTime, count, 'start')
       .from(
         '.bottom',
         1.8,
@@ -139,86 +121,80 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
     ease: 'power3.out',
   };
   const smoothTime = 1.24;
+  const nav = {
+    ...animationConfig,
+    fontSize: '2.7rem',
+    height: 'auto',
+    width: 'auto',
+  };
+  const navigation = {
+    ...animationConfig,
+    gap: '0 5.1rem',
+  };
+  const navigationLink: any = {
+    ...animationConfig,
+    //fontSize: '2.7rem',
+    // scale: 1,
+    top: 'auto',
+    right: 'auto',
+  };
+  const linkDivider: any = {
+    ...animationConfig,
+    right: '-3rem',
+  };
+  const navigationLinkFirst = {
+    ...animationConfig,
+    marginRight: '1rem',
+  };
+  const linkDividerFirst = {
+    ...animationConfig,
+    right: '-4rem',
+  };
+  const counts = {
+    ...animationConfig,
+    transform: 'translateX(0.5rem)',
+    fontSize: '1.2rem',
+  };
+  const bottom = {
+    ...animationConfig,
+    y: 120,
+  };
+  const header: any = {
+    ...animationConfig,
+    top: 'calc(100% - 3.9rem)',
+  };
+
+  if (isMobile) {
+    navigation.gap = '0 1.3rem';
+    navigationLink.scale = '0.8';
+    linkDivider.right = '-2.5rem';
+    linkDividerFirst.right = '-3rem';
+    counts.fontSize = '1.1rem';
+    header.top = 'calc(100% - 3.2rem)';
+    header.height = '3rem';
+    linkDivider.top = '0rem';
+  }
 
   tl.add('start')
-    .to('.bottom', 0.7, { ...animationConfig, y: 120 }, 'start')
-    .to(
-      '.header',
-      smoothTime,
-      {
-        ...animationConfig,
-        top: 'calc(100% - 3.9rem)',
-      },
-      'start'
-    )
-    .to(
-      '.nav',
-      smoothTime,
-      {
-        ...animationConfig,
-        fontSize: '2.7rem',
-        height: 'auto',
-        width: 'auto',
-      },
-      'start'
-    )
-    .to(
-      '.navigation',
-      smoothTime,
-      {
-        ...animationConfig,
-        gap: '0 5.1rem',
-      },
-      'start'
-    )
-    .to(
-      '.navigation__link',
-      smoothTime,
-      {
-        ...animationConfig,
-        fontSize: '2.7rem',
-        top: 'auto',
-        right: 'auto',
-      },
-      'start'
-    )
-    .to(
-      '.nav-link__divider',
-      smoothTime,
-      {
-        ...animationConfig,
-        right: '-3rem',
-      },
-      'start'
-    )
+    .to('.bottom', smoothTime, bottom, 'start')
+    .to('.header', smoothTime, header, 'start')
+    .to('.nav', smoothTime, nav, 'start')
+    .to('.navigation', smoothTime, navigation, 'start')
+    .to('.nav-link__text', smoothTime, navigationLink, 'start')
+    .to('.nav-link__divider', smoothTime, linkDivider, 'start')
     .to(
       '.navigation__link.navigation__link_first ',
       smoothTime,
-      {
-        ...animationConfig,
-        marginRight: '1rem',
-      },
+      navigationLinkFirst,
       'start'
     )
     .to(
       '.navigation__link.navigation__link_first .nav-link__divider',
       smoothTime,
-      {
-        ...animationConfig,
-        right: '-4rem',
-      },
+      linkDividerFirst,
       'start'
     )
-    .to(
-      '.nav-link__counts',
-      smoothTime,
-      {
-        ...animationConfig,
-        transform: 'translateX(0.5rem)',
-        fontSize: '1.2rem',
-      },
-      'start'
-    )
+    .to('.nav-link__counts', smoothTime, counts, 'start')
     .to(
       '.pokemon-svg, .img-trail',
       smoothTime,

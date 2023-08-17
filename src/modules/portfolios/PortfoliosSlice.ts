@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { PortfoliosApiResponse, PortfoliosModel } from './types';
 import { http } from '../../common/http';
+import { portfolios as portfoliosMock } from './components/portfolios/mock';
 
 export const name = 'portfolios';
 
@@ -18,7 +19,7 @@ export const fetchPortfolios = createAsyncThunk(
 
 const initialState: PortfoliosModel = {
   count: 0,
-  portfolios: [],
+  portfolios: portfoliosMock,
 };
 
 const portfoliosSlice = createSlice({
