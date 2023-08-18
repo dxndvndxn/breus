@@ -47,7 +47,7 @@
 .header_bottom {
   position: fixed;
   left: 50%;
-  bottom: 2.5rem;
+  bottom: 0rem;
   transform: translateX(-50%);
 }
 
@@ -86,6 +86,6 @@
   }
 
   .header_bottom {
-    height: 3rem;
+    bottom: 2rem;
   }
 }

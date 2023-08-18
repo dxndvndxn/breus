@@ -123,24 +123,26 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
   const smoothTime = 1.24;
   const nav = {
     ...animationConfig,
-    fontSize: '2.7rem',
     height: 'auto',
     width: 'auto',
   };
   const navigation = {
     ...animationConfig,
-    gap: '0 5.1rem',
+    gap: '0 3rem',
+    transform: 'scale(.45)',
   };
   const navigationLink: any = {
     ...animationConfig,
-    //fontSize: '2.7rem',
-    // scale: 1,
     top: 'auto',
     right: 'auto',
+  };
+  const navLinkText = {
+    transform: 'scale(0.75)',
   };
   const linkDivider: any = {
     ...animationConfig,
     right: '-3rem',
+    transform: 'scale(0.8)',
   };
   const navigationLinkFirst = {
     ...animationConfig,
@@ -152,8 +154,7 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
   };
   const counts = {
     ...animationConfig,
-    transform: 'translateX(0.5rem)',
-    fontSize: '1.2rem',
+    transform: 'translate(-1.5rem, 1rem)',
   };
   const bottom = {
     ...animationConfig,
@@ -161,18 +162,22 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
   };
   const header: any = {
     ...animationConfig,
-    top: 'calc(100% - 3.9rem)',
+    top: 'calc(100% - 4.7rem)',
   };
 
   if (isMobile) {
-    navigation.gap = '0 1.3rem';
-    navigationLink.scale = '0.8';
-    linkDivider.right = '-2.5rem';
-    linkDividerFirst.right = '-3rem';
-    counts.fontSize = '1.1rem';
-    header.top = 'calc(100% - 3.2rem)';
-    header.height = '3rem';
-    linkDivider.top = '0rem';
+    navigation.gap = '0 0';
+    navigation.transform = 'scale(0.99)';
+
+    navLinkText.transform = 'scale(0.7)';
+
+    linkDivider.right = '-0.5rem';
+
+    counts.transform = 'translate(-0.9rem, 0.1rem) scale(0.8)';
+
+    linkDividerFirst.right = '-1.5rem';
+
+    header.top = 'calc(100% - 3.4rem)';
   }
 
   tl.add('start')
@@ -180,7 +185,8 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
     .to('.header', smoothTime, header, 'start')
     .to('.nav', smoothTime, nav, 'start')
     .to('.navigation', smoothTime, navigation, 'start')
-    .to('.nav-link__text', smoothTime, navigationLink, 'start')
+    .to('.navigation__link', smoothTime, navigationLink, 'start')
+    .to('.nav-link__text', smoothTime, navLinkText, 'start')
     .to('.nav-link__divider', smoothTime, linkDivider, 'start')
     .to(
       '.navigation__link.navigation__link_first ',

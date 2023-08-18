@@ -129,4 +129,10 @@ $marginCell: 7.5rem;
   .portfolio__xl {
     height: 59rem;
   }
+
+  .portfolio {
+    &:before {
+      height: 120%;
+    }
+  }
 }
