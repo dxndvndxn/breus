@@ -42,7 +42,12 @@ const Main: React.FC = () => {
         {pokemons.length > 0 &&
           pokemons.map((Pokemon, key) => <Pokemon key={key} />)}
         {isDesktop ? (
-          <svg className="pokemon-svg" ref={pokemonRef}>
+          <svg
+            className="pokemon-svg"
+            ref={pokemonRef}
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          >
             <filter id="distortionFilter">
               <feTurbulence
                 type="turbulence"
@@ -53,11 +58,12 @@ const Main: React.FC = () => {
                 seed="1"
               />
               <feDisplacementMap
+                id="liquid"
                 in="SourceGraphic"
                 in2="noise"
                 scale={scale}
                 xChannelSelector="R"
-                yChannelSelector="R"
+                yChannelSelector="B"
                 filterUnits="userSpaceOnUse"
               />
             </filter>

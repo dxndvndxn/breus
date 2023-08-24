@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { useDistortionEffect } from '../../common/hooks';
 import PokemonImg from '../../assets/images/Pokemon.png';
@@ -109,26 +110,24 @@ export const About: React.FC = () => {
 
       <div className="about__content about-content">
         <div className="about__menu about-menu">
-          <a
-            href="/about#"
+          <NavLink
+            to="/about#"
             className={`about-menu__btn ${
               imgSwitch === ImgSwitcher.POKEMON ? 'about-menu__btn_active' : ''
             }`}
-            type="button"
             onClick={() => switchImage(ImgSwitcher.POKEMON)}
           >
             My soulmate
-          </a>
-          <a
-            href="/about#"
+          </NavLink>
+          <NavLink
+            to="/about#"
             className={`about-menu__btn ${
               imgSwitch === ImgSwitcher.BRUCE ? 'about-menu__btn_active' : ''
             }`}
-            type="button"
             onClick={() => switchImage(ImgSwitcher.BRUCE)}
           >
             Me
-          </a>
+          </NavLink>
         </div>
 
         <div className="about-content__wrap">

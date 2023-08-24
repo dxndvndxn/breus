@@ -32,6 +32,7 @@ export const Portfolios: React.FC = () => {
   useEffect(() => {
     document.body.classList.add('doc-overflow');
     document.documentElement.classList.add('doc-overflow');
+    const root = document.documentElement;
 
     if (portfoliosContainer.current) {
       const el = portfoliosContainer.current;
@@ -54,6 +55,7 @@ export const Portfolios: React.FC = () => {
           setPercent(
             percentScroll < 10 ? `0${percentScroll}` : `${percentScroll}`
           );
+          root.style.setProperty('--portfolio-translate', el.style.transform);
         });
       }, 1700);
     }
@@ -61,6 +63,7 @@ export const Portfolios: React.FC = () => {
     return () => {
       document.body.classList.remove('doc-overflow');
       document.documentElement.classList.remove('doc-overflow');
+      root.style.setProperty('--portfolio-translate', 'translate(0px, 0%)');
     };
   }, [count]);
 

@@ -22,7 +22,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
         0.8,
         {
           opacity: 0,
-          y: 40,
+          transform: 'translateY(40px)',
         },
         'start'
       );
