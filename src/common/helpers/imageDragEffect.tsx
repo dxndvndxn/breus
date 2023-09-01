@@ -55,9 +55,9 @@ export class ImageDragEffect {
     this.trailsTotal = trailsAmount;
 
     for (let i = 0; i <= this.trailsTotal - 1; ++i) {
-      const element: React.ElementType = () => (
+      const element: React.ElementType = ({ className }) => (
         <div
-          className="img-trail"
+          className={`img-trail ${className}`}
           style={{
             backgroundImage: `url(${src})`,
           }}
@@ -109,6 +109,7 @@ export class ImageDragEffect {
         current: { x: 0, y: 0 },
         amt: 0.1,
       };
+      this.draggingPos.previous = { x: 0, y: 0 };
       requestAnimationFrame(() => this.render());
     };
 
@@ -134,7 +135,9 @@ export class ImageDragEffect {
     };
 
     const onDragEnd = () => {
-      this.isDragging = false;
+      setTimeout(() => {
+        this.isDragging = false;
+      }, 300);
     };
 
     this.draggie.on('pointerDown', onPointerDown);
@@ -218,7 +221,7 @@ export class ImageDragEffect {
       this.trails[i].style.opacity = '1';
       this.trails[
         i
-      ].style.transform = `translate3d(${this.trailsTranslation[i].previous.x}px,${this.trailsTranslation[i].previous.y}px,0)`;
+      ].style.transform = `translate3d(${this.trailsTranslation[i].previous.x}px,${this.trailsTranslation[i].previous.y}px,1000px)`;
     }
   }
 }

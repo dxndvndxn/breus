@@ -41,7 +41,7 @@ export const Portfolios: React.FC = () => {
         const portfoliosScroll = new LocomotiveScroll({
           el,
           smooth: true,
-          lerp: 0.2,
+          lerp: 0.1,
           smartphone: {
             smooth: true,
             direction: 'vertical',

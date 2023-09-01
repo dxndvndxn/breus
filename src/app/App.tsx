@@ -7,7 +7,8 @@ import { routes } from './routing/appRoutes';
 import { store } from '../common/store';
 
 const App: React.FC = () => {
-  const { pathname } = useLocation();
+  let { pathname } = useLocation();
+  pathname = pathname.replace(/(?<=\w)\/$/g, '');
   const firstLoad = useRef(true);
   const outlet = useOutlet();
 

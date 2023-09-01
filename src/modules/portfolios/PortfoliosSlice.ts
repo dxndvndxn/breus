@@ -26,17 +26,12 @@ const portfoliosSlice = createSlice({
   name,
   initialState,
   reducers: {},
-  extraReducers: {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    [fetchPortfolios.fulfilled]: (
-      state: PortfoliosModel,
-      action: PayloadAction<PortfoliosApiResponse>
-    ) => {
-      const { count, portfolios } = action.payload;
+  extraReducers: (builder) => {
+    builder.addCase(fetchPortfolios.fulfilled, (state, action) => {
+      const { count = 0, portfolios = [] } = action.payload;
       state.count = count;
       state.portfolios = portfolios;
-    },
+    });
   },
 });
 

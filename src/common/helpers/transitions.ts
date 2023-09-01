@@ -18,11 +18,11 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
       .from('.bottom', 1.8, { ...animationConfig, y: 120 }, 'start')
       .from('.navigation__item', 1.8, { ...animationConfig, y: 220 }, 'start')
       .from(
-        '.pokemon-svg, .img-trail',
+        '.pokemon-wrap',
         0.8,
         {
           opacity: 0,
-          transform: 'translateY(40px)',
+          y: 40,
         },
         'start'
       );
@@ -181,6 +181,8 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
   }
 
   tl.add('start')
+    .to('.pokemon-svg', 0, { display: 'block' })
+    .to('.img-trail', 0, { display: 'none' })
     .to('.bottom', smoothTime, bottom, 'start')
     .to('.header', smoothTime, header, 'start')
     .to('.nav', smoothTime, nav, 'start')
@@ -201,11 +203,12 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
       'start'
     )
     .to('.nav-link__counts', smoothTime, counts, 'start')
+    .to('.pokemon-svg', smoothTime, { opacity: 0 }, 'start')
     .to(
-      '.pokemon-svg, .img-trail',
+      '#pokemonDisplacement',
       smoothTime,
       {
-        opacity: 0,
+        attr: { scale: 250 },
       },
       'start'
     );

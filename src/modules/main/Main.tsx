@@ -6,7 +6,7 @@ import './Main.scss';
 
 const Main: React.FC = () => {
   const [pokemons, setPokemons] = useState<React.ElementType[]>([]);
-  const pokemonRef = useRef<SVGSVGElement | null>(null);
+  const pokemonRef = useRef<SVGSVGElement | any | null>(null);
   const pokemonWrapRef = useRef<HTMLDivElement | null>(null);
   const { scale, doDistortionEffect } = useDistortionEffect();
   const isDesktop = windowWidth > 991;
@@ -19,6 +19,7 @@ const Main: React.FC = () => {
         drag: pokemonRef.current,
         wrap: pokemonWrapRef.current,
         src: PokemonImg,
+        trailsAmount: 6,
       });
       setPokemons(dragPokemon.nodes);
     }
@@ -26,7 +27,7 @@ const Main: React.FC = () => {
     document.documentElement.classList.add('doc-overflow');
 
     if (isDesktop) {
-      doDistortionEffect(200);
+      doDistortionEffect(170);
     }
 
     return () => {
@@ -40,40 +41,45 @@ const Main: React.FC = () => {
     <div className="main">
       <div className="pokemon-wrap" ref={pokemonWrapRef}>
         {pokemons.length > 0 &&
-          pokemons.map((Pokemon, key) => <Pokemon key={key} />)}
-        {isDesktop ? (
-          <svg
-            className="pokemon-svg"
-            ref={pokemonRef}
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-          >
-            <filter id="distortionFilter">
-              <feTurbulence
-                type="turbulence"
-                baseFrequency="0.01 0.01"
-                result="noise"
-                numOctaves="5"
-                stitchTiles="stitch"
-                seed="1"
-              />
-              <feDisplacementMap
-                id="liquid"
-                in="SourceGraphic"
-                in2="noise"
-                scale={scale}
-                xChannelSelector="R"
-                yChannelSelector="B"
-                filterUnits="userSpaceOnUse"
-              />
-            </filter>
-            <g filter="url(#distortionFilter)">
-              <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
-            </g>
-          </svg>
-        ) : (
-          <img src={PokemonImg} className="pokemon-svg" alt="Pokemon" />
-        )}
+          pokemons.map((Pokemon, key) => (
+            <Pokemon
+              key={key}
+              className={scale > 0 ? 'pokemon-svg_none' : 'pokemon-svg_block'}
+            />
+          ))}
+        <div className="pokemon-svg-wrap" ref={pokemonRef}>
+          {isDesktop ? (
+            <svg
+              className={`pokemon-svg ${
+                scale > 0 ? 'pokemon-svg_block' : 'pokemon-svg_none'
+              }`}
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+            >
+              <filter id="distortionFilter">
+                <feTurbulence
+                  type="turbulence"
+                  baseFrequency="0.01 0.01"
+                  numOctaves="5"
+                  stitchTiles="stitch"
+                  seed="1"
+                />
+                <feDisplacementMap
+                  id="pokemonDisplacement"
+                  in="SourceGraphic"
+                  scale={scale}
+                  xChannelSelector="R"
+                  yChannelSelector="B"
+                />
+              </filter>
+              <g filter="url(#distortionFilter)">
+                <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
+              </g>
+            </svg>
+          ) : (
+            <img src={PokemonImg} className="pokemon-svg" alt="Pokemon" />
+          )}
+        </div>
       </div>
     </div>
   );
