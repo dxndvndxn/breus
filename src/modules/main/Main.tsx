@@ -27,7 +27,7 @@ const Main: React.FC = () => {
     document.documentElement.classList.add('doc-overflow');
 
     if (isDesktop) {
-      doDistortionEffect(170);
+      //doDistortionEffect(170);
     }
 
     return () => {
@@ -42,17 +42,12 @@ const Main: React.FC = () => {
       <div className="pokemon-wrap" ref={pokemonWrapRef}>
         {pokemons.length > 0 &&
           pokemons.map((Pokemon, key) => (
-            <Pokemon
-              key={key}
-              className={scale > 0 ? 'pokemon-svg_none' : 'pokemon-svg_block'}
-            />
+            <Pokemon key={key} className="pokemon-svg_none" />
           ))}
         <div className="pokemon-svg-wrap" ref={pokemonRef}>
           {isDesktop ? (
             <svg
-              className={`pokemon-svg ${
-                scale > 0 ? 'pokemon-svg_block' : 'pokemon-svg_none'
-              }`}
+              className={`pokemon-svg`}
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
             >

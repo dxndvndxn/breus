@@ -1,7 +1,6 @@
 @import 'common/styles/index.scss';
 
 .center {
-  width: 105rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,33 +9,45 @@
 
   .navigation__link {
     top: -1rem;
-    right: -2rem;
+    //right: -1rem;
   }
 
   .navigation {
-    gap: 0 7.4rem;
-    will-change: transform;
+    gap: 0 9rem;
+    height: 1px;
+    //will-change: transform;
   }
 
   .nav-link__divider {
-    right: -6rem;
+    right: -5rem;
+  }
+
+  .navigation__link.navigation__link_first {
+    .nav-link__divider {
+      right: -4.5rem;
+    }
   }
 }
 
 .bottom {
+  height: 3.8rem;
+
   .nav-link__counts {
-    transform: translate(-1.5rem, 1rem);
+    transform: translate(-1.5rem, 1rem) scale(.7);
+    top: -1.2rem;
+    right: -2.3rem;
   }
 
   .navigation {
-    transform: scale(.45);
-    gap: 0 3rem;
-    will-change: transform;
+    transform: scale(2);
+    gap: 0 2rem;
+    height: 0;
+    //will-change: transform;
   }
 
   .nav-link__divider {
-    right: -3rem;
-    transform: scale(0.8);
+    right: -1.5rem;
+    transform: scale(1.5);
   }
 
   .navigation__link {
@@ -48,12 +59,12 @@
     margin-right: 1rem;
 
     .nav-link__divider {
-      right: -4rem;
+      right: -2rem;
     }
   }
 
   .nav-link__text {
-    transform: scale(0.75);
+    transform: scale(1);
   }
 }
 
@@ -61,14 +72,24 @@
   display: flex;
   list-style: none;
   white-space: nowrap;
+  -webkit-transform: scale(2.5) translate(0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+ // -webkit-transform: translate3d(0, 0, 0);
+  //will-change: transform, scale;
+  //backface-visibility: hidden;
+  //-webkit-font-smoothing: subpixel-antialiased;
 }
 
 .navigation__link {
   color: #fff;
+  display: inline-block;
   position: relative;
   mix-blend-mode: exclusion;
-  font-size: 8.2rem;
-  will-change: transform;
+  //font-size: 6.4rem;
+  //transform: scale(2.5);
+  // transform: matrix(2.5, 0,0, 2.5, 0, 0);
+  //will-change: transform;
 
   &:hover {
     color: $purpp;
@@ -84,22 +105,32 @@
 .nav-link__divider {
   position: absolute;
   color: $purpp;
-  will-change: transform;
+  transform: scale(3);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  //-webkit-transform: translate3d(0, 0, 0);
 }
 
 .nav-link__counts {
   position: absolute;
   color: #fff;
-  will-change: transform;
-  font-size: 2.3rem;
+  -webkit-transform: scale(1) translate(0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  //-webkit-transform: translate3d(0, 0, 0);
+  top: -1rem;
+  right: -3.1rem;
 }
 
 .nav, .navigation__item {
-  will-change: transform, translate;
+  //will-change: transform, translate;
 }
 
 .nav-link__text {
   display: inline-block;
+  -webkit-transform: scale(2.5) translate(0, 0);
+  //-webkit-backface-visibility: hidden;
+  //backface-visibility: hidden;
 }
 
 @media screen and (max-width: $mobile) {

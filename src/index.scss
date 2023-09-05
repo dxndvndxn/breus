@@ -22,13 +22,13 @@
     border: none;
   }
 
-  @media all and (max-width: 1920px) {
-    font-size: 0.6vw;
-  }
-
-  @media all and (max-width: $mobile) {
-    font-size: .625rem;
-  }
+  //@media all and (max-width: 1920px) {
+  //  font-size: 0.6vw;
+  //}
+  //
+  //@media all and (max-width: $mobile) {
+  //  font-size: .625rem;
+  //}
 }
 
 html, body {
