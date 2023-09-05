@@ -18,7 +18,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
       .from('.bottom', 1.8, { ...animationConfig, y: 120 }, 'start')
       .from('.navigation__item', 1.8, { ...animationConfig, y: 220 }, 'start')
       .from(
-        '.pokemon-wrap',
+        '.pokemon-svg-wrap',
         0.8,
         {
           opacity: 0,
@@ -105,7 +105,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
         'start'
       )
       .from(
-        '.pokemon-svg, .img-trail',
+        '.pokemon-svg-wrap',
         0.8,
         {
           opacity: 0,
