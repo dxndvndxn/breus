@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { PageName } from '../../app/routing/appRoutes';
 import {
@@ -25,6 +25,7 @@ export const useTransitionAnimation = (
   status: TransitionStatus,
   disableAnimation: boolean
 ) => {
+  const [isAnimationComplete, setAnimationComplete] = useState(false);
   status = status === 'entered' ? 'entering' : status;
   const animationsList: AnimationsList = {
     [PageName.MAIN]: {
@@ -48,7 +49,11 @@ export const useTransitionAnimation = (
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setAnimationComplete(true);
+        },
+      });
 
       if (pageName && status) {
         const { entering, exiting } = animationsList[pageName];
@@ -81,4 +86,6 @@ export const useTransitionAnimation = (
       ctx.revert();
     };
   }, [pageName, status]);
+
+  return { isAnimationComplete };
 };

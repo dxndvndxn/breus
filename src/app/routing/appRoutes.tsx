@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { lazy } from 'react';
+import { Main } from '../../modules/main/Main';
 import { About } from '../../modules/about/About';
 import { Contacts } from '../../modules/contacts/Contacts';
 import { PortfoliosPage } from '../../modules/portfolios/PortfoliosPage';
@@ -8,8 +9,6 @@ import type { RouteObject } from 'react-router-dom';
 import { PageType } from '../../common/components/layout/Layout';
 import { NotFound } from '../notFound/NotFound';
 import App from '../App';
-
-const Main = lazy(() => import('../../modules/main/Main'));
 
 export enum PageName {
   MAIN = 'main',

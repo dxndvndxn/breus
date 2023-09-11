@@ -4,7 +4,7 @@ import PokemonImg from '../../assets/images/Pokemon.png';
 import { useDistortionEffect } from '../../common/hooks';
 import './Main.scss';
 
-const Main: React.FC = () => {
+export const Main: React.FC = () => {
   const [pokemons, setPokemons] = useState<React.ElementType[]>([]);
   const pokemonRef = useRef<SVGSVGElement | any | null>(null);
   const pokemonWrapRef = useRef<HTMLDivElement | null>(null);
@@ -79,5 +79,3 @@ const Main: React.FC = () => {
     </div>
   );
 };
-
-export default Main;

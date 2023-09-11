@@ -9,7 +9,7 @@
   //left: 50%;
   //top: 50%;
   //transform: translate(-97%, -49%);
-  //will-change: transform;
+  //-webkit-transform: translate(-97%, -49%);
   // TODO при уменьшении размера меньше лагает анимация
   height: 78rem;
   left: 50%;
@@ -19,6 +19,7 @@
   -webkit-transform: translate(-110%,-50%);
   transform: translate(-110%,-50%);
   width: 88rem;
+  z-index: 1;
 }
 
 .pokemon,

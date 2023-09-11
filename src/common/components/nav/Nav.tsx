@@ -8,11 +8,7 @@ import {
 import './Nav.scss';
 import { useAppSelector } from '../../store';
 
-interface INav {
-  location: 'center' | 'bottom';
-}
-
-export const Nav: React.FC<INav> = ({ location }) => {
+export const Nav: React.FC = () => {
   const { count } = useAppSelector((state) => state.portfoliosReducer);
 
   const detectActive = useCallback(
@@ -28,7 +24,7 @@ export const Nav: React.FC<INav> = ({ location }) => {
   );
 
   return (
-    <nav className={`nav ${location}`}>
+    <nav className={'nav'}>
       <ul className="navigation">
         <li className="navigation__item">
           <NavLink
