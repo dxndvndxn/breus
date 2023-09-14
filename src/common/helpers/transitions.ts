@@ -57,10 +57,6 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
       duration,
     };
     const navigation = { ...animationConfig, gap: '0 7rem', height: '3.2rem' };
-    const nav = {
-      ...animationConfig,
-      padding: '5rem 0',
-    };
     const navigationLinkFirst = { ...animationConfig, marginRight: '8px' };
     const count: any = {
       ...animationConfig,
@@ -272,6 +268,10 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
 
     header.top = 'calc(100% - 3.4rem)';
   }
+
+  tl.set('.navigation__link.navigation__link_first .nav-link__divider', {
+    x: 0,
+  });
 
   tl.add('start')
     .to('.pokemon-svg', 0, { display: 'block' })
