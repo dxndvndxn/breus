@@ -28,16 +28,9 @@ export const Layout: React.FC<ILayout> = ({
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
   const dispatch = useAppDispatch();
   const isMain = layout === 'main';
-  // const cond = disableAnimation && status === 'entering' && isMain;
-  // const headerClass = isMain && !cond ? 'header_center' : 'header_bottom';
-  // const navLocation = isMain && !cond ? 'center' : 'bottom';
   const disable = status === 'entering' || status === 'exiting';
 
-  const { isAnimationComplete } = useTransitionAnimation(
-    name,
-    status,
-    disableAnimation
-  );
+  const {} = useTransitionAnimation(name, status, disableAnimation);
 
   //const isFirstLoad = !disableAnimation || (isMain && isAnimationComplete);
   const isFirstLoad = !disableAnimation;
@@ -62,11 +55,7 @@ export const Layout: React.FC<ILayout> = ({
   }, []);
 
   return (
-    <main
-      className={`layout ${layout}${disable ? ' layout_disabled' : ''}${
-        isFirstLoad ? ' layout_first-load' : ''
-      }`}
-    >
+    <main className={`layout ${layout}${disable ? ' layout_disabled' : ''}`}>
       <div
         className={`layout__head blended-mode ${
           scrollDirection === 'down' ? 'layout__head_hide' : ''

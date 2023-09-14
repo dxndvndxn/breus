@@ -50,42 +50,100 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
         'start'
       );
   } else {
+    const duration = 1.24;
     const animationConfig = {
       ease: 'power3.out',
       force3D: false,
+      duration,
     };
-    const smoothTime = 1.24;
-    const linkDivider: any = {
-      ...animationConfig,
-      right: '-5rem',
-      scale: 3,
-    };
-    const navigation = {
-      ...animationConfig,
-      gap: '0 9rem',
-      scale: 2.5,
-    };
+    const navigation = { ...animationConfig, gap: '0 7rem', height: '3.2rem' };
     const nav = {
       ...animationConfig,
       padding: '5rem 0',
     };
-    const linkDividerFirst = {
-      ...animationConfig,
-      right: '-4.5rem',
-    };
-    const navigationLinkFirst = {
-      ...animationConfig,
-      marginRight: '0',
-    };
+    const navigationLinkFirst = { ...animationConfig, marginRight: '8px' };
     const count: any = {
       ...animationConfig,
-      top: '-1rem',
-      right: '-3.1rem',
-      scale: 1,
+      top: '-0.7rem',
+      right: '-2.5rem',
+      scale: 1.2,
     };
-    const navLinkText = {
+    const header = {
+      from: {
+        ...animationConfig,
+        top: '96.2%',
+        left: '50%',
+        transform: 'translateX(-48%)',
+      },
+      to: {
+        ...animationConfig,
+        left: '50%',
+        top: '50%',
+        transform: 'translate(calc(-50% + 0.4rem), calc(-50% - .9rem))',
+      },
+    };
+    const navigationItem1 = {
+      from: {
+        ...animationConfig,
+        x: '26.8%',
+      },
+      to: {
+        ...animationConfig,
+        x: 'auto',
+      },
+    };
+    const navigationItem2 = {
+      from: {
+        ...animationConfig,
+        x: '0.8%',
+      },
+      to: {
+        ...animationConfig,
+        x: 'auto',
+      },
+    };
+    const navigationItem3 = {
+      from: {
+        ...animationConfig,
+        x: '-159%',
+      },
+      to: {
+        ...animationConfig,
+        x: 'auto',
+      },
+    };
+    const navLinkText = { ...animationConfig, scale: 1.9 };
+    const linkDivider: any = {
       ...animationConfig,
-      scale: 2.5,
+      top: 0,
+      x: '-11.5rem',
+      scale: 3,
+    };
+    const linkDividerFirst: any = {
+      from: {
+        ...animationConfig,
+        x: '-9rem',
+      },
+      to: {
+        ...animationConfig,
+        x: '0',
+      },
+    };
+    const bottom = {
+      ...animationConfig,
+      y: 120,
+      clearProps: 'all',
+      duration: 1.8,
+    };
+    const pokemonSvgWrap = {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+    };
+    const pokemon = {
+      attr: { scale: 170 },
+      force3D: false,
+      onComplete,
     };
 
     if (isMobile) {
@@ -97,64 +155,43 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
     }
 
     tl.add('start')
-      .to(
-        '.header',
-        smoothTime,
-        {
-          ...animationConfig,
-          // top: 'calc(100% - 3.9rem)',
-          // clearProps: 'all',
-          left: 'calc(50% + 1.5rem)',
-          top: 'calc(62% + 2.5rem)',
-          transform: 'translate(-50%, -50%)',
-          width: 'calc(100% - 5rem)',
-          bottom: '1rem',
-        },
+      .fromTo('.header', header.from, header.to, 'start')
+      .from('.navigation', navigation, 'start')
+      .fromTo(
+        '.navigation__item:nth-child(1)',
+        navigationItem1.from,
+        navigationItem1.to,
         'start'
       )
-      .to('.navigation', smoothTime, navigation, 'start')
-      .to('.nav', smoothTime, nav, 'start')
-      .to('.nav-link__text', smoothTime, navLinkText, 'start')
-      .to('.nav-link__divider', smoothTime, linkDivider, 'start')
-      .from(
-        '#pokemonDisplacement',
-        smoothTime,
-        {
-          attr: { scale: 170 },
-          force3D: false,
-          clearProps: 'all',
-          onComplete,
-        },
+      .fromTo(
+        '.navigation__item:nth-child(2)',
+        navigationItem2.from,
+        navigationItem2.to,
         'start'
       )
-      .to(
+      .fromTo(
+        '.navigation__item:nth-child(3)',
+        navigationItem3.from,
+        navigationItem3.to,
+        'start'
+      )
+      .from('.nav-link__text', navLinkText, 'start')
+      .from('.nav-link__divider', linkDivider, 'start')
+      .fromTo(
         '.navigation__link.navigation__link_first .nav-link__divider',
-        smoothTime,
-        linkDividerFirst,
+        linkDividerFirst.from,
+        linkDividerFirst.to,
         'start'
       )
-      .to(
+      .from('#pokemonDisplacement', duration, pokemon, 'start')
+      .from(
         '.navigation__link.navigation__link_first',
-        smoothTime,
         navigationLinkFirst,
         'start'
       )
-      .to('.nav-link__counts', smoothTime, count, 'start')
-      .from(
-        '.bottom',
-        1.8,
-        { ...animationConfig, y: 120, clearProps: 'all' },
-        'start'
-      )
-      .from(
-        '.pokemon-svg-wrap',
-        0.8,
-        {
-          opacity: 0,
-          y: 40,
-        },
-        'start'
-      );
+      .from('.nav-link__counts', count, 'start')
+      .from('.bottom', bottom, 'start')
+      .from('.pokemon-svg-wrap', 0.8, pokemonSvgWrap, 'start');
   }
 };
 
@@ -167,32 +204,33 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
   };
   const navigation: any = {
     ...animationConfig,
-    gap: '0 2rem',
-    scale: 2,
-  };
-  const navLinkText: any = {
-    ...animationConfig,
-    scale: 1,
+    gap: '0 7rem',
+    width: '31rem',
+    height: '3.2rem',
   };
   const linkDivider: any = {
     ...animationConfig,
-    right: '-1.5rem',
-    scale: 1.5,
-  };
-  const navigationLinkFirst = {
-    ...animationConfig,
-    marginRight: '1rem',
-  };
-  const linkDividerFirst = {
-    ...animationConfig,
-    right: '-2rem',
+    right: '-4rem',
+    top: 0,
+    scale: 3,
   };
   const counts: any = {
     ...animationConfig,
-    transform: 'translate(-1.5rem, 1rem)',
-    top: '-1.2rem',
-    right: '-2.3rem',
-    scale: 0.7,
+    top: '-0.7rem',
+    right: '-2.5rem',
+    scale: 1.2,
+  };
+  const navigationLinkFirst = {
+    ...animationConfig,
+    marginRight: '8px',
+  };
+  const linkDividerFirst = {
+    ...animationConfig,
+    right: '-5rem',
+  };
+  const navLinkText: any = {
+    ...animationConfig,
+    scale: 1.9,
   };
   const bottom = {
     ...animationConfig,
@@ -200,8 +238,24 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
   };
   const header: any = {
     ...animationConfig,
-    top: 'calc(100% - 2.8rem)',
     left: '50%',
+    top: '96.2%',
+    transform: 'translate(-17%, 0)',
+  };
+  const navigationItem1 = {
+    ...animationConfig,
+    left: '7%',
+    top: '36%',
+  };
+  const navigationItem2 = {
+    ...animationConfig,
+    left: '44.5%',
+    top: '36%',
+  };
+  const navigationItem3 = {
+    ...animationConfig,
+    left: '83%',
+    top: '36%',
   };
 
   if (isMobile) {
@@ -228,7 +282,7 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
     .to('.nav-link__text', navLinkText, 'start')
     .to('.nav-link__divider', linkDivider, 'start')
     .to(
-      '.navigation__link.navigation__link_first ',
+      '.navigation__link.navigation__link_first',
       navigationLinkFirst,
       'start'
     )
@@ -239,6 +293,9 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
     )
     .to('.nav-link__counts', counts, 'start')
     .to('.pokemon-svg', { opacity: 0 }, 'start')
+    .to('.navigation__item:nth-child(1)', navigationItem1, 'start')
+    .to('.navigation__item:nth-child(2)', navigationItem2, 'start')
+    .to('.navigation__item:nth-child(3)', navigationItem3, 'start')
     .to(
       '#pokemonDisplacement',
       duration,
@@ -261,7 +318,7 @@ export const usualPageEnter = (tl: gsap.core.Timeline) => {
 
   tl.add('start')
     .from('.logo', 1.8, { ...animationConfig, y: 50 }, 'start')
-    .from('.bottom', 1.8, { ...animationConfig, y: 50 }, 'start');
+    .from('.nav', 1.8, { ...animationConfig, y: 50 }, 'start');
 };
 
 export const aboutPageEnter = (tl: gsap.core.Timeline) => {
