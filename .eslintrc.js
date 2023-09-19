@@ -22,7 +22,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2021,
+    ecmaVersion: 2023,
     sourceType: "module",
     project: "./tsconfig.json",
   },

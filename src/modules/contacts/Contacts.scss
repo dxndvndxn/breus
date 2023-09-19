@@ -5,20 +5,24 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: calc(100% - 3.5rem);
-  gap: 7.5rem 0;
+  height: calc(100% - 5rem);
+  gap: 4.8rem 0;
+
+  .contacts__title {
+    font-size: 2rem;
+  }
 
   .contacts-title__wrap {
     font-size: 2.2rem;
     line-height: 100%;
     text-align: center;
     letter-spacing: -0.01em;
-    width: 18%;
+    width: 25.7rem;
   }
 
   .contacts__mail {
     display: block;
-    font-size: 7rem;
+    font-size: 6.4rem;
     line-height: 9.8rem;
     letter-spacing: -0.01em;
     text-decoration: none;
@@ -47,7 +51,7 @@
   }
 
   .socials__link {
-    font-size: 2.2rem;
+    font-size: 2rem;
     line-height: 100%;
     letter-spacing: -0.02em;
     color: #FFFFFF;

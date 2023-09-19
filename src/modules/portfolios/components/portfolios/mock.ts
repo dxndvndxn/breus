@@ -1,4 +1,3 @@
-import { PortfolioItem, Portfolios } from '../../types';
 import mockS1 from '../../../../assets/images/mock-portfolio.png';
 import mockL1 from '../../../../assets/images/Content-L-1.png';
 import mockS2 from '../../../../assets/images/Content-1.png';
@@ -12,7 +11,7 @@ import mockS4 from '../../../../assets/images/Content-3.png';
 
 import mockXL2 from '../../../../assets/images/Content-XL-2.png';
 
-const portfolioRow1: PortfolioItem[] = [
+const portfolioRow1: any[] = [
   {
     img: mockS1,
     title: 'Adchampange, Website design',
@@ -27,7 +26,7 @@ const portfolioRow1: PortfolioItem[] = [
   },
 ];
 
-const portfolioRow2: PortfolioItem[] = [
+const portfolioRow2: any[] = [
   {
     img: mockL2,
     title: 'Adchampange, Website design',
@@ -42,7 +41,7 @@ const portfolioRow2: PortfolioItem[] = [
   },
 ];
 
-const portfolioRow3: PortfolioItem[] = [
+const portfolioRow3: any[] = [
   {
     img: mockS3,
     title: 'Adchampange, Website design',
@@ -57,7 +56,7 @@ const portfolioRow3: PortfolioItem[] = [
   },
 ];
 
-const portfolioRow4: PortfolioItem[] = [
+const portfolioRow4: any = [
   {
     img: mockXL2,
     title: 'Adchampange, Website design',
@@ -72,7 +71,7 @@ const portfolioRow4: PortfolioItem[] = [
   },
 ];
 
-export const portfolios: Portfolios = [
+export const portfolios: any = [
   portfolioRow1,
   portfolioRow2,
   portfolioRow3,

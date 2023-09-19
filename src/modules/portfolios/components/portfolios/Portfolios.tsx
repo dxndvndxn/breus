@@ -1,62 +1,85 @@
-import React, { createRef, useEffect, useState } from 'react';
+import React, { createRef, useEffect, useRef, useState } from 'react';
 import { PortfolioRow } from '../portfolioRow/PortfolioRow';
-import { PortfolioItem } from '../../types';
-import { useAppSelector } from '../../../../common/store';
+import { useAppDispatch, useAppSelector } from '../../../../common/store';
+import { portfoliosActions, fetchPortfolios } from '../../PortfoliosSlice';
+import { paginationSlice } from '../../../../common/helpers';
 import LocomotiveScroll from 'locomotive-scroll';
 
 import './Portfolios.scss';
 
 export const Portfolios: React.FC = () => {
-  const { portfolios, count } = useAppSelector(
+  const { portfolios, count, start, canFetchMorePortfolios } = useAppSelector(
     (state) => state.portfoliosReducer
   );
+  const { setStart } = portfoliosActions;
   const [percent, setPercent] = useState('00');
+  const isResized = useRef(false);
+  const [locomotive, setLocomotive] = useState<LocomotiveScroll>();
+  const dispatch = useAppDispatch();
   const portfoliosContainer = createRef<HTMLDivElement>();
 
-  const closureRow = () => {
-    let rowCount = 0;
+  const smoothUpdatePercent = (num: number) =>
+    new Promise((resolve) => {
+      let n = 100;
+      const interval = setInterval(() => {
+        n = n - 1;
+        setPercent(`${n}`);
 
-    return (row: PortfolioItem[], key: number): JSX.Element => {
-      if (rowCount === 4) {
-        rowCount = 0;
+        if (n <= num) {
+          clearInterval(interval);
+          resolve(true);
+        }
+      }, 50);
+    });
+
+  const initLocomotive = (el: HTMLDivElement) => {
+    const root = document.documentElement;
+    const portfoliosScroll = new LocomotiveScroll({
+      el,
+      smooth: true,
+      lerp: 0.1,
+      reloadOnContextChange: true,
+      smartphone: {
+        smooth: true,
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+      },
+    });
+
+    let isResolved = true;
+    portfoliosScroll.on('scroll', (args) => {
+      const { limit, scroll } = args;
+      const percentScroll = Math.floor((scroll.y * 100) / limit.y);
+
+      if (!isResized.current) {
+        setPercent(
+          percentScroll < 10 ? `0${percentScroll}` : `${percentScroll}`
+        );
+      } else {
+        if (isResolved && percentScroll !== 100) {
+          isResolved = false;
+
+          smoothUpdatePercent(percentScroll).then(() => {
+            isResized.current = false;
+            isResolved = true;
+          });
+        }
       }
 
-      rowCount += 1;
-
-      return <PortfolioRow key={key} rowCount={rowCount} row={row} />;
-    };
+      root.style.setProperty('--portfolio-translate', el.style.transform);
+    });
+    setLocomotive(portfoliosScroll);
   };
-
-  const getRow = closureRow();
 
   useEffect(() => {
     document.body.classList.add('doc-overflow');
     document.documentElement.classList.add('doc-overflow');
     const root = document.documentElement;
 
-    if (portfoliosContainer.current) {
+    if (portfoliosContainer.current && !locomotive) {
       const el = portfoliosContainer.current;
-
       setTimeout(() => {
-        const portfoliosScroll = new LocomotiveScroll({
-          el,
-          smooth: true,
-          lerp: 0.1,
-          smartphone: {
-            smooth: true,
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-          },
-        });
-
-        portfoliosScroll.on('scroll', (args) => {
-          const { limit, scroll } = args;
-          const percentScroll = Math.floor((scroll.y * 100) / limit.y);
-          setPercent(
-            percentScroll < 10 ? `0${percentScroll}` : `${percentScroll}`
-          );
-          root.style.setProperty('--portfolio-translate', el.style.transform);
-        });
+        initLocomotive(el);
       }, 1700);
     }
 
@@ -64,8 +87,22 @@ export const Portfolios: React.FC = () => {
       document.body.classList.remove('doc-overflow');
       document.documentElement.classList.remove('doc-overflow');
       root.style.setProperty('--portfolio-translate', 'translate(0px, 0%)');
+      locomotive?.destroy();
     };
   }, [count]);
+
+  useEffect(() => {
+    if (percent === '100' && locomotive && canFetchMorePortfolios) {
+      dispatch(setStart(start + paginationSlice));
+      dispatch(fetchPortfolios(start + paginationSlice))
+        .unwrap()
+        .then(() => {
+          isResized.current = true;
+          window.dispatchEvent(new Event('resize'));
+          locomotive.update();
+        });
+    }
+  }, [percent, locomotive, canFetchMorePortfolios]);
 
   return (
     <div id="portfolios">
@@ -84,9 +121,15 @@ export const Portfolios: React.FC = () => {
         className="portfolios"
         ref={portfoliosContainer}
         data-scroll-container
-        data-scroll-section
       >
-        {portfolios.length > 0 && portfolios.map(getRow)}
+        {portfolios.length > 0 &&
+          portfolios.map((portfolioItem, i) => (
+            <PortfolioRow
+              row={portfolioItem.row}
+              rowCount={portfolioItem.rowCount}
+              key={i}
+            />
+          ))}
       </div>
     </div>
   );

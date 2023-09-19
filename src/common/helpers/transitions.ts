@@ -235,7 +235,7 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
   const header: any = {
     ...animationConfig,
     left: '50%',
-    top: '96.2%',
+    top: '96%',
     transform: 'translate(-17%, 0)',
   };
   const navigationItem1 = {
@@ -332,7 +332,16 @@ export const aboutPageEnter = (tl: gsap.core.Timeline) => {
 
   tl.from('.about-img', 1.8, { ease: 'power4.out', opacity: 0 }, 'start')
     .from('.about-content__text', 1.8, { ...animationConfig, y: 150 }, 'start')
-    .from('.about-menu__btn', 1.8, { ...animationConfig, y: 70 }, 'start');
+    .from('.about-menu__btn', 1.8, { ...animationConfig, y: 70 }, 'start')
+    .from(
+      '#tabDisplacement',
+      1.8,
+      {
+        ...animationConfig,
+        attr: { scale: 150 },
+      },
+      'start'
+    );
 };
 
 export const aboutPageExit = (tl: gsap.core.Timeline) => {
@@ -342,7 +351,16 @@ export const aboutPageExit = (tl: gsap.core.Timeline) => {
 
   tl.to('.about-img', 0.8, { ...animationConfig, opacity: 0 }, 'start')
     .to('.about-content__text', 0.8, { ...animationConfig, y: -150 }, 'start')
-    .to('.about-menu__btn', 0.8, { ...animationConfig, y: -70 }, 'start');
+    .to('.about-menu__btn', 0.8, { ...animationConfig, y: -70 }, 'start')
+    .to(
+      '#tabDisplacement',
+      0.8,
+      {
+        ...animationConfig,
+        attr: { scale: 150 },
+      },
+      'start'
+    );
 };
 
 export const contactsPageEnter = (tl: gsap.core.Timeline) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ImageDragEffect, windowWidth } from '../../common/helpers';
-import PokemonImg from '../../assets/images/Pokemon.png';
+import PokemonImg from '../../assets/images/Pokemon.webp';
 import { useDistortionEffect } from '../../common/hooks';
 import './Main.scss';
 

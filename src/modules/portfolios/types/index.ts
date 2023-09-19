@@ -1,16 +1,22 @@
 export interface PortfoliosModel {
   count: number;
-  portfolios: Portfolios;
+  start: number;
+  portfolios: TPortfolioRow[];
+  canFetchMorePortfolios: boolean;
 }
 
 export interface PortfolioItem {
+  id: number;
   img: string;
   title: string;
 }
 
-export type Portfolios = PortfolioItem[][];
+export type TPortfolioRow = {
+  rowCount: number;
+  row: PortfolioItem[];
+};
 
 export interface PortfoliosApiResponse {
   count: number;
-  portfolios: Portfolios;
+  portfolios: TPortfolioRow[];
 }

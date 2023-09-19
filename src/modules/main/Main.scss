@@ -1,25 +1,14 @@
 @import "../../common/styles";
 
 .pokemon-wrap {
-  //position: fixed;
-  //width: 99rem;
-  //height: 88rem;
-  //max-width: 100%;
-  //cursor: grab;
-  //left: 50%;
-  //top: 50%;
-  //transform: translate(-97%, -49%);
-  //-webkit-transform: translate(-97%, -49%);
-  // TODO при уменьшении размера меньше лагает анимация
-  height: 78rem;
-  left: 50%;
-  max-width: 100%;
   position: fixed;
-  top: 50%;
-  -webkit-transform: translate(-110%,-50%);
-  transform: translate(-110%,-50%);
-  width: 88rem;
-  z-index: 1;
+  width: 77rem;
+  height: 68rem;
+  max-width: 100%;
+  cursor: grab;
+  left: 23%;
+  top: 52%;
+  transform: translate(-50%, -50%);
 }
 
 .pokemon,

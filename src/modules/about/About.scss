@@ -5,28 +5,22 @@
   align-items: center;
   position: relative;
   gap: 0 31.6rem;
-  margin: 13.3rem 0 0 10rem;
+  height: 100%;
+  margin: 0 auto;
+  width: 75%;
 
   .about-img {
     position: relative;
-    width: 40rem;
+    width: 39.4rem;
     height: 60.6rem;
   }
 
   .distort {
-    position: absolute;
+    position: fixed;
     pointer-events: none;
-    will-change: transform;
+    shape-rendering: optimizeSpeed;
 
     @include transition(width, height);
-  }
-
-  .distort__img {
-    @include transition(opacity);
-  }
-
-  .distort__img_opacity {
-    opacity: 0;
   }
 
   .about-img__common {
@@ -34,23 +28,28 @@
   }
 
   .about-img__breus {
-    width: 40rem;
-    height: 60.6rem;
+    width: 55.8rem;
+    height: 51rem;
+    left: 15%;
+    top: 26%;
   }
 
   .about-img__pokemon {
-    width: 79rem;
-    height: 68.6rem;
+    width: 101rem;
+    height: 68.5rem;
+    margin-left: -12.9rem;
+    margin-top: -2.1rem;
   }
 
   .about__content {
-    margin-top: -4rem;
+    margin-top: 1.9rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem 0;
-    font-size: 2.7rem;
-    width: 30.4rem;
-    line-height: 2.9rem;
+    gap: 1.9rem 0;
+    font-size: 2.4rem;
+    letter-spacing: -0.32px;
+    line-height: 110%;
+    width: 29.4rem;
     overflow: hidden;
   }
 
@@ -59,20 +58,19 @@
   }
 
   .about-content_first {
-    width: 23rem;
+    width: 21rem;
   }
 
   .about-content_purpp {
     color: $purpp;
   }
 
-  .about-content__wrap {
-    overflow: hidden;
+  .about-content_third {
+    width: 23.5rem;
   }
 
-  @media screen and (min-width: 1921px) {
-    margin: 13.3rem 0 0 0;
-    justify-content: center;
+  .about-content__wrap {
+    overflow: hidden;
   }
 }
 
@@ -81,7 +79,7 @@
   position: relative;
   cursor: pointer;
   color: #fff;
-  font-size: 2.3rem;
+  font-size: 2rem;
   letter-spacing: -0.02rem;
 
   &:after {
@@ -104,8 +102,8 @@
   overflow: hidden;
   gap: 0 2rem;
   position: fixed;
-  right: 2.5rem;
-  top: 2.5rem;
+  right: 2.8rem;
+  top: 2.6rem;
   z-index: 2;
 }
 

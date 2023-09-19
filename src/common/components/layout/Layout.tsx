@@ -30,10 +30,7 @@ export const Layout: React.FC<ILayout> = ({
   const isMain = layout === 'main';
   const disable = status === 'entering' || status === 'exiting';
 
-  const {} = useTransitionAnimation(name, status, disableAnimation);
-
-  //const isFirstLoad = !disableAnimation || (isMain && isAnimationComplete);
-  const isFirstLoad = !disableAnimation;
+  useTransitionAnimation(name, status, disableAnimation);
 
   const wheelEvent = (e: WheelEvent) => {
     const delta = Math.sign(e.deltaY);
@@ -47,7 +44,7 @@ export const Layout: React.FC<ILayout> = ({
 
   useEffect(() => {
     window.addEventListener('wheel', wheelEvent);
-    dispatch(fetchPortfolios());
+    dispatch(fetchPortfolios(0));
 
     return () => {
       window.removeEventListener('wheel', wheelEvent);

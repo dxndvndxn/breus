@@ -25,7 +25,6 @@ export const useTransitionAnimation = (
   status: TransitionStatus,
   disableAnimation: boolean
 ) => {
-  const [isAnimationComplete, setAnimationComplete] = useState(false);
   status = status === 'entered' ? 'entering' : status;
   const animationsList: AnimationsList = {
     [PageName.MAIN]: {
@@ -49,11 +48,7 @@ export const useTransitionAnimation = (
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          setAnimationComplete(true);
-        },
-      });
+      const tl = gsap.timeline();
 
       if (pageName && status) {
         const { entering, exiting } = animationsList[pageName];
@@ -86,6 +81,4 @@ export const useTransitionAnimation = (
       ctx.revert();
     };
   }, [pageName, status]);
-
-  return { isAnimationComplete };
 };
