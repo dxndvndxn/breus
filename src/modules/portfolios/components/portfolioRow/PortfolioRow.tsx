@@ -20,7 +20,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
     const scrollSpeedSecond = isDesktop ? 2 : 1;
     const scrollSpeedThird = isDesktop ? 2 : 1;
     const scrollSpeedFourth = isDesktop ? 2 : 1;
-    console.log('render');
+
     switch (rowCount) {
       case 1: {
         Row = (
@@ -29,6 +29,7 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
               className="portfolio portfolio__small"
               data-scroll
               data-scroll-speed={3}
+              data-scroll-call="{y,o,l,o}"
             >
               <div
                 className="portfolio__img"

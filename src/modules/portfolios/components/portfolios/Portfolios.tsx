@@ -47,6 +47,11 @@ export const Portfolios: React.FC = () => {
     });
 
     let isResolved = true;
+    console.log(portfoliosScroll);
+    portfoliosScroll.on('call', (args) => {
+      console.log('args', args);
+    });
+
     portfoliosScroll.on('scroll', (args) => {
       const { limit, scroll } = args;
       const percentScroll = Math.floor((scroll.y * 100) / limit.y);
@@ -68,6 +73,7 @@ export const Portfolios: React.FC = () => {
 
       root.style.setProperty('--portfolio-translate', el.style.transform);
     });
+
     setLocomotive(portfoliosScroll);
   };
 

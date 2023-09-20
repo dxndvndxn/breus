@@ -1,6 +1,6 @@
 @import 'common/styles/index.scss';
 
-$columnGap: 7.8rem;
+$columnGap: 6.7vw;
 $marginCell: 5.5rem;
 
 .portfolio {
@@ -19,9 +19,9 @@ $marginCell: 5.5rem;
 
 .portfolio-grid__row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(calc(25.3rem - ($columnGap / 3)), 0.8fr));
+  grid-template-columns: repeat(3, minmax(calc(25.3vw - ($columnGap / 3)), 24vw));
   grid-gap: 0 $columnGap;
-  grid-auto-rows: 46.3rem;
+  grid-auto-rows: 24.1vw;
 
   &:last-child {
     margin-bottom: $marginCell * 5;
@@ -32,7 +32,7 @@ $marginCell: 5.5rem;
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
-  background-position: 50% 95%;
+  background-position: 0 0%;
 }
 
 .portfolio__title {
@@ -43,61 +43,76 @@ $marginCell: 5.5rem;
 }
 
 .portfolio__small {
-  height: 46.3rem;
+  height: 24vw;
 }
 
 .portfolio__large {
   align-self: start;
-  height: 69.1rem;
+  height: 36vw;
 }
 
 .portfolio__xl {
   grid-column-end: span 2;
   align-self: start;
   grid-row-end: span 2;
-  height: 103rem;
+  height: 54.8vw;
   width: 100%;
 }
 
 .portfolio-grid__row-1 {
-  &:not(:first-child) {
-    margin-top: $marginCell * 1;
+  //margin-top: 2.6vw;
+  //&:not(:first-child) {
+  //  margin-top: $marginCell * 1;
+  //}
+  .portfolio__small {
+    &:first-child {
+      top: 1.2vw;
+    }
+
+    &:last-child {
+      top: 1.3vw;
+    }
   }
 }
 
 .portfolio-grid__row-2 {
-  &:not(:first-child) {
-    margin-top: $marginCell * 3.9;
-  }
-
   .portfolio__large {
     align-self: end;
+    top: 12.8vw;
+
+    &:last-child {
+      top: 22.3vw;
+    }
   }
 
-  .portfolio__large_m {
-    align-self: start;
-    margin-top: $marginCell * 2;
+  .portfolio__xl {
+    top: 5vw;
   }
 }
 
 .portfolio-grid__row-3 {
-  &:not(:first-child) {
-    margin-top: $marginCell * 2;
+  .portfolio__small {
+    top: 4vw;
+
+    &:first-child {
+      top: 18vw;
+    }
   }
 
-  .portfolio__small_m {
-    margin-top: $marginCell * 3.5;
+  .portfolio__large {
+    top: 1.9vw;
   }
 }
 
 .portfolio-grid__row-4 {
   &:not(:first-child) {
-    margin-top: $marginCell * 4.5;
-    margin-bottom: $marginCell * 2;
-  }
+    .portfolio__xl {
+      top: 13.3vw;
+    }
 
-  .portfolio__small_m {
-    margin-top: $marginCell;
+    .portfolio__small {
+      top: 15vw;
+    }
   }
 }
 

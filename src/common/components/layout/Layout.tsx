@@ -5,7 +5,7 @@ import './Layout.scss';
 import { useTransitionAnimation } from '../../hooks/useTransitionAnimation';
 import { PageName } from '../../../app/routing/appRoutes';
 import type { TransitionStatus } from 'react-transition-group';
-import { useAppDispatch } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { fetchPortfolios } from '../../../modules/portfolios/PortfoliosSlice';
 
 export type PageType = 'main' | 'usual';
@@ -25,39 +25,22 @@ export const Layout: React.FC<ILayout> = ({
   disableAnimation,
   layout = 'usual',
 }) => {
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
   const dispatch = useAppDispatch();
+  const { portfolios } = useAppSelector((state) => state.portfoliosReducer);
   const isMain = layout === 'main';
   const disable = status === 'entering' || status === 'exiting';
 
   useTransitionAnimation(name, status, disableAnimation);
 
-  const wheelEvent = (e: WheelEvent) => {
-    const delta = Math.sign(e.deltaY);
-
-    if (delta > 0) {
-      setScrollDirection('down');
-    } else {
-      setScrollDirection('up');
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener('wheel', wheelEvent);
-    dispatch(fetchPortfolios(0));
-
-    return () => {
-      window.removeEventListener('wheel', wheelEvent);
-    };
+    if (!portfolios.length) {
+      dispatch(fetchPortfolios(0));
+    }
   }, []);
 
   return (
     <main className={`layout ${layout}${disable ? ' layout_disabled' : ''}`}>
-      <div
-        className={`layout__head blended-mode ${
-          scrollDirection === 'down' ? 'layout__head_hide' : ''
-        }`}
-      >
+      <div className={`layout__head blended-mode`}>
         <div />
         <Link className="logo" to={'/'}>
           Sergey Breus

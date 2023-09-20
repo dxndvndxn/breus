@@ -1,9 +1,9 @@
 @import 'common/styles/index.scss';
 
 .portfolios {
-  padding: 8rem 5.2rem 9.1rem;
+  padding: 17vh 6.3vw;
   transform: var(--portfolio-translate);
-  width: calc(100% - 5.2rem);
+  width: calc(100% - 11.9vw);
 }
 
 #portfolios {
@@ -16,7 +16,7 @@
 }
 
 .entering-wrap {
-  position: fixed;
+  position: absolute;
   font-weight: 600;
   font-size: 8.2rem;
   line-height: 9.8rem;
@@ -45,7 +45,7 @@
 .percent {
   color: #fff;
   font-weight: 600;
-  font-size: 2.7rem;
+  font-size: 3.2rem;
   line-height: 100%;
   letter-spacing: -0.01em;
 }
