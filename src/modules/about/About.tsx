@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { gsap } from 'gsap';
 import { NavLink } from 'react-router-dom';
+import { windowWidth } from '../../common/helpers';
 
 import PokemonImg from '../../assets/images/Pokemon.png';
 import Breus from '../../assets/images/breus.webp';
 import './About.scss';
-import { windowWidth } from '../../common/helpers';
-import { gsap } from 'gsap';
 
 enum ImgSwitcher {
   BRUCE = 'breus',
@@ -21,7 +21,7 @@ export const About: React.FC = () => {
     const whatDisappear = `.${disappear}`;
     const duration = 1.7;
     const animationSettings = {
-      ease: 'power4.out',
+      ease: 'Expo.easeOut',
       duration,
     };
 
@@ -58,10 +58,6 @@ export const About: React.FC = () => {
     setImgSwitch(appear);
     tabAnimation(appear, disappear);
   };
-
-  useEffect(() => {
-    // tabAnimation(ImgSwitcher.BRUCE, ImgSwitcher.POKEMON);
-  }, []);
 
   const ImgAbout = useMemo(() => {
     if (isDesktop) {

@@ -1,3 +1,4 @@
+import React from 'react';
 import { RouteProps } from 'react-router/dist/lib/components';
 import { PORTFOLIO_PATH, PORTFOLIOS_PATH } from './portfoliosConstants';
 import { Portfolios } from '../components/portfolios/Portfolios';

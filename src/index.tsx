@@ -6,10 +6,7 @@ import './index.scss';
 const rootElement = document.getElementById('root') as HTMLElement;
 const root = createRoot(rootElement);
 
-// root.render(<AppRouting />);
-
 if (rootElement.hasChildNodes()) {
-  console.log('Hi');
   hydrateRoot(rootElement, <AppRouting />);
 } else {
   root.render(<AppRouting />);

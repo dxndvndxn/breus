@@ -3,10 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "options": {
-    "allowedHosts": ["localhost", ".localhost"],
+    "allowedHosts": [
+      "localhost",
+      ".localhost"
+    ],
     "proxy": "http://localhost:1337/"
   },
   "dependencies": {
+    "@babel/core": "^7.22.20",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.22.15",
+    "@babel/register": "^7.22.15",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -17,7 +25,9 @@
     "@types/react-dom": "^18.0.10",
     "@types/react-transition-group": "^4.4.5",
     "draggabilly": "^3.0.0",
+    "express": "^4.18.2",
     "gsap": "^3.12.1",
+    "ignore-styles": "^5.0.1",
     "locomotive-scroll": "^4.1.4",
     "normalize-scss": "^7.0.1",
     "react": "^18.2.0",
@@ -35,8 +45,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postbuild": "react-spa-prerender",
-    "deploy": "npm run build && node utils/changeFileName && cd build && rsync --archive --compress . root@185.68.22.110:/var/www/breus.dev/html"
+    "sent": "cd build && rsync --archive --compress . root@185.68.22.110:/var/www/breus.dev/html",
+    "deploy": "npm run build && node utils/changeFileName && npm run sent",
+    "start:ssr": "node backend/index.ts"
   },
   "eslintConfig": {
     "extends": [

@@ -1,5 +1,6 @@
+import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import { lazy } from 'react';
+import { StaticRouterProvider } from 'react-router-dom/server';
 import { Main } from '../../modules/main/Main';
 import { About } from '../../modules/about/About';
 import { Contacts } from '../../modules/contacts/Contacts';
