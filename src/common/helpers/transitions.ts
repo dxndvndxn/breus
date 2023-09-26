@@ -4,16 +4,18 @@ const isMobile = windowWidth < 991;
 
 export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
   const onComplete = () => {
-    setTimeout(() => {
-      document
-        .querySelector<HTMLElement>('.pokemon-svg')!
-        .classList.add('pokemon-svg_none');
-    });
-    const trails = document.querySelectorAll('.img-trail');
+    if (!isMobile) {
+      setTimeout(() => {
+        document
+          .querySelector<HTMLElement>('.pokemon-svg')!
+          .classList.add('pokemon-svg_none');
+      });
+      const trails = document.querySelectorAll('.img-trail');
 
-    trails.forEach((trail) => {
-      trail.classList.remove('pokemon-svg_none');
-    });
+      trails.forEach((trail) => {
+        trail.classList.remove('pokemon-svg_none');
+      });
+    }
   };
 
   if (isFirstLoad) {
@@ -56,7 +58,11 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
       force3D: false,
       duration,
     };
-    const navigation = { ...animationConfig, gap: '0 7rem', height: '3.2rem' };
+    const navigation: any = {
+      ...animationConfig,
+      gap: '0 7rem',
+      height: '3.2rem',
+    };
     const navigationLinkFirst = { ...animationConfig, marginRight: '8px' };
     const count: any = {
       ...animationConfig,
@@ -78,7 +84,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
         transform: 'translate(calc(-50% + 0.4rem), calc(-50% - .9rem))',
       },
     };
-    const navigationItem1 = {
+    const navigationItem1: any = {
       from: {
         ...animationConfig,
         x: '26.8%',
@@ -88,7 +94,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
         x: 'auto',
       },
     };
-    const navigationItem2 = {
+    const navigationItem2: any = {
       from: {
         ...animationConfig,
         x: '0.8%',
@@ -98,7 +104,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
         x: 'auto',
       },
     };
-    const navigationItem3 = {
+    const navigationItem3: any = {
       from: {
         ...animationConfig,
         x: '-159%',
@@ -109,7 +115,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
       },
     };
     const navLinkText = { ...animationConfig, scale: 1.9 };
-    const linkDivider: any = {
+    let linkDivider: any = {
       ...animationConfig,
       top: 0,
       x: '-11.5rem',
@@ -143,11 +149,37 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
     };
 
     if (isMobile) {
-      linkDivider.right = '-2.5rem';
-      linkDividerFirst.right = '-2.5rem';
-      // nav.fontSize = '2.4rem';
-      navigation.gap = '0 3.5rem';
-      count.fontSize = '1.2rem';
+      header.from.left = '50%';
+      header.from.transform = 'translateX(-50%)';
+      header.from.top = '93%';
+      header.to.transform = 'translate(calc(-50%), calc(-50% - 0.3rem))';
+
+      navLinkText.scale = 1.6;
+
+      navigation.width = '31rem';
+
+      navigationItem1.from.x = '4%';
+      navigationItem1.from.y = '-47%';
+
+      navigationItem2.from.x = '-1%';
+      navigationItem2.from.y = '-47%';
+
+      navigationItem3.from.x = '-24%';
+      navigationItem3.from.y = '-47%';
+
+      linkDividerFirst.from = {
+        ...animationConfig,
+        transform: 'translate(-1.4rem, 0) scale(2.4)',
+      };
+
+      linkDivider = {
+        ...animationConfig,
+        transform: 'translate(-1.9rem, 0) scale(2.4)',
+      };
+
+      count.scale = 0.9;
+      count.top = '-0.3rem';
+      count.right = '-2.2rem';
     }
 
     tl.add('start')
@@ -198,6 +230,12 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
     force3D: false,
     duration,
   };
+
+  if (isMobile) {
+    animationConfig.duration = 1;
+    animationConfig.ease = 'liner';
+  }
+
   const navigation: any = {
     ...animationConfig,
     gap: '0 7rem',
@@ -238,35 +276,49 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
     top: '96%',
     transform: 'translate(-17%, 0)',
   };
-  const navigationItem1 = {
+  const navigationItem1: any = {
     ...animationConfig,
     left: '7%',
     top: '36%',
   };
-  const navigationItem2 = {
+  const navigationItem2: any = {
     ...animationConfig,
     left: '44.5%',
     top: '36%',
   };
-  const navigationItem3 = {
+  const navigationItem3: any = {
     ...animationConfig,
     left: '83%',
     top: '36%',
   };
 
   if (isMobile) {
-    navigation.gap = '0 0';
-    navigation.transform = 'scale(0.99)';
+    animationConfig.duration = 1.5;
+    navLinkText.scale = 1.6;
 
-    navLinkText.transform = 'scale(0.7)';
+    counts.scale = 0.9;
+    counts.top = '-0.3rem';
+    counts.right = '-2.2rem';
 
-    linkDivider.right = '-0.5rem';
+    header.top = '93%';
+    header.transform = 'translate(-50%, 0)';
 
-    counts.transform = 'translate(-0.9rem, 0.1rem) scale(0.8)';
+    navigationItem1.top = '28%';
+    navigationItem1.width = '28%';
+    navigationItem1.left = '14%';
 
-    linkDividerFirst.right = '-1.5rem';
+    navigationItem2.top = '28%';
+    navigationItem2.width = '28%';
+    navigationItem2.left = '43%';
 
-    header.top = 'calc(100% - 3.4rem)';
+    navigationItem3.top = '28%';
+    navigationItem3.width = '28%';
+    navigationItem3.left = '74%';
+
+    linkDivider.scale = 2.4;
+    linkDivider.right = '-3rem';
+
+    linkDividerFirst.right = '-3.8rem';
   }
 
   tl.set('.navigation__link.navigation__link_first .nav-link__divider', {

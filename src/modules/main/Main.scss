@@ -26,7 +26,6 @@
   top: 0;
   left: 0;
   background-size: 100% 100%;
-  //will-change: transform, filter, opacity;
 }
 
 .pokemon-svg_block {
@@ -55,9 +54,7 @@
 
 @media screen and (max-width: $mobile) {
   .pokemon-wrap {
-    width: 40rem;
-    height: 64rem;
-    transform: translate(-6%, -26%);
+    transform: translate(-9%, -49%);
   }
 
   .img-trail {
@@ -66,6 +63,7 @@
   }
 
   .pokemon-svg {
-    height: 50%;
+    height: 55rem;
+    width: 59rem;
   }
 }

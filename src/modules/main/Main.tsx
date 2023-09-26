@@ -8,7 +8,7 @@ export const Main: React.FC = () => {
   const [pokemons, setPokemons] = useState<React.ElementType[]>([]);
   const pokemonRef = useRef<SVGSVGElement | any | null>(null);
   const pokemonWrapRef = useRef<HTMLDivElement | null>(null);
-  const { scale, doDistortionEffect } = useDistortionEffect();
+  const { scale } = useDistortionEffect();
   const isDesktop = windowWidth > 991;
 
   useEffect(() => {
@@ -45,35 +45,31 @@ export const Main: React.FC = () => {
             <Pokemon key={key} className="pokemon-svg_none" />
           ))}
         <div className="pokemon-svg-wrap" ref={pokemonRef}>
-          {isDesktop ? (
-            <svg
-              className={`pokemon-svg`}
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-            >
-              <filter id="distortionFilter">
-                <feTurbulence
-                  type="turbulence"
-                  baseFrequency="0.01 0.01"
-                  numOctaves="5"
-                  stitchTiles="stitch"
-                  seed="1"
-                />
-                <feDisplacementMap
-                  id="pokemonDisplacement"
-                  in="SourceGraphic"
-                  scale={scale}
-                  xChannelSelector="R"
-                  yChannelSelector="B"
-                />
-              </filter>
-              <g filter="url(#distortionFilter)">
-                <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
-              </g>
-            </svg>
-          ) : (
-            <img src={PokemonImg} className="pokemon-svg" alt="Pokemon" />
-          )}
+          <svg
+            className={`pokemon-svg`}
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          >
+            <filter id="distortionFilter">
+              <feTurbulence
+                type="turbulence"
+                baseFrequency="0.01 0.01"
+                numOctaves="5"
+                stitchTiles="stitch"
+                seed="1"
+              />
+              <feDisplacementMap
+                id="pokemonDisplacement"
+                in="SourceGraphic"
+                scale={scale}
+                xChannelSelector="R"
+                yChannelSelector="B"
+              />
+            </filter>
+            <g filter="url(#distortionFilter)">
+              <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
+            </g>
+          </svg>
         </div>
       </div>
     </div>

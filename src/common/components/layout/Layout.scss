@@ -50,7 +50,7 @@
 
 .usual {
   .header {
-    left: calc(50%);
+    left: 50%;
     transform: translateX(-48%);
     top: 96%;
   }
@@ -78,7 +78,7 @@
 }
 
 .header {
-  position: absolute;
+  position: fixed;
   overflow: hidden;
   z-index: 2;
   //will-change: transform, top;
@@ -98,11 +98,35 @@
   }
 
   .layout__bottom {
-    font-size: 1.8rem;
+    font-size: 1.56rem;
+    bottom: 2.9rem;
     white-space: nowrap;
   }
 
-  .header_bottom {
-    bottom: 2rem;
+  .layout__head {
+    width: calc(100% - 4.6rem);
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav {
+    width: fit-content;
+  }
+
+  .main {
+    .header {
+      transform: translate(calc(-50%), calc(-50% - 0.5rem));
+      width: 100%;
+    }
+  }
+
+  .usual {
+    .header {
+      transform: translateX(-50%);
+      top: 93%;
+    }
   }
 }
