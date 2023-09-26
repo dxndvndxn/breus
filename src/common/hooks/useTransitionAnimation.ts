@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { PageName } from '../../app/routing/appRoutes';
 import {
@@ -55,19 +55,19 @@ export const useTransitionAnimation = (
         const enteringStatus = status === 'entering';
 
         if (entering && exiting) {
-          if (enteringStatus && pageName === 'main') {
+          if (enteringStatus && pageName === PageName.MAIN) {
             entering(tl, !disableAnimation);
           } else if (
             enteringStatus &&
             !disableAnimation &&
-            pageName !== 'main'
+            pageName !== PageName.MAIN
           ) {
             usualPageEnter(tl);
             entering(tl);
           } else if (
             enteringStatus &&
             disableAnimation &&
-            pageName !== 'main'
+            pageName !== PageName.MAIN
           ) {
             entering(tl);
           } else {

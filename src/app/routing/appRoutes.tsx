@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { lazy } from 'react';
 import { Main } from '../../modules/main/Main';
 import { About } from '../../modules/about/About';
 import { Contacts } from '../../modules/contacts/Contacts';
@@ -11,10 +10,10 @@ import { NotFound } from '../notFound/NotFound';
 import App from '../App';
 
 export enum PageName {
-  MAIN = 'main',
-  ABOUT = 'about',
-  PORTFOLIOS = 'portfolios',
-  CONTACTS = 'contacts',
+  MAIN = 'Main',
+  ABOUT = 'About',
+  PORTFOLIOS = 'Portfolios',
+  CONTACTS = 'Contacts',
   NOT_FOUND = 'not_found',
 }
 type AppRoutes = RouteObject & {

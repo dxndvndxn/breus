@@ -47,10 +47,6 @@ export const Portfolios: React.FC = () => {
     });
 
     let isResolved = true;
-    console.log(portfoliosScroll);
-    portfoliosScroll.on('call', (args) => {
-      console.log('args', args);
-    });
 
     portfoliosScroll.on('scroll', (args) => {
       const { limit, scroll } = args;
@@ -78,20 +74,16 @@ export const Portfolios: React.FC = () => {
   };
 
   useEffect(() => {
-    document.body.classList.add('doc-overflow');
-    document.documentElement.classList.add('doc-overflow');
     const root = document.documentElement;
 
     if (portfoliosContainer.current && !locomotive) {
       const el = portfoliosContainer.current;
       setTimeout(() => {
         initLocomotive(el);
-      }, 1700);
+      }, 1100);
     }
 
     return () => {
-      document.body.classList.remove('doc-overflow');
-      document.documentElement.classList.remove('doc-overflow');
       root.style.setProperty('--portfolio-translate', 'translate(0px, 0%)');
       locomotive?.destroy();
     };

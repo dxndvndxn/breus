@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import PokemonImg from '../../assets/images/Pokemon.png';
@@ -15,6 +15,14 @@ enum ImgSwitcher {
 export const About: React.FC = () => {
   const [imgSwitch, setImgSwitch] = useState<ImgSwitcher>(ImgSwitcher.BRUCE);
   const isDesktop = windowWidth > 991;
+  const breusPos = {
+    x: isDesktop ? -30 : 0,
+    y: 0,
+  };
+  const pokemonPos = {
+    x: isDesktop ? -158 : 0,
+    y: 0,
+  };
 
   const tabAnimation = (appear: ImgSwitcher, disappear: ImgSwitcher) => {
     const whatAppear = `.${appear}`;
@@ -59,45 +67,39 @@ export const About: React.FC = () => {
     tabAnimation(appear, disappear);
   };
 
-  useEffect(() => {
-    // tabAnimation(ImgSwitcher.BRUCE, ImgSwitcher.POKEMON);
-  }, []);
-
-  const ImgAbout = useMemo(() => {
-    if (isDesktop) {
-      return (
-        <>
-          <svg
-            style={{ opacity: 0 }}
-            className={`distort img__breus about-img__pokemon ${ImgSwitcher.POKEMON}`}
-          >
-            <filter id="distortionFilter">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.04 0.01"
-                numOctaves="10"
-                stitchTiles="stitch"
-                seed="15"
-              />
-              <feDisplacementMap
-                id="tabDisplacement"
-                in="SourceGraphic"
-                xChannelSelector="R"
-                yChannelSelector="R"
-                filterUnits="userSpaceOnUse"
-              />
-            </filter>
-            <g filter="url(#distortionFilter)">
-              <image
-                className={`distort__img about-img__pokemon`}
-                x="-158"
-                xlinkHref={PokemonImg}
-              />
-            </g>
-          </svg>
-          <svg
-            className={`distort img__breus about-img__breus ${ImgSwitcher.BRUCE}`}
-          >
+  return (
+    <div className="about">
+      <div className="about__img about-img">
+        <svg
+          style={{ opacity: 0 }}
+          className={`distort about-img__pokemon ${ImgSwitcher.POKEMON}`}
+        >
+          <filter id="distortionFilter">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.04 0.01"
+              numOctaves="10"
+              stitchTiles="stitch"
+              seed="15"
+            />
+            <feDisplacementMap
+              id="tabDisplacement"
+              in="SourceGraphic"
+              xChannelSelector="R"
+              yChannelSelector="R"
+              filterUnits="userSpaceOnUse"
+            />
+          </filter>
+          <g filter="url(#distortionFilter)">
+            <image
+              className={`distort__img about-img__pokemon`}
+              {...pokemonPos}
+              xlinkHref={PokemonImg}
+            />
+          </g>
+        </svg>
+        <div className="about-img__breus-wrap" style={{ overflow: 'hidden' }}>
+          <svg className={`distort about-img__breus ${ImgSwitcher.BRUCE}`}>
             <filter id="distortionFilter">
               <feTurbulence
                 type="fractalNoise"
@@ -117,39 +119,13 @@ export const About: React.FC = () => {
             <g filter="url(#distortionFilter)">
               <image
                 className={`distort__img about-img__breus`}
-                x="-30"
-                y="0"
                 xlinkHref={Breus}
+                {...breusPos}
               />
             </g>
           </svg>
-        </>
-      );
-    }
-
-    return (
-      <>
-        <img
-          className={`distort__img about-img__breus ${
-            imgSwitch !== 'breus' && 'distort__img_opacity'
-          }`}
-          src={Breus}
-          alt="Breus"
-        />
-        <img
-          className={`distort__img about-img__pokemon ${
-            imgSwitch !== 'pokemon' && 'distort__img_opacity'
-          }`}
-          src={PokemonImg}
-          alt="Pokemon"
-        />
-      </>
-    );
-  }, [imgSwitch]);
-
-  return (
-    <div className="about">
-      <div className="about__img about-img">{ImgAbout}</div>
+        </div>
+      </div>
 
       <div className="about__content about-content">
         <div className="about__menu about-menu">
@@ -181,7 +157,7 @@ export const About: React.FC = () => {
         </div>
 
         <div className="about-content__wrap">
-          <div className="about-content__text">
+          <div className="about-content__text about-content_sec">
             My profile is the creation of effective and comprehensive solutions
             for your business.
           </div>

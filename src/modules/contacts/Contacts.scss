@@ -71,19 +71,20 @@
 
 @media screen and (max-width: $mobile) {
   .contacts {
+    height: calc(100% - 5rem);
     gap: 4rem 0;
 
     .contacts-title__wrap {
-      width: 52%;
+      width: 60%;
     }
 
     .contacts__title {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       line-height: 100%;
     }
 
     .contacts__mail {
-      font-size: 3.2rem;
+      font-size: 2.6rem;
       line-height: 4rem;
     }
 
@@ -92,7 +93,7 @@
     }
 
     .socials__link {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       line-height: 100%; /* 18px */
       letter-spacing: -0.036rem;
     }

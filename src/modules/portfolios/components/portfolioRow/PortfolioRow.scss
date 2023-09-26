@@ -60,10 +60,6 @@ $marginCell: 5.5rem;
 }
 
 .portfolio-grid__row-1 {
-  //margin-top: 2.6vw;
-  //&:not(:first-child) {
-  //  margin-top: $marginCell * 1;
-  //}
   .portfolio__small {
     &:first-child {
       top: 1.2vw;
@@ -118,19 +114,43 @@ $marginCell: 5.5rem;
 
 @media screen and (max-width: $mobile) {
   .portfolio-grid__row-1, .portfolio-grid__row-2, .portfolio-grid__row-3, .portfolio-grid__row-4 {
-    margin: 0;
-
     .portfolio__large_m, .portfolio__small_m, .portfolio__large_m {
-      margin: 0;
+      top: 0;
+    }
+
+    &:not(:first-child) {
+      .portfolio__xl {
+        top: 0
+      }
+    }
+
+    &:not(:first-child) {
+      .portfolio__small {
+        top: 0;
+      }
+    }
+
+    .portfolio__small {
+      &:first-child {
+        top: 0;
+      }
+    }
+
+    .portfolio__large {
+      top: 0;
+
+      &:last-child {
+        top: 0;
+      }
     }
   }
 
   .portfolio-grid__row {
-    grid-gap: 4rem 0;
+    grid-gap: 8rem 0;
     grid-auto-rows: auto;
 
-    &:last-child {
-      margin-bottom: 15rem
+    &:not(:first-child) {
+      margin-top: 8rem;
     }
   }
 
@@ -148,12 +168,42 @@ $marginCell: 5.5rem;
   }
 
   .portfolio__xl {
-    height: 59rem;
+    height: 33.5rem;
+    grid-column-end: unset;
+    align-self: auto;
+    grid-row-end: unset;
   }
 
   .portfolio {
     &:before {
       height: 120%;
     }
+  }
+}
+
+@media screen and (min-width: 2100px) {
+  .portfolio-grid__row {
+    grid-template-columns: repeat(3, minmax(calc(20.3vw - ($columnGap / 3)), 24vw));
+    grid-gap: 0 4.7vw;
+  }
+
+  .portfolio-grid__row-3 {
+    .portfolio__small {
+      &:first-child {
+        top: 20vw;
+      }
+    }
+  }
+
+  .portfolio__small {
+    height: 15vw;
+  }
+
+  .portfolio__xl {
+    height: 35.8vw;
+  }
+
+  .portfolio__large {
+    height: 29vw;
   }
 }

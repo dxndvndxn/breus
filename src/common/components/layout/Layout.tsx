@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Nav } from '../nav/Nav';
 import { Link } from 'react-router-dom';
 import './Layout.scss';
@@ -37,6 +37,10 @@ export const Layout: React.FC<ILayout> = ({
       dispatch(fetchPortfolios(0));
     }
   }, []);
+
+  useEffect(() => {
+    if (document) document.title = name;
+  }, [name]);
 
   return (
     <main className={`layout ${layout}${disable ? ' layout_disabled' : ''}`}>
