@@ -16,9 +16,14 @@ export const About: React.FC = () => {
   const [imgSwitch, setImgSwitch] = useState<ImgSwitcher>(ImgSwitcher.BRUCE);
   const isDesktop = windowWidth > 991;
   const breusPos = {
-    x: isDesktop ? -30 : 0,
+    x: isDesktop ? -30 : -20,
     y: 0,
   };
+  const breusSvg = !isDesktop
+    ? {
+        viewBox: '0 0 130 300',
+      }
+    : {};
   const pokemonPos = {
     x: isDesktop ? -158 : 0,
     y: 0,
@@ -32,6 +37,11 @@ export const About: React.FC = () => {
       ease: 'power4.out',
       duration,
     };
+
+    if (!isDesktop) {
+      animationSettings.duration = 2.7;
+      animationSettings.ease = 'power2.out';
+    }
 
     const tlInit = gsap.timeline();
 
@@ -98,33 +108,34 @@ export const About: React.FC = () => {
             />
           </g>
         </svg>
-        <div className="about-img__breus-wrap" style={{ overflow: 'hidden' }}>
-          <svg className={`distort about-img__breus ${ImgSwitcher.BRUCE}`}>
-            <filter id="distortionFilter">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.04 0.01"
-                numOctaves="10"
-                stitchTiles="stitch"
-                seed="15"
-              />
-              <feDisplacementMap
-                id="tabDisplacement"
-                in="SourceGraphic"
-                xChannelSelector="R"
-                yChannelSelector="R"
-                filterUnits="userSpaceOnUse"
-              />
-            </filter>
-            <g filter="url(#distortionFilter)">
-              <image
-                className={`distort__img about-img__breus`}
-                xlinkHref={Breus}
-                {...breusPos}
-              />
-            </g>
-          </svg>
-        </div>
+        <svg
+          className={`distort about-img__breus ${ImgSwitcher.BRUCE}`}
+          {...breusSvg}
+        >
+          <filter id="distortionFilter">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.04 0.01"
+              numOctaves="10"
+              stitchTiles="stitch"
+              seed="15"
+            />
+            <feDisplacementMap
+              id="tabDisplacement"
+              in="SourceGraphic"
+              xChannelSelector="R"
+              yChannelSelector="R"
+              filterUnits="userSpaceOnUse"
+            />
+          </filter>
+          <g filter="url(#distortionFilter)">
+            <image
+              className={`distort__img about-img__breus`}
+              xlinkHref={Breus}
+              {...breusPos}
+            />
+          </g>
+        </svg>
       </div>
 
       <div className="about__content about-content">

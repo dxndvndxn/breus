@@ -11,6 +11,7 @@ export const Portfolios: React.FC = () => {
   const { portfolios, count, start, canFetchMorePortfolios } = useAppSelector(
     (state) => state.portfoliosReducer
   );
+  const { animationComplete } = useAppSelector((state) => state.appReducer);
   const { setStart } = portfoliosActions;
   const [percent, setPercent] = useState('00');
   const isResized = useRef(false);
@@ -39,6 +40,7 @@ export const Portfolios: React.FC = () => {
       smooth: true,
       lerp: 0.1,
       reloadOnContextChange: true,
+      scrollFromAnywhere: true,
       smartphone: {
         smooth: true,
         direction: 'vertical',
@@ -74,20 +76,26 @@ export const Portfolios: React.FC = () => {
   };
 
   useEffect(() => {
-    const root = document.documentElement;
-
     if (portfoliosContainer.current && !locomotive) {
       const el = portfoliosContainer.current;
-      setTimeout(() => {
-        initLocomotive(el);
-      }, 1100);
+      initLocomotive(el);
     }
 
-    return () => {
-      root.style.setProperty('--portfolio-translate', 'translate(0px, 0%)');
+    if (locomotive) {
+      window.dispatchEvent(new Event('resize'));
+    }
+  }, [count, animationComplete]);
+
+  useEffect(
+    () => () => {
+      document.documentElement.style.setProperty(
+        '--portfolio-translate',
+        'translate(0px, 0%)'
+      );
       locomotive?.destroy();
-    };
-  }, [count]);
+    },
+    []
+  );
 
   useEffect(() => {
     if (percent === '100' && locomotive && canFetchMorePortfolios) {
@@ -97,7 +105,7 @@ export const Portfolios: React.FC = () => {
         .then(() => {
           isResized.current = true;
           window.dispatchEvent(new Event('resize'));
-          locomotive.update();
+          // locomotive.update();
         });
     }
   }, [percent, locomotive, canFetchMorePortfolios]);

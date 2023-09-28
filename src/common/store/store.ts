@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { reducer as portfoliosReducer } from '../../modules/portfolios/PortfoliosSlice';
+import { portfoliosReducer } from '../../modules/portfolios/PortfoliosSlice';
+import { appReducer } from '../../app/AppSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
     portfoliosReducer,
+    appReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),

@@ -44,8 +44,9 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
       )
       .from(
         '#pokemonDisplacement',
-        1.8,
+        2,
         {
+          ease: 'power1.out',
           attr: { scale: 170 },
           onComplete,
         },
@@ -73,7 +74,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
     const header = {
       from: {
         ...animationConfig,
-        top: '96.2%',
+        top: '95.2%',
         left: '50%',
         transform: 'translateX(-48%)',
       },
@@ -273,7 +274,7 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
   const header: any = {
     ...animationConfig,
     left: '50%',
-    top: '96%',
+    top: '95%',
     transform: 'translate(-17%, 0)',
   };
   const navigationItem1: any = {
@@ -466,16 +467,22 @@ export const portfoliosPageEnter = (tl: gsap.core.Timeline) => {
     },
   };
 
-  tl.from(
-    '.entering__text',
-    1.8,
-    {
-      ...animationConfig,
-      y: 150,
-      opacity: 0,
-    },
-    'start'
+  tl.fromTo(
+    '.portfolios',
+    { visibility: 'hidden' },
+    { visibility: 'visible' },
+    '-=0.8'
   )
+    .from(
+      '.entering__text',
+      1.8,
+      {
+        ...animationConfig,
+        y: 150,
+        opacity: 0,
+      },
+      'start'
+    )
     .from(
       '.percent',
       1.8,
@@ -499,13 +506,17 @@ export const portfoliosPageEnter = (tl: gsap.core.Timeline) => {
       },
       '-=0.8'
     )
-    .from(
+    .fromTo(
       '.portfolios',
       1,
       {
         ease: 'circ.easeOut',
         position: 'absolute',
         y: '100%',
+      },
+      {
+        ease: 'circ.easeOut',
+        y: 0,
       },
       '-=0.9'
     );
@@ -515,7 +526,20 @@ export const portfoliosPageExit = (tl: gsap.core.Timeline) => {
   const animationConfig = {
     ease: 'power4.in',
   };
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  document.getElementById('portfoliosContent').style.transform =
+    document.documentElement.style.getPropertyValue('--portfolio-translate');
 
+  tl.set(
+    '.portfolios',
+    {
+      transform: document.documentElement.style.getPropertyValue(
+        '--portfolio-translate'
+      ),
+    },
+    '-=1'
+  );
   tl.to(
     '.percent',
     0.8,

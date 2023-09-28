@@ -4,14 +4,13 @@
   display: flex;
   align-items: center;
   position: relative;
-  gap: 0 31.6rem;
   height: 100%;
   margin: 0 auto;
-  width: 75%;
+  width: 100%;
 
   .about-img {
     position: relative;
-    width: 39.4rem;
+    width: 50%;
     height: 60.6rem;
   }
 
@@ -19,8 +18,7 @@
     position: fixed;
     pointer-events: none;
     shape-rendering: optimizeSpeed;
-
-    @include transition(width, height);
+    transform: translate(-50%, -50%);
   }
 
   .about-img__common {
@@ -29,27 +27,27 @@
 
   .about-img__breus {
     width: 55.8rem;
-    height: 51rem;
-    left: 15%;
-    top: 26%;
+    height: 58.5rem;
+    left: 26.5%;
+    top: 51.5%;
   }
 
   .about-img__pokemon {
     width: 101rem;
     height: 68.5rem;
-    margin-left: -12.9rem;
-    margin-top: -2.1rem;
+    top: 51%;
+    left: 33%;
   }
 
   .about__content {
-    margin-top: 1.9rem;
+    width: 50%;
+    margin-top: -2.1rem;
     display: flex;
     flex-direction: column;
     gap: 1.9rem 0;
     font-size: 2.4rem;
     letter-spacing: -0.32px;
     line-height: 110%;
-    width: 29.4rem;
     overflow: hidden;
   }
 
@@ -103,20 +101,23 @@
   gap: 0 2rem;
   position: fixed;
   right: 2.8rem;
-  top: 2.6rem;
+  top: 2rem;
   z-index: 2;
+}
+
+.about-content_sec {
+  width: 30rem;
 }
 
 @media screen and (max-width: $mobile) {
   .about {
     justify-content: center;
-    width: 100%;
     height: calc(100% - 5rem);
     margin: auto 0;
     gap: 0 2rem;
 
     .about-content_sec {
-      width: 20rem;
+      width: 16rem;
     }
 
     .about-content_third {
@@ -124,15 +125,14 @@
     }
 
     .about-img {
-      width: 50%;
       height: 28rem;
     }
 
     .about-img__breus {
-      top: 0;
-      width: 17rem;
-      height: 32rem;
-      right: -1.6rem;
+      top: -4.8rem;
+      width: 16rem;
+      height: 35rem;
+      right: 0;
       left: auto;
     }
 
@@ -140,7 +140,8 @@
       width: 52rem;
       height: 45rem;
       right: -13.8rem;
-      top: -2.7rem;
+      top: -6.7rem;
+      left: auto;
     }
 
     .distort__img {
@@ -152,7 +153,7 @@
       gap: 1.8rem 0;
       font-size: 1.6rem;
       line-height: 1.68rem;
-      width: 78%;
+      width: 53%;
     }
 
     .about-content_first {
@@ -162,12 +163,7 @@
 
     .distort {
       position: absolute;
-    }
-
-    .about-img__breus-wrap {
-      height: 100%;
-      position: relative;
-      overflow: hidden;
+      transform: none;
     }
   }
 

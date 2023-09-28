@@ -50,4 +50,5 @@ const portfoliosSlice = createSlice({
   },
 });
 
-export const { reducer, actions: portfoliosActions } = portfoliosSlice;
+export const { reducer: portfoliosReducer, actions: portfoliosActions } =
+  portfoliosSlice;

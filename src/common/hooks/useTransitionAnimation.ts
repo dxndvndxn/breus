@@ -13,6 +13,8 @@ import {
   portfoliosPageExit,
 } from '../helpers/transitions';
 import type { TransitionStatus } from 'react-transition-group';
+import { useAppDispatch } from '../store';
+import { appActions } from '../../app/AppSlice';
 
 type AnimationsList = {
   [value in PageName]: {
@@ -26,6 +28,8 @@ export const useTransitionAnimation = (
   disableAnimation: boolean
 ) => {
   status = status === 'entered' ? 'entering' : status;
+  const dispatch = useAppDispatch();
+  const { setAnimationComplete } = appActions;
   const animationsList: AnimationsList = {
     [PageName.MAIN]: {
       entering: mainPageEnter,
@@ -48,7 +52,11 @@ export const useTransitionAnimation = (
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        onComplete: () => {
+          dispatch(setAnimationComplete(true));
+        },
+      });
 
       if (pageName && status) {
         const { entering, exiting } = animationsList[pageName];
