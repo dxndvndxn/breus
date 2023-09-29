@@ -9,6 +9,15 @@ export interface PortfolioItem {
   id: number;
   img: string;
   title: string;
+  description: null | PortfolioDesc;
+}
+
+export interface PortfolioDesc {
+  links?: {
+    site?: string;
+    behance?: string;
+  };
+  content: string;
 }
 
 export type TPortfolioRow = {

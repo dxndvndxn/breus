@@ -58,6 +58,7 @@
     position: relative;
 
     &:after {
+      content: '';
       top: 95%;
       left: 0;
       width: 100%;

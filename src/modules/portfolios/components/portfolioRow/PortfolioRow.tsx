@@ -1,14 +1,11 @@
 import React, { memo } from 'react';
-import { PortfolioItem } from '../../types';
-import './PortfolioRow.scss';
 import { windowWidth } from '../../../../common/helpers';
+import { TPortfolioRow } from '../../types';
+import { PortfolioDescription } from '../portfolioDescription/PortfolioDescription';
 
-interface IPortfolioRow {
-  rowCount: number;
-  row: PortfolioItem[];
-}
+import './PortfolioRow.scss';
 
-export const PortfolioRow: React.FC<IPortfolioRow> = memo(
+export const PortfolioRow: React.FC<TPortfolioRow> = memo(
   ({ rowCount, row }) => {
     let Row = null;
     const [itemOne, itemTwo, itemThree] = row;
@@ -36,6 +33,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 }}
               />
               <div className="portfolio__title">{itemOne?.title}</div>
+              {itemOne.description && (
+                <PortfolioDescription {...itemOne.description} />
+              )}
             </div>
             <div
               className="portfolio portfolio__large"
@@ -47,6 +47,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgTwo }}
               />
               <div className="portfolio__title">{itemTwo?.title}</div>
+              {itemTwo.description && (
+                <PortfolioDescription {...itemTwo.description} />
+              )}
             </div>
             <div
               className="portfolio portfolio__small"
@@ -58,6 +61,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgThree }}
               />
               <div className="portfolio__title">{itemThree?.title}</div>
+              {itemThree.description && (
+                <PortfolioDescription {...itemThree.description} />
+              )}
             </div>
           </div>
         );
@@ -76,6 +82,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgOne }}
               />
               <div className="portfolio__title">{itemOne?.title}</div>
+              {itemOne.description && (
+                <PortfolioDescription {...itemOne.description} />
+              )}
             </div>
             <div
               className="portfolio portfolio__xl"
@@ -87,6 +96,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgTwo }}
               />
               <div className="portfolio__title">{itemTwo?.title}</div>
+              {itemTwo.description && (
+                <PortfolioDescription {...itemTwo.description} />
+              )}
             </div>
             <div
               className="portfolio portfolio__large portfolio__large_m"
@@ -98,6 +110,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgThree }}
               />
               <div className="portfolio__title">{itemThree?.title}</div>
+              {itemThree.description && (
+                <PortfolioDescription {...itemThree.description} />
+              )}
             </div>
           </div>
         );
@@ -116,6 +131,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgOne }}
               />
               <div className="portfolio__title">{itemOne?.title}</div>
+              {itemOne.description && (
+                <PortfolioDescription {...itemOne.description} />
+              )}
             </div>
             <div
               className="portfolio portfolio__small"
@@ -127,6 +145,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgTwo }}
               />
               <div className="portfolio__title">{itemTwo?.title}</div>
+              {itemTwo.description && (
+                <PortfolioDescription {...itemTwo.description} />
+              )}
             </div>
             <div
               className="portfolio portfolio__large"
@@ -138,6 +159,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgThree }}
               />
               <div className="portfolio__title">{itemThree?.title}</div>
+              {itemThree.description && (
+                <PortfolioDescription {...itemThree.description} />
+              )}
             </div>
           </div>
         );
@@ -156,6 +180,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgOne }}
               />
               <div className="portfolio__title">{itemOne?.title}</div>
+              {itemOne.description && (
+                <PortfolioDescription {...itemOne.description} />
+              )}
             </div>
             <div
               className="portfolio portfolio__small"
@@ -167,6 +194,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgTwo }}
               />
               <div className="portfolio__title">{itemTwo?.title}</div>
+              {itemTwo.description && (
+                <PortfolioDescription {...itemTwo.description} />
+              )}
             </div>
             <div
               className="portfolio portfolio__small portfolio__small_m"
@@ -178,6 +208,9 @@ export const PortfolioRow: React.FC<IPortfolioRow> = memo(
                 style={{ backgroundImage: imgThree }}
               />
               <div className="portfolio__title">{itemThree?.title}</div>
+              {itemThree.description && (
+                <PortfolioDescription {...itemThree.description} />
+              )}
             </div>
           </div>
         );

@@ -1,0 +1,68 @@
+@import 'common/styles/index.scss';
+
+.portfolio-desc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  //background: rgba(0, 0, 0, 0);
+  //backdrop-filter: blur(0);
+  width: auto;
+  height: inherit;
+  padding: 0 2rem;
+}
+
+.portfolio-desc__text {
+  width: auto;
+  font-size: 2rem;
+  font-style: normal;
+  line-height: 106%;
+  letter-spacing: -0.01px;
+  margin: 0;
+  //transform: translateY(100%);
+}
+
+.portfolio-desc__links {
+  overflow: hidden;
+  margin-top: 3rem;
+  display: flex;
+  gap: 0 1.8rem;
+}
+
+.portfolio-desc__link {
+  position: relative;
+  font-size: 2rem;
+  line-height: 100%;
+  letter-spacing: -0.024rem;
+  color: #FFFFFF;
+
+  @include link-hover(1, left, 0, right);
+
+  &:after {
+    top: 95%;
+    left: 0;
+    width: 100%;
+    height: .07em;
+    background-color: #fff;
+  }
+}
+
+.portfolio-desc__text-wrap {
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+
+@media screen and (max-width: $mobile) {
+  .portfolio-desc__text {
+    font-size: 1.6rem;
+    font-style: normal;
+    line-height: 110%;
+    letter-spacing: -0.016rem;
+  }
+
+  .portfolio-desc__link {
+    font-size: 1.6rem;
+    line-height: 100%;
+    letter-spacing: -0.016rem;
+  }
+}
