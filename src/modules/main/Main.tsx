@@ -26,10 +26,6 @@ export const Main: React.FC = () => {
 
     document.documentElement.classList.add('doc-overflow');
 
-    if (isDesktop) {
-      //doDistortionEffect(170);
-    }
-
     return () => {
       document.documentElement.classList.remove('doc-overflow');
 

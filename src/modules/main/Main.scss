@@ -58,15 +58,21 @@
   height: 100%;
 }
 
-@media screen and (max-width: $mobile) {
+@media screen and (max-width: $tablet) {
   .pokemon-wrap {
     position: absolute;
     right: -7%;
     left: auto;
-    top: 14%;
+    top: 29%;
     width: 43rem;
     height: 10%;
     transform: translate(0, -50%);
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .pokemon-wrap {
+    top: 14%;
   }
 
   .img-trail {

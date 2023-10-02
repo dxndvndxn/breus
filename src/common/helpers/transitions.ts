@@ -326,6 +326,10 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
     x: 0,
   });
 
+  if (!isMobile) {
+    tl.set('.img-trail', { display: 'none' });
+  }
+
   tl.add('start')
     .to('.pokemon-svg', 0, { display: 'block' })
     .to('.img-trail', 0, { display: 'none' })

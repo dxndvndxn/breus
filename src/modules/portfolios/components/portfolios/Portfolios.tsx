@@ -41,6 +41,7 @@ export const Portfolios: React.FC = () => {
       lerp: 0.1,
       reloadOnContextChange: true,
       scrollFromAnywhere: true,
+      repeat: true,
       smartphone: {
         smooth: true,
         direction: 'vertical',
@@ -105,7 +106,7 @@ export const Portfolios: React.FC = () => {
         .then(() => {
           isResized.current = true;
           window.dispatchEvent(new Event('resize'));
-          // locomotive.update();
+          locomotive.update();
         });
     }
   }, [percent, locomotive, canFetchMorePortfolios]);

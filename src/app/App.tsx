@@ -8,7 +8,7 @@ import { store } from '../common/store';
 
 const App: React.FC = () => {
   let { pathname } = useLocation();
-  pathname = pathname.replace(/(?<=\w)\/$/g, '');
+  pathname = pathname.length > 1 ? pathname.replace(/\/$/g, '') : pathname;
   const firstLoad = useRef(true);
   const outlet = useOutlet();
 
