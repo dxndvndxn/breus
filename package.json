@@ -40,7 +40,7 @@
     "eject": "react-scripts eject",
     "postbuild": "react-spa-prerender",
     "sent": "cd build && rsync --archive --compress . root@185.68.22.110:/var/www/breus.dev/html",
-    "build:pre": "npm run build && node utils/changeFileName",
+    "build:pre": "npm run build && node utils/actionsBeforeDeploy",
     "deploy": "npm run build:pre && npm run sent"
   },
   "eslintConfig": {
@@ -65,6 +65,7 @@
     "@types/locomotive-scroll": "^4.1.0",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
+    "cheerio": "^1.0.0-rc.12",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",

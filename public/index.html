@@ -29,41 +29,80 @@
     <meta name="theme-color" content="#ffffff" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <link href="<%= htmlWebpackPlugin.files.css %>" rel="stylesheet" />
+    <% if (htmlWebpackPlugin.options.production){ %>
+      <script src="<%= htmlWebpackPlugin.files.js %>" class="to-replace" defer></script>
+    <% } %>
+    <style>
+      .preloader__percent_slide_out {
+        animation-name: slideOut;
+        animation-duration: 0.8s;
+        animation-delay: 0.5s;
+        transition-timing-function: cubic-bezier(.24, 1.08, .47, .99);
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes slideOut {
+        from {
+          transform: translateY(0rem) skew(0deg, 0deg);
+        }
+        to {
+          transform: translateY(-17.5rem) skew(0deg, -10deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <% if (htmlWebpackPlugin.options.production){ %>
+    <div class="preloader">
+      <div class="preloader__progress"></div>
+      <div class="preloader__percent-wrap">
+        <span class="preloader__percent">00%</span>
+      </div>
+    </div>
+    <% } %>
   </body>
+  <% if (htmlWebpackPlugin.options.production){ %>
   <script>
+    const smoothUpdatePercent = (num) => {
+      const percentNode = document.querySelector(".preloader__percent");
+      const percent = `${num < 10 ? `0${num}` : num}%`;
+
+      setTimeout(() => {
+        percentNode.innerHTML = percent;
+        if (num === 100) {
+          percentNode.classList.add('preloader__percent_slide_out');
+        }
+      }, 500 + num);
+    }
+
     const updateProgress = (event) => {
-      console.log("event", event);
+      const progress = document.querySelector(".preloader__progress");
+
       if (event.lengthComputable) {
-        const percentComplete = (event.loaded / event.total) * 100;
-        console.log("percentComplete", percentComplete);
+        const percentComplete = Math.floor((event.loaded / event.total) * 100);
+        progress.style.width = `${percentComplete}%`;
+
+        smoothUpdatePercent(percentComplete);
       }
     };
 
     const transferComplete = (event) => {
-      const e = event.target;
       const s = document.createElement("script");
-      s.innerHTML = e.responseText;
+      s.innerHTML = event.target.responseText;
       document.documentElement.appendChild(s);
     };
 
     const loadBundle = new XMLHttpRequest();
     loadBundle.addEventListener("progress", updateProgress);
     loadBundle.addEventListener("load", transferComplete);
-    loadBundle.open("GET", "http://185.68.22.110/static/js/main.1f5ef496.js");
+    loadBundle.open(
+      "GET",
+      `http://185.68.22.110<%= htmlWebpackPlugin.files.js %>`
+    );
     loadBundle.send();
   </script>
+  <% } %>
 </html>

@@ -56,3 +56,56 @@ body::-webkit-scrollbar-thumb {
   background-color: $purpp;
   border-radius: 1rem;
 }
+
+.preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: #000000;
+}
+
+.preloader__progress {
+  position: absolute;
+  background-color: $purpp;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 1rem;
+  @include transition(width);
+}
+
+.preloader__percent-wrap {
+  padding: 0 2rem 2rem 0;
+  width: 51.3rem;
+  height: 16rem;
+  text-align: right;
+  overflow: hidden;
+}
+
+.preloader__percent {
+  font-size: 20rem;
+  display: block;
+  line-height: 80%;
+  letter-spacing: -0.4rem;
+}
+
+@media screen and (max-width: $mobile) {
+  .preloader__percent-wrap {
+    width: 26.3rem;
+    height: 7rem;
+  }
+
+  .preloader__percent {
+    font-size: 9rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 80%;
+    letter-spacing: -0.08rem;
+  }
+}

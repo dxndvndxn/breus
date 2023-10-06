@@ -13,8 +13,6 @@ import {
   portfoliosPageExit,
 } from '../helpers/transitions';
 import type { TransitionStatus } from 'react-transition-group';
-import { useAppDispatch } from '../store';
-import { appActions } from '../../app/AppSlice';
 
 type AnimationsList = {
   [value in PageName]: {
@@ -28,8 +26,6 @@ export const useTransitionAnimation = (
   disableAnimation: boolean
 ) => {
   status = status === 'entered' ? 'entering' : status;
-  const dispatch = useAppDispatch();
-  const { setAnimationComplete } = appActions;
   const animationsList: AnimationsList = {
     [PageName.MAIN]: {
       entering: mainPageEnter,
@@ -52,26 +48,41 @@ export const useTransitionAnimation = (
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          dispatch(setAnimationComplete(true));
-        },
-      });
+      const tl = gsap.timeline();
 
       if (pageName && status) {
         const { entering, exiting } = animationsList[pageName];
         const enteringStatus = status === 'entering';
+        const percentNode = document.querySelector<HTMLElement>(
+          '.preloader__percent'
+        );
+        const preloader = document.querySelector<HTMLElement>('.preloader');
 
         if (entering && exiting) {
           if (enteringStatus && pageName === PageName.MAIN) {
-            entering(tl, !disableAnimation);
+            if (preloader && percentNode) {
+              preloader.onanimationend = () => {
+                preloader.remove();
+                entering(tl, !disableAnimation);
+              };
+            } else {
+              entering(tl, !disableAnimation);
+            }
           } else if (
             enteringStatus &&
             !disableAnimation &&
             pageName !== PageName.MAIN
           ) {
-            usualPageEnter(tl);
-            entering(tl);
+            if (preloader && percentNode) {
+              preloader.onanimationend = () => {
+                preloader.remove();
+                usualPageEnter(tl);
+                entering(tl);
+              };
+            } else {
+              usualPageEnter(tl);
+              entering(tl);
+            }
           } else if (
             enteringStatus &&
             disableAnimation &&

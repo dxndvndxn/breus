@@ -11,7 +11,6 @@ export const Portfolios: React.FC = () => {
   const { portfolios, count, start, canFetchMorePortfolios } = useAppSelector(
     (state) => state.portfoliosReducer
   );
-  const { animationComplete } = useAppSelector((state) => state.appReducer);
   const { setStart } = portfoliosActions;
   const [percent, setPercent] = useState('00');
   const isResized = useRef(false);
@@ -85,7 +84,7 @@ export const Portfolios: React.FC = () => {
     if (locomotive) {
       window.dispatchEvent(new Event('resize'));
     }
-  }, [count, animationComplete]);
+  }, [count]);
 
   useEffect(
     () => () => {

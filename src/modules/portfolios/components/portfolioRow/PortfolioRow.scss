@@ -125,6 +125,8 @@ $marginCell: 5.5rem;
     }
 
     &:not(:first-child) {
+      margin-bottom: 0;
+
       .portfolio__xl {
         top: 0
       }
