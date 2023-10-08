@@ -19,7 +19,6 @@ export const PortfolioDescription: React.FC<PortfolioDesc> = ({
       background: 'rgba(0, 0, 0, 0)',
     });
     gsap.set(text.current, {
-      duration: 1,
       skewY: 7,
       stagger: {
         amount: 0.3,
@@ -27,7 +26,6 @@ export const PortfolioDescription: React.FC<PortfolioDesc> = ({
       y: 300,
     });
     gsap.set(linkNodes, {
-      duration: 1,
       skewY: 7,
       stagger: {
         amount: 0.3,
@@ -87,7 +85,7 @@ export const PortfolioDescription: React.FC<PortfolioDesc> = ({
     if (direction === 'in') {
       aa.play();
     } else {
-      tl.reverse().then(() => {
+      tl.reverse(0.2).then(() => {
         initStyles();
       });
     }

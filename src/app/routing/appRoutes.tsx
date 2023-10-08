@@ -14,7 +14,7 @@ export enum PageName {
   ABOUT = 'About',
   PORTFOLIOS = 'Portfolios',
   CONTACTS = 'Contacts',
-  NOT_FOUND = 'not_found',
+  NOT_FOUND = 'Nøt Føund',
 }
 type AppRoutes = RouteObject & {
   name: PageName;

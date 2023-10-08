@@ -3,7 +3,7 @@ import { useLocation, useOutlet } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { SwitchTransition, Transition } from 'react-transition-group';
 import { Layout } from '../common/components';
-import { routes } from './routing/appRoutes';
+import { PageName, routes } from './routing/appRoutes';
 import { store } from '../common/store';
 
 const App: React.FC = () => {
@@ -12,7 +12,7 @@ const App: React.FC = () => {
   const firstLoad = useRef(true);
   const outlet = useOutlet();
 
-  const { layout = undefined, name } =
+  const { layout = undefined, name = PageName.NOT_FOUND } =
     routes.find((route) =>
       route.reg
         ? route.path?.replace(new RegExp(route.reg, 'g'), '') === pathname
@@ -29,6 +29,8 @@ const App: React.FC = () => {
 
     return false;
   }, [name]);
+
+  console.log(name);
 
   return (
     <Suspense>

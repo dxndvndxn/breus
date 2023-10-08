@@ -1,0 +1,62 @@
+@import 'common/styles/index.scss';
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 25.2rem;
+  text-align: center;
+  line-height: 84%;
+  letter-spacing: -6.548px;
+}
+
+.not-found__text_wrap {
+  display: inline-block;
+  overflow: hidden;
+  height: 23rem;
+}
+
+.not-found__word {
+  display: inline-block;
+}
+
+.not-found__word_last {
+  display: block;
+}
+
+.not-found__word_sec {
+  padding-left: 4rem;
+}
+
+.not-found__text_wrap_last {
+  margin-top: -4rem;
+}
+
+@media screen and (max-width: $mobile) {
+  .not-found {
+    height: calc(100% - 1.7rem);
+    font-size: 9.1rem;
+    line-height: 80%;
+    letter-spacing: -1.84px;
+  }
+
+  .not-found__text_wrap {
+    display: block;
+    height: 8.6rem;
+  }
+
+  .not-found__word_sec {
+    padding-left: 0;
+  }
+
+  .not-found__text_wrap_last {
+    margin-top: -3rem;
+    margin-left: -0.6rem;
+  }
+
+  .not-found__text_wrap_sec {
+    margin-top: -1.4rem;
+  }
+}

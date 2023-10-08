@@ -11,13 +11,15 @@ import {
   contactsPageExit,
   portfoliosPageEnter,
   portfoliosPageExit,
+  notFoundPageEnter,
+  notFoundExitEnter,
 } from '../helpers/transitions';
 import type { TransitionStatus } from 'react-transition-group';
 
 type AnimationsList = {
   [value in PageName]: {
-    entering?: (tl: gsap.core.Timeline, isFirstLoad?: boolean) => void;
-    exiting?: (tl: gsap.core.Timeline, isFirstLoad?: boolean) => void;
+    entering: (tl: gsap.core.Timeline, isFirstLoad?: boolean) => void;
+    exiting: (tl: gsap.core.Timeline, isFirstLoad?: boolean) => void;
   };
 };
 export const useTransitionAnimation = (
@@ -43,7 +45,10 @@ export const useTransitionAnimation = (
       entering: contactsPageEnter,
       exiting: contactsPageExit,
     },
-    [PageName.NOT_FOUND]: {},
+    [PageName.NOT_FOUND]: {
+      entering: notFoundPageEnter,
+      exiting: notFoundExitEnter,
+    },
   };
 
   useEffect(() => {
@@ -58,40 +63,38 @@ export const useTransitionAnimation = (
         );
         const preloader = document.querySelector<HTMLElement>('.preloader');
 
-        if (entering && exiting) {
-          if (enteringStatus && pageName === PageName.MAIN) {
-            if (preloader && percentNode) {
-              preloader.onanimationend = () => {
-                preloader.remove();
-                entering(tl, !disableAnimation);
-              };
-            } else {
+        if (enteringStatus && pageName === PageName.MAIN) {
+          if (preloader && percentNode) {
+            preloader.onanimationend = () => {
+              preloader.remove();
               entering(tl, !disableAnimation);
-            }
-          } else if (
-            enteringStatus &&
-            !disableAnimation &&
-            pageName !== PageName.MAIN
-          ) {
-            if (preloader && percentNode) {
-              preloader.onanimationend = () => {
-                preloader.remove();
-                usualPageEnter(tl);
-                entering(tl);
-              };
-            } else {
+            };
+          } else {
+            entering(tl, !disableAnimation);
+          }
+        } else if (
+          enteringStatus &&
+          !disableAnimation &&
+          pageName !== PageName.MAIN
+        ) {
+          if (preloader && percentNode) {
+            preloader.onanimationend = () => {
+              preloader.remove();
               usualPageEnter(tl);
               entering(tl);
-            }
-          } else if (
-            enteringStatus &&
-            disableAnimation &&
-            pageName !== PageName.MAIN
-          ) {
-            entering(tl);
+            };
           } else {
-            exiting(tl);
+            usualPageEnter(tl);
+            entering(tl);
           }
+        } else if (
+          enteringStatus &&
+          disableAnimation &&
+          pageName !== PageName.MAIN
+        ) {
+          entering(tl);
+        } else {
+          exiting(tl);
         }
       }
     }, document.getElementById('root')!);
