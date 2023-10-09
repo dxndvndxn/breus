@@ -1,1 +1,1 @@
-export * from './useDistortionEffect';
+export * from './useTransitionAnimation';

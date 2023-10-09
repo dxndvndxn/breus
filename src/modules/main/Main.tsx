@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ImageDragEffect, windowWidth } from '../../common/helpers';
 import PokemonImg from '../../assets/images/Pokemon.webp';
-import { useDistortionEffect } from '../../common/hooks';
 import './Main.scss';
 
 export const Main: React.FC = () => {
   const [pokemons, setPokemons] = useState<React.ElementType[]>([]);
   const pokemonRef = useRef<SVGSVGElement | any | null>(null);
   const pokemonWrapRef = useRef<HTMLDivElement | null>(null);
-  const { scale } = useDistortionEffect();
   const isDesktop = windowWidth > 991;
 
   useEffect(() => {
@@ -57,7 +55,6 @@ export const Main: React.FC = () => {
               <feDisplacementMap
                 id="pokemonDisplacement"
                 in="SourceGraphic"
-                scale={scale}
                 xChannelSelector="R"
                 yChannelSelector="B"
               />

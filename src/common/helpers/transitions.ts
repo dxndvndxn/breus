@@ -331,7 +331,7 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
 
   tl.add('start')
     .to('.pokemon-svg', 0, { display: 'block' })
-    .to('.img-trail', 0, { display: 'none' })
+    // .to('.img-trail', 0, { display: 'none' })
     .to('.bottom', bottom, 'start')
     .to('.header', header, 'start')
     .to('.navigation', navigation, 'start')

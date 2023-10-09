@@ -58,21 +58,11 @@
   height: 100%;
 }
 
-@media screen and (max-width: $tablet) {
-  .pokemon-wrap {
-    position: absolute;
-    right: -7%;
-    left: auto;
-    top: 29%;
-    width: 43rem;
-    height: 10%;
-    transform: translate(0, -50%);
-  }
-}
-
 @media screen and (max-width: $mobile) {
   .pokemon-wrap {
-    top: 14%;
+    top: 56%;
+    right: -90%;
+    left: auto;
   }
 
   .img-trail {
@@ -83,5 +73,17 @@
   .pokemon-svg {
     height: 55rem;
     width: 59rem;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .pokemon-wrap {
+    position: absolute;
+    right: -7%;
+    left: auto;
+    top: 14%;
+    width: 43rem;
+    height: 10%;
+    transform: translate(0, -50%);
   }
 }
