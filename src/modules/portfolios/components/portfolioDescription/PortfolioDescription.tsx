@@ -13,7 +13,6 @@ export const PortfolioDescription: React.FC<PortfolioDesc> = ({
   const linksWrap = useRef<HTMLDivElement>(null);
 
   const initStyles = () => {
-    const linkNodes = Array.from(linksWrap.current!.childNodes);
     gsap.set(desc.current, {
       backdropFilter: 'blur(0)',
       background: 'rgba(0, 0, 0, 0)',
@@ -25,13 +24,16 @@ export const PortfolioDescription: React.FC<PortfolioDesc> = ({
       },
       y: 300,
     });
-    gsap.set(linkNodes, {
-      skewY: 7,
-      stagger: {
-        amount: 0.3,
-      },
-      y: 150,
-    });
+    if (linksWrap.current) {
+      const linkNodes = Array.from(linksWrap.current.childNodes);
+      gsap.set(linkNodes, {
+        skewY: 7,
+        stagger: {
+          amount: 0.3,
+        },
+        y: 150,
+      });
+    }
   };
 
   useEffect(() => {

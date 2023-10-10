@@ -30,8 +30,6 @@ const App: React.FC = () => {
     return false;
   }, [name]);
 
-  console.log(name);
-
   return (
     <Suspense>
       <Provider store={store}>

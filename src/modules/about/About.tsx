@@ -14,6 +14,7 @@ enum ImgSwitcher {
 
 export const About: React.FC = () => {
   const [imgSwitch, setImgSwitch] = useState<ImgSwitcher>(ImgSwitcher.BRUCE);
+  // const [tlInit] = useState(gsap.timeline());
   const isDesktop = windowWidth > 991;
   const breusPos = {
     x: isDesktop ? -30 : -20,
@@ -39,7 +40,7 @@ export const About: React.FC = () => {
     };
 
     if (!isDesktop) {
-      animationSettings.duration = 2.7;
+      animationSettings.duration = 2;
       animationSettings.ease = 'power2.out';
     }
 
@@ -47,15 +48,6 @@ export const About: React.FC = () => {
 
     tlInit
       .add('start')
-      .to(whatAppear, { ...animationSettings, autoAlpha: 1 }, 'start')
-      .to(
-        whatDisappear,
-        {
-          ...animationSettings,
-          autoAlpha: 0,
-        },
-        'start'
-      )
       .fromTo(
         '#tabDisplacement',
         {
@@ -65,6 +57,15 @@ export const About: React.FC = () => {
         {
           ...animationSettings,
           attr: { scale: 0 },
+        },
+        'start'
+      )
+      .to(whatAppear, { ...animationSettings, autoAlpha: 1 }, 'start')
+      .to(
+        whatDisappear,
+        {
+          ...animationSettings,
+          autoAlpha: 0,
         },
         'start'
       );
