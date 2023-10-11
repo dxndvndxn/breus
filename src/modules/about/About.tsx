@@ -14,7 +14,6 @@ enum ImgSwitcher {
 
 export const About: React.FC = () => {
   const [imgSwitch, setImgSwitch] = useState<ImgSwitcher>(ImgSwitcher.BRUCE);
-  // const [tlInit] = useState(gsap.timeline());
   const isDesktop = windowWidth > 991;
   const breusPos = {
     x: isDesktop ? -30 : -20,

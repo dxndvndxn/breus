@@ -29,6 +29,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#000000" />
     <link href="<%= htmlWebpackPlugin.files.css %>" rel="stylesheet" />
+    <meta name="description" content="Independent creative designer Sergey Breus. My profile is the creation of effective and comprehensive solutions for your business." />
+    <meta property="og:title" content="Creative digital designer" />
+    <meta property="og:description" content="Independent creative designer Sergey Breus. My profile is the creation of effective and comprehensive solutions for your business." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= htmlWebpackPlugin.options.domain %>/" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
     <% if (htmlWebpackPlugin.options.production){ %>
       <script src="<%= htmlWebpackPlugin.files.js %>" class="to-replace" defer></script>
     <% } %>
@@ -110,7 +119,7 @@
     loadBundle.addEventListener("load", transferComplete);
     loadBundle.open(
       "GET",
-      `http://185.68.22.110<%= htmlWebpackPlugin.files.js %>`
+      `<%= htmlWebpackPlugin.options.domain %><%= htmlWebpackPlugin.files.js %>`
     );
     loadBundle.send();
   </script>

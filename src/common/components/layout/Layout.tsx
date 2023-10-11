@@ -15,6 +15,7 @@ interface ILayout {
   name: PageName;
   status: TransitionStatus;
   disableAnimation: boolean;
+  title: string;
   layout?: PageType | undefined;
 }
 
@@ -24,6 +25,7 @@ export const Layout: React.FC<ILayout> = ({
   status,
   disableAnimation,
   layout = 'usual',
+  title,
 }) => {
   const dispatch = useAppDispatch();
   const { portfolios } = useAppSelector((state) => state.portfoliosReducer);
@@ -39,8 +41,8 @@ export const Layout: React.FC<ILayout> = ({
   }, []);
 
   useEffect(() => {
-    if (document) document.title = name;
-  }, [name]);
+    if (document) document.title = title;
+  }, [title]);
 
   return (
     <main className={`layout ${layout}${disable ? ' layout_disabled' : ''}`}>

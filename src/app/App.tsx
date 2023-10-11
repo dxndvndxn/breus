@@ -12,12 +12,15 @@ const App: React.FC = () => {
   const firstLoad = useRef(true);
   const outlet = useOutlet();
 
-  const { layout = undefined, name = PageName.NOT_FOUND } =
-    routes.find((route) =>
-      route.reg
-        ? route.path?.replace(new RegExp(route.reg, 'g'), '') === pathname
-        : route.path === pathname
-    ) ?? {};
+  const {
+    layout = undefined,
+    name = PageName.NOT_FOUND,
+    title = '',
+  } = routes.find((route) =>
+    route.reg
+      ? route.path?.replace(new RegExp(route.reg, 'g'), '') === pathname
+      : route.path === pathname
+  ) ?? {};
 
   const disableAnimation = useMemo(() => {
     if (!firstLoad.current) {
@@ -48,6 +51,7 @@ const App: React.FC = () => {
                 layout={layout}
                 name={name!}
                 status={status}
+                title={title}
                 disableAnimation={disableAnimation}
               >
                 {outlet}

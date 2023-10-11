@@ -6,7 +6,7 @@ interface IHttp {
 }
 export const http = async ({ api, params, method = 'GET', body }: IHttp) => {
   let response: Response;
-  const uri = `${process.env.REACT_APP_DOMAIN}api/${api}`;
+  const uri = `${process.env.REACT_APP_DOMAIN_API}api/${api}`;
 
   if (method === 'GET') {
     const uriParams = params ? `?${new URLSearchParams(params)}` : '';
