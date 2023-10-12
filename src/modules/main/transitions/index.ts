@@ -1,8 +1,9 @@
+import { windowWidth } from '../../../common/helpers';
 import { gsap } from 'gsap';
-import { windowWidth } from './constants';
+
 const isMobile = windowWidth < 991;
 
-export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
+export const enter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
   const onComplete = () => {
     if (!isMobile) {
       setTimeout(() => {
@@ -223,7 +224,7 @@ export const mainPageEnter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
   }
 };
 
-export const mainPageExit = (tl: gsap.core.Timeline) => {
+export const exit = (tl: gsap.core.Timeline) => {
   const duration = 1.24;
   const animationConfig = {
     ease: 'power3.out',
@@ -331,7 +332,6 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
 
   tl.add('start')
     .to('.pokemon-svg', 0, { display: 'block' })
-    // .to('.img-trail', 0, { display: 'none' })
     .to('.bottom', bottom, 'start')
     .to('.header', header, 'start')
     .to('.navigation', navigation, 'start')
@@ -360,242 +360,4 @@ export const mainPageExit = (tl: gsap.core.Timeline) => {
       },
       'start'
     );
-};
-
-export const usualPageEnter = (tl: gsap.core.Timeline) => {
-  const animationConfig = {
-    ease: 'power4.out',
-    delay: 0.1,
-    skewY: 7,
-    stagger: {
-      amount: 0.3,
-    },
-  };
-
-  tl.add('start')
-    .from('.logo', 1.8, { ...animationConfig, y: 50 }, 'start')
-    .from('.nav', 1.8, { ...animationConfig, y: 50 }, 'start');
-};
-
-export const aboutPageEnter = (tl: gsap.core.Timeline) => {
-  const animationConfig = {
-    ease: 'power4.out',
-    skewY: 7,
-    stagger: {
-      amount: 0.3,
-    },
-  };
-
-  tl.from('.about-img', 1.8, { ease: 'power4.out', opacity: 0 }, 'start')
-    .from('.about-content__text', 1.8, { ...animationConfig, y: 150 }, 'start')
-    .from('.about-menu__btn', 1.8, { ...animationConfig, y: 70 }, 'start')
-    .from(
-      '#tabDisplacement',
-      1.8,
-      {
-        ...animationConfig,
-        attr: { scale: 150 },
-      },
-      'start'
-    );
-};
-
-export const aboutPageExit = (tl: gsap.core.Timeline) => {
-  const animationConfig = {
-    ease: 'power4.in',
-  };
-
-  tl.to('.about-img', 0.8, { ...animationConfig, opacity: 0 }, 'start')
-    .to('.about-content__text', 0.8, { ...animationConfig, y: -150 }, 'start')
-    .to('.about-menu__btn', 0.8, { ...animationConfig, y: -70 }, 'start')
-    .to(
-      '#tabDisplacement',
-      0.8,
-      {
-        ...animationConfig,
-        attr: { scale: 150 },
-      },
-      'start'
-    );
-};
-
-export const contactsPageEnter = (tl: gsap.core.Timeline) => {
-  const animationConfig = {
-    ease: 'power4.out',
-    delay: 0.1,
-    skewY: 7,
-    stagger: {
-      amount: 0.3,
-    },
-  };
-
-  tl.from(
-    '.contacts__title, .socials__link',
-    1.8,
-    {
-      ...animationConfig,
-      y: 150,
-    },
-    'start'
-  ).from(
-    '.contacts__mail',
-    1.8,
-    { ease: 'power4.out', delay: 0.1, y: 150 },
-    'start'
-  );
-};
-
-export const contactsPageExit = (tl: gsap.core.Timeline) => {
-  const animationConfig = {
-    ease: 'power4.in',
-  };
-
-  tl.to(
-    '.contacts__title, .socials__link',
-    0.8,
-    {
-      ...animationConfig,
-      y: -150,
-    },
-    'start'
-  ).to('.contacts__mail', 0.8, { ...animationConfig, y: -150 }, 'start');
-};
-
-export const portfoliosPageEnter = (tl: gsap.core.Timeline) => {
-  const animationConfig = {
-    ease: 'power4.out',
-    skewY: 7,
-    stagger: {
-      amount: 0.3,
-    },
-  };
-
-  tl.fromTo(
-    '.portfolios',
-    { visibility: 'hidden' },
-    { visibility: 'visible' },
-    '-=0.8'
-  )
-    .from(
-      '.entering__text',
-      1.8,
-      {
-        ...animationConfig,
-        y: 150,
-        opacity: 0,
-      },
-      'start'
-    )
-    .from(
-      '.percent',
-      1.8,
-      {
-        ...animationConfig,
-        y: 100,
-      },
-      'start'
-    )
-    .to(
-      '.entering',
-      0.9,
-      {
-        ease: 'liner',
-        y: -150,
-        opacity: 0,
-        onComplete: () => {
-          document.querySelector<HTMLElement>('.entering')!.style.display =
-            'none';
-        },
-      },
-      '-=0.8'
-    )
-    .fromTo(
-      '.portfolios',
-      1,
-      {
-        ease: 'circ.easeOut',
-        position: 'absolute',
-        y: '100%',
-      },
-      {
-        ease: 'circ.easeOut',
-        y: 0,
-      },
-      '-=0.9'
-    );
-};
-
-export const portfoliosPageExit = (tl: gsap.core.Timeline) => {
-  const animationConfig = {
-    ease: 'power4.in',
-  };
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  document.getElementById('portfoliosContent').style.transform =
-    document.documentElement.style.getPropertyValue('--portfolio-translate');
-
-  tl.set(
-    '.portfolios',
-    {
-      transform: document.documentElement.style.getPropertyValue(
-        '--portfolio-translate'
-      ),
-    },
-    '-=1'
-  );
-  tl.to(
-    '.percent',
-    0.8,
-    {
-      ...animationConfig,
-      y: -100,
-    },
-    'start'
-  ).to(
-    '.portfolio',
-    1,
-    {
-      ease: 'power4.in',
-      '--portfolio-width': '100%',
-    },
-    'start'
-  );
-};
-
-export const notFoundPageEnter = (tl: gsap.core.Timeline) => {
-  const animationConfig = {
-    ease: 'power4.out',
-    delay: 0.1,
-    skewY: 7,
-    stagger: {
-      amount: 0.3,
-    },
-  };
-
-  tl.from(
-    '.not-found__word',
-    1.8,
-    {
-      ...animationConfig,
-      y: 270,
-    },
-    'start'
-  );
-};
-
-export const notFoundExitEnter = (tl: gsap.core.Timeline) => {
-  const animationConfig = {
-    ease: 'power4.out',
-    skewY: -7,
-  };
-
-  tl.to(
-    '.not-found__word',
-    {
-      ...animationConfig,
-      duration: 2,
-      y: -270,
-    },
-    'start'
-  );
 };

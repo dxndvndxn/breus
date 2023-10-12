@@ -15,7 +15,7 @@ interface ILayout {
   name: PageName;
   status: TransitionStatus;
   disableAnimation: boolean;
-  title: string;
+  title?: string;
   layout?: PageType | undefined;
 }
 
@@ -25,7 +25,7 @@ export const Layout: React.FC<ILayout> = ({
   status,
   disableAnimation,
   layout = 'usual',
-  title,
+  title = PageName.NOT_FOUND,
 }) => {
   const dispatch = useAppDispatch();
   const { portfolios } = useAppSelector((state) => state.portfoliosReducer);

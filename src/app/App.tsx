@@ -15,7 +15,7 @@ const App: React.FC = () => {
   const {
     layout = undefined,
     name = PageName.NOT_FOUND,
-    title = '',
+    title,
   } = routes.find((route) =>
     route.reg
       ? route.path?.replace(new RegExp(route.reg, 'g'), '') === pathname

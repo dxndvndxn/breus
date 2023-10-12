@@ -2,18 +2,26 @@ import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { PageName } from '../../app/routing/appRoutes';
 import {
-  aboutPageEnter,
-  mainPageEnter,
-  mainPageExit,
-  usualPageEnter,
-  aboutPageExit,
-  contactsPageEnter,
-  contactsPageExit,
-  portfoliosPageEnter,
-  portfoliosPageExit,
-  notFoundPageEnter,
-  notFoundExitEnter,
-} from '../helpers/transitions';
+  enter as aboutPageEnter,
+  exit as aboutPageExit,
+} from '../../modules/about/transitions';
+import {
+  enter as contactsPageEnter,
+  exit as contactsPageExit,
+} from '../../modules/contacts/transitions';
+import {
+  enter as mainPageEnter,
+  exit as mainPageExit,
+} from '../../modules/main/transitions';
+import {
+  enter as portfoliosPageEnter,
+  exit as portfoliosPageExit,
+} from '../../modules/portfolios/transitions';
+import {
+  enter as notFoundPageEnter,
+  exit as notFoundPageExit,
+} from '../../app/transitions';
+import { enter as usualPageEnter } from '../transitions';
 import type { TransitionStatus } from 'react-transition-group';
 
 type AnimationsList = {
@@ -47,7 +55,7 @@ export const useTransitionAnimation = (
     },
     [PageName.NOT_FOUND]: {
       entering: notFoundPageEnter,
-      exiting: notFoundExitEnter,
+      exiting: notFoundPageExit,
     },
   };
 

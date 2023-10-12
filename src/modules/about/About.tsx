@@ -7,7 +7,7 @@ import './About.scss';
 import { windowWidth } from '../../common/helpers';
 import { gsap } from 'gsap';
 
-enum ImgSwitcher {
+export enum ImgSwitcher {
   BRUCE = 'breus',
   POKEMON = 'pokemon',
 }
@@ -32,15 +32,15 @@ export const About: React.FC = () => {
   const tabAnimation = (appear: ImgSwitcher, disappear: ImgSwitcher) => {
     const whatAppear = `.${appear}`;
     const whatDisappear = `.${disappear}`;
-    const duration = 1.7;
+    const scaleDisappear = `#${disappear}Displacement`;
+    const scaleAppear = `#${appear}Displacement`;
+    const duration = 1;
     const animationSettings = {
-      ease: 'power4.out',
       duration,
     };
 
     if (!isDesktop) {
-      animationSettings.duration = 2;
-      animationSettings.ease = 'power2.out';
+      animationSettings.duration = 1.5;
     }
 
     const tlInit = gsap.timeline();
@@ -48,18 +48,18 @@ export const About: React.FC = () => {
     tlInit
       .add('start')
       .fromTo(
-        '#tabDisplacement',
-        {
-          ...animationSettings,
-          attr: { scale: 100 },
-        },
+        scaleDisappear,
         {
           ...animationSettings,
           attr: { scale: 0 },
         },
+        {
+          ...animationSettings,
+          attr: { scale: 150 },
+          clearProps: 'all',
+        },
         'start'
       )
-      .to(whatAppear, { ...animationSettings, autoAlpha: 1 }, 'start')
       .to(
         whatDisappear,
         {
@@ -67,7 +67,20 @@ export const About: React.FC = () => {
           autoAlpha: 0,
         },
         'start'
-      );
+      )
+      .fromTo(
+        scaleAppear,
+        {
+          ...animationSettings,
+          attr: { scale: 150 },
+        },
+        {
+          ...animationSettings,
+          attr: { scale: 0 },
+        },
+        'start'
+      )
+      .to(whatAppear, { ...animationSettings, autoAlpha: 1 }, 'start');
   };
 
   const switchImage = (appear: ImgSwitcher) => {
@@ -84,7 +97,7 @@ export const About: React.FC = () => {
           style={{ opacity: 0 }}
           className={`distort about-img__pokemon ${ImgSwitcher.POKEMON}`}
         >
-          <filter id="distortionFilter">
+          <filter id="pokemonFilter">
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.04 0.01"
@@ -93,14 +106,15 @@ export const About: React.FC = () => {
               seed="15"
             />
             <feDisplacementMap
-              id="tabDisplacement"
+              id={`${ImgSwitcher.POKEMON}Displacement`}
+              className="displacement-image"
               in="SourceGraphic"
               xChannelSelector="R"
               yChannelSelector="R"
               filterUnits="userSpaceOnUse"
             />
           </filter>
-          <g filter="url(#distortionFilter)">
+          <g filter="url(#pokemonFilter)">
             <image
               className={`distort__img about-img__pokemon`}
               {...pokemonPos}
@@ -112,7 +126,7 @@ export const About: React.FC = () => {
           className={`distort about-img__breus ${ImgSwitcher.BRUCE}`}
           {...breusSvg}
         >
-          <filter id="distortionFilter">
+          <filter id="bruceFilter">
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.04 0.01"
@@ -121,14 +135,15 @@ export const About: React.FC = () => {
               seed="15"
             />
             <feDisplacementMap
-              id="tabDisplacement"
+              id={`${ImgSwitcher.BRUCE}Displacement`}
+              className="displacement-image"
               in="SourceGraphic"
               xChannelSelector="R"
               yChannelSelector="R"
               filterUnits="userSpaceOnUse"
             />
           </filter>
-          <g filter="url(#distortionFilter)">
+          <g filter="url(#bruceFilter)">
             <image
               className={`distort__img about-img__breus`}
               xlinkHref={Breus}
