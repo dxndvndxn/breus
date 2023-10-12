@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { Nav } from '../nav/Nav';
 import { Link } from 'react-router-dom';
 import './Layout.scss';
-import { useTransitionAnimation } from '../../hooks/useTransitionAnimation';
+import { useTransitionAnimation } from '../../hooks';
+import { appActions } from '../../../app/AppSlice';
 import { PageName } from '../../../app/routing/appRoutes';
 import type { TransitionStatus } from 'react-transition-group';
 import { useAppDispatch, useAppSelector } from '../../store';
@@ -29,6 +30,7 @@ export const Layout: React.FC<ILayout> = ({
 }) => {
   const dispatch = useAppDispatch();
   const { portfolios } = useAppSelector((state) => state.portfoliosReducer);
+  const { setFirstLoad } = appActions;
   const isMain = layout === 'main';
   const disable = status === 'entering' || status === 'exiting';
 
@@ -43,6 +45,10 @@ export const Layout: React.FC<ILayout> = ({
   useEffect(() => {
     if (document) document.title = title;
   }, [title]);
+
+  useEffect(() => {
+    dispatch(setFirstLoad(!disableAnimation));
+  }, [disableAnimation]);
 
   return (
     <main className={`layout ${layout}${disable ? ' layout_disabled' : ''}`}>

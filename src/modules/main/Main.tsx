@@ -2,12 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ImageDragEffect, windowWidth } from '../../common/helpers';
 import PokemonImg from '../../assets/images/Pokemon.webp';
 import './Main.scss';
+import { useAppSelector } from '../../common/store';
 
 export const Main: React.FC = () => {
   const [pokemons, setPokemons] = useState<React.ElementType[]>([]);
   const pokemonRef = useRef<SVGSVGElement | any | null>(null);
   const pokemonWrapRef = useRef<HTMLDivElement | null>(null);
+  const { firstLoad } = useAppSelector((state) => state.appReducer);
   const isDesktop = windowWidth > 991;
+  console.log('firstLoad', firstLoad);
 
   useEffect(() => {
     let dragPokemon: ImageDragEffect | null = null;
@@ -44,24 +47,31 @@ export const Main: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
           >
-            <filter id="distortionFilter">
-              <feTurbulence
-                type="turbulence"
-                baseFrequency="0.01 0.01"
-                numOctaves="5"
-                stitchTiles="stitch"
-                seed="1"
-              />
-              <feDisplacementMap
-                id="pokemonDisplacement"
-                in="SourceGraphic"
-                xChannelSelector="R"
-                yChannelSelector="B"
-              />
-            </filter>
-            <g filter="url(#distortionFilter)">
+            {(isDesktop || firstLoad) && (
+              <filter id="distortionFilter">
+                <feTurbulence
+                  type="turbulence"
+                  baseFrequency="0.01 0.01"
+                  numOctaves="5"
+                  stitchTiles="noStitch"
+                  seed="1"
+                />
+                <feDisplacementMap
+                  id="pokemonDisplacement"
+                  in="SourceGraphic"
+                  xChannelSelector="R"
+                  yChannelSelector="B"
+                />
+              </filter>
+            )}
+            {!isDesktop && !firstLoad && (
               <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
-            </g>
+            )}
+            {(isDesktop || firstLoad) && (
+              <g filter="url(#distortionFilter)">
+                <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
+              </g>
+            )}
           </svg>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import PokemonImg from '../../assets/images/Pokemon.png';
+import PokemonImg from '../../assets/images/Pokemon.webp';
 import Breus from '../../assets/images/breus.webp';
 import './About.scss';
 import { windowWidth } from '../../common/helpers';

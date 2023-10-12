@@ -142,8 +142,9 @@ export const enter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
       opacity: 0,
       y: 40,
       duration: 0.8,
+      force3D: false,
     };
-    const pokemon = {
+    let pokemon: any = {
       attr: { scale: 170 },
       force3D: false,
       onComplete,
@@ -181,6 +182,8 @@ export const enter = (tl: gsap.core.Timeline, isFirstLoad = true) => {
       count.scale = 0.9;
       count.top = '-0.3rem';
       count.right = '-2.2rem';
+
+      pokemon = {};
     }
 
     tl.add('start')
@@ -292,6 +295,9 @@ export const exit = (tl: gsap.core.Timeline) => {
     left: '83%',
     top: '36%',
   };
+  let pokemon: any = {
+    attr: { scale: 250 },
+  };
 
   if (isMobile) {
     animationConfig.duration = 1.5;
@@ -320,6 +326,8 @@ export const exit = (tl: gsap.core.Timeline) => {
     linkDivider.right = '-3rem';
 
     linkDividerFirst.right = '-3.8rem';
+
+    pokemon = {};
   }
 
   tl.set('.navigation__link.navigation__link_first .nav-link__divider', {
@@ -352,12 +360,5 @@ export const exit = (tl: gsap.core.Timeline) => {
     .to('.navigation__item:nth-child(1)', navigationItem1, 'start')
     .to('.navigation__item:nth-child(2)', navigationItem2, 'start')
     .to('.navigation__item:nth-child(3)', navigationItem3, 'start')
-    .to(
-      '#pokemonDisplacement',
-      duration,
-      {
-        attr: { scale: 250 },
-      },
-      'start'
-    );
+    .to('#pokemonDisplacement', duration, pokemon, 'start');
 };
