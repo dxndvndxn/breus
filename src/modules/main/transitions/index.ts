@@ -238,6 +238,9 @@ export const exit = (tl: gsap.core.Timeline) => {
   if (isMobile) {
     animationConfig.duration = 1;
     animationConfig.ease = 'liner';
+    tl.set('.pokemon-svg__g', { display: 'none' });
+    tl.set('.pokemon-svg__image', { display: 'block' });
+    tl.set('#distortionFilter', { display: 'none' });
   }
 
   const navigation: any = {

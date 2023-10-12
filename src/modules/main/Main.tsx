@@ -10,7 +10,6 @@ export const Main: React.FC = () => {
   const pokemonWrapRef = useRef<HTMLDivElement | null>(null);
   const { firstLoad } = useAppSelector((state) => state.appReducer);
   const isDesktop = windowWidth > 991;
-  console.log('firstLoad', firstLoad);
 
   useEffect(() => {
     let dragPokemon: ImageDragEffect | null = null;
@@ -50,7 +49,7 @@ export const Main: React.FC = () => {
             {(isDesktop || firstLoad) && (
               <filter id="distortionFilter">
                 <feTurbulence
-                  type="turbulence"
+                  type="noise"
                   baseFrequency="0.01 0.01"
                   numOctaves="5"
                   stitchTiles="noStitch"
@@ -64,11 +63,13 @@ export const Main: React.FC = () => {
                 />
               </filter>
             )}
-            {!isDesktop && !firstLoad && (
-              <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
-            )}
+            <image
+              className="pokemon-svg__image"
+              style={{ display: !isDesktop && !firstLoad ? 'block' : 'none' }}
+              xlinkHref={PokemonImg}
+            />
             {(isDesktop || firstLoad) && (
-              <g filter="url(#distortionFilter)">
+              <g filter="url(#distortionFilter)" className="pokemon-svg__g">
                 <image className="pokemon-svg__image" xlinkHref={PokemonImg} />
               </g>
             )}
