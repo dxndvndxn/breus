@@ -9,6 +9,10 @@
   &_disabled {
     pointer-events: none;
   }
+
+  &:has(#portfolios) {
+    overflow-y: hidden;
+  }
 }
 
 .layout__head {
